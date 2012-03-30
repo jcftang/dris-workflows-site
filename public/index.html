@@ -1,0 +1,64 @@
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Blacksmith is a static site generator.">
+    <meta name="keywords" content="blacksmith,cms">
+    <title>BlacksmithBlacksmith</title>
+    <script type="text/javascript">var _sf_startpt=(new Date()).getTime()</script>
+    <link rel="stylesheet" href="/css/application.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/css/blacksmith.css" type="text/css">
+
+  </head>
+  <body>
+    <div id="container">
+      <header id="header">
+        <h1 class="title"><a href="/">Blacksmith</a></h1>
+      </header>
+
+      <div id="sidebar">
+        <div id="sidebar-node">
+          <h2>Table of Contents</h2>
+          <nav id="toc"><ul><li><a href="/how-to-include-other-files">how to include other files</a></li><li><a href="/publish-content">publish content</a></li><li><a href="/manage-authors">manage authors</a></li><li><a href="/customize-themes">customize themes</a></li><li><a href="/global-config">global config</a></li><li><a href="/all-pages">all pages</a></li></ul></nav>
+        </div>
+      </div>
+      <div id="page">
+
+        <article class="article">
+          <div class="metadata">
+            <h1>
+              <span class="title"><a href=".">Blacksmith</a></span>
+              <small>
+                <span class="about">by 
+                  <strong class="author">
+                    <span class="name">Nodejitsu</span>
+                    <span class="github"><a href="https://github.com/nodejitsu">nodejitsu</a></span>
+                  </strong>
+                </span>
+                <span class="about"> on <em><time class="date">Thursday, Nov 3 2011</time></em></span>
+              </small>
+            </h1>
+            <div class="breadcrumbs">
+              @: / <a href="" class="breadcrumb"></a>
+            </div>
+          </div>
+          <div class="content"><p><em>A static site generator built with Node.js, JSDOM, and Weld.</em></p>  <p><img src="/img/screenshot.png" alt=""></p>  <p>Blacksmith is a static site generator designed for simplicity and ease of use. Blacksmith will generate your content in seconds as a stand-alone static site ( comprised of HTML / CSS ) that can be hosted anywhere with no dependencies. Articles are edited as Markdown files, and themes are just plain HTML and CSS files (no inane microtemplates or strange markup languages).</p>  <p>Static sites are generated using Weld and JSDOM. Blacksmith also ships with a built in Node.js static file server, so Blacksmith can host itself, if you'd like. </p>  <h2>Features</h2> <ul><li>Easy to use</li><li>Can be hosted anywhere, since it generates static HTML/CSS</li><li>Write and Edit articles on the file system using markdown</li><li>JSDOM / Weld based</li><li>Easily create custom themes using plain HTML and CSS ( no micro-templating ! )</li><li>Ships with a robust node.js static server suitable for production </li></ul> <h2>Installing Blacksmith</h2> <pre><code>npm install blacksmith -g</code></pre> <h2>Usage</h2> <p>Now that you have blacksmith, you can use the cli tool to get started!</p>  <h3>Create a new site</h3> <pre><code>blacksmith init</code></pre> <h3>Create a new page</h3> <pre><code>cd myBlog/pages
+blacksmith post</code></pre> <h3>Generate a static site</h3> <p><em>This command will generate a new version of your blog using source files from the <code>./pages</code> folder and put the generated content into <code>.<span class="regexp">/public/</span></code>.</em></p>  <pre><code><span class="comment"># In your site's root</span>
+blacksmith generate</code></pre> <h3>Serving your static site</h3> <p>You can serve what's in <code>./public</code> on any static HTTP server and it's good to go!</p>  <p>Alternately, blacksmith comes with a simple http server:</p>  <pre><code>blacksmith preview</code></pre> <p>and can be deployed to Nodejitsu as-is:</p>  <pre><code>jitsu deploy</code></pre> <h1>Want to learn more?</h1> <p>Check out the links in the sidebar!</p></div>
+        </article>
+
+        <script type="text/javascript" src="/js/jquery.js"></script>
+      </div>
+
+      <footer id="footer">
+        <hr>
+        <p><a href="/">Blacksmith</a></p>
+        <ul>
+          <li>Powered by <a href="http://nodejitsu.com">Nodejitsu</a> / styled with <a href="http://quotedprintable.com/pages/scribbish">scribbish</a></li>
+        </ul>
+      </footer>
+
+
+    </div>
+  </body>
+</html>
