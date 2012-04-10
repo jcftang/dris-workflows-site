@@ -1,4 +1,4 @@
 {
   "render": "archive",
-  "index": false
+  "index": true 
 }
