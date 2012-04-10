@@ -1,8 +1,3 @@
-rem
-rem
-rem
-rem
-rem
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Creating a Collection](#test-cases-for-node-dri-package-creating-a-collection)
@@ -14,7 +9,7 @@ rem
      - [Pushing the item into fedora](#test-cases-for-node-dri-package-pushing-the-item-into-fedora)
      - [Getting items from a certain type](#test-cases-for-node-dri-package-getting-items-from-a-certain-type)
      - [Removing an item and children items](#test-cases-for-node-dri-package-removing-an-item-and-children-items)
-     - [Removing a colection and children series and/or items](#test-cases-for-node-dri-package-removing-a-colection-and-children-series-andor-items)
+     - [Removing a collection and children series and/or items](#test-cases-for-node-dri-package-removing-a-collection-and-children-series-andor-items)
      - [Getting all media files](#test-cases-for-node-dri-package-getting-all-media-files)
 <a name="" />
  
@@ -196,8 +191,8 @@ should return the id of the removed item.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-removing-a-colection-and-children-series-andor-items" />
-## Removing a colection and children series and/or items
+<a name="test-cases-for-node-dri-package-removing-a-collection-and-children-series-andor-items" />
+## Removing a collection and children series and/or items
 should return the id of the removed collection.
 
 ```js
