@@ -1,0 +1,377 @@
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="DRIS Workflows">
+		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest">
+		<title>API for dri-apiDRIS Workflows</title>
+		<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all">
+	</head>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="#">DRIS</a>
+				<ul class="nav">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/contact">Contact</a>
+					</li>
+					<li>
+						<a href="all-pages">All Pages</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="span9">
+					<article class="article">
+						<div class="metadata">
+							<h1><span class="title"><a href="./api-for-dri-api">API for dri-api</a></span><small> <span class="about">by <strong class="author"> <span class="name">jtang</span> <span class="github"></span> </strong> </span> <span class="about"> on <em><time class="date">Tuesday, Apr 10 2012</time></em></span> </small></h1>
+							<div class="breadcrumbs">
+								@: / 
+							<a href="/api-for-dri-api" class="breadcrumb">api-for-dri-api</a></div>
+						</div>
+						<div class="content"><p>Express test server listening on port 4001 in test mode
+</p>
+<h1>TOC</h1>
+<ul>
+<li><a href="#apiv2-tests">APIv2 tests</a><ul>
+<li><a href="#apiv2-tests-get-">GET /</a></li>
+<li><a href="#apiv2-tests-post-devcollections">POST /dev/collections</a></li>
+<li><a href="#apiv2-tests-post-devcollectionsidseries">POST /dev/collections/:id/series</a></li>
+<li><a href="#apiv2-tests-post-devcollectionsidseriesiditems">POST /dev/collections/:id/series/:id/items</a></li>
+<li><a href="#apiv2-tests-put-devcollectionsidseriesiditemsid">PUT /dev/collections/:id/series/:id/items/:id</a></li>
+<li><a href="#apiv2-tests-put-devcollectionsidseriesid">PUT /dev/collections/:id/series/:id</a></li>
+<li><a href="#apiv2-tests-put-devcollectionsid">PUT /dev/collections/:id</a></li>
+<li><a href="#apiv2-tests-get-devcollections">GET /dev/collections</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsid">GET /dev/collections/:id</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsidseries">GET /dev/collections/:id/series</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsidseriesid">GET /dev/collections/:id/series/:id</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsidseriesiditems">GET /dev/collections/:id/series/:id/items</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsidseriesiditemsid">GET /dev/collections/:id/series/:id/items/:id</a></li>
+<li><a href="#apiv2-tests-delete-devcollectionsidseriesiditemsid">DELETE /dev/collections/:id/series/:id/items/:id</a></li>
+<li><a href="#apiv2-tests-delete-devcollectionsidseriesid">DELETE /dev/collections/:id/series/:id</a></li>
+<li><a href="#apiv2-tests-delete-devcollectionsid">DELETE /dev/collections/:id</a>
+<a name=""></a></li>
+</ul>
+</li>
+</ul>
+<p><a name="apiv2-tests"></a>
+</p>
+<h1>APIv2 tests</h1>
+<p><a name="apiv2-tests-get-"></a>
+</p>
+<h2>GET /</h2>
+<p>should respond with the documentation page.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, '&lt;title&gt;DRI API&lt;/title&gt;');
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-post-devcollections"></a>
+</p>
+<h2>POST /dev/collections</h2>
+<p>should respond with the id of the created collection.
+
+</p>
+<pre><code class="js">            request({
+                method : 'POST',
+                uri : socket + '/dev/collections',
+                form : {
+                    Title : 'Autobot collection'
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                collectionId = body;
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-post-devcollectionsidseries"></a>
+</p>
+<h2>POST /dev/collections/:id/series</h2>
+<p>should respond with the id of the created series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'POST',
+                uri : socket + '/dev/collections/' + collectionId + '/series',
+                form : {
+                    Title : 'Autobot series',
+                    author : 'Autobot',
+                    parentId : collectionId
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                seriesId = body;
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-post-devcollectionsidseriesiditems"></a>
+</p>
+<h2>POST /dev/collections/:id/series/:id/items</h2>
+<p>should respond with the id of the created item.
+
+</p>
+<pre><code class="js">            request({
+                method : 'POST',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items',
+                form : {
+                    Title : 'Autobot title',
+                    Subtitle : 'Autobot Subtitle',
+                    parentId : seriesId
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                itemId = body;
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-put-devcollectionsidseriesiditemsid"></a>
+</p>
+<h2>PUT /dev/collections/:id/series/:id/items/:id</h2>
+<p>should respond with the id of the updated item.
+
+</p>
+<pre><code class="js">            request({
+                method : 'PUT',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId,
+                form : {
+                    _id : itemId,
+                    Title : 'Autobot titleUpdate',
+                    Subtitle : 'Autobot Subtitle',
+                    update : 'update',
+                    type : 'item',
+                    parentId : seriesId
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-put-devcollectionsidseriesid"></a>
+</p>
+<h2>PUT /dev/collections/:id/series/:id</h2>
+<p>should respond with the id of the updated series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'PUT',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId,
+                form : {
+                    _id : seriesId,
+                    Title : 'Autobot seriesUpdate',
+                    author : 'Autobot',
+                    update : 'update',
+                    type : 'series',
+                    parentId : collectionId
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-put-devcollectionsid"></a>
+</p>
+<h2>PUT /dev/collections/:id</h2>
+<p>should respond with the id of the updated series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'PUT',
+                uri : socket + '/dev/collections/' + collectionId,
+                form : {
+                    _id : collectionId,
+                    Title : 'Autobot collectionUpdate',
+                    type : 'collection',
+                    update : 'update'
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollections"></a>
+</p>
+<h2>GET /dev/collections</h2>
+<p>should respond with an array of all the collections.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, collectionId);
+                assert.include(body, "Autobot collectionUpdate");
+                assert.include(body, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsid"></a>
+</p>
+<h2>GET /dev/collections/:id</h2>
+<p>should respond with the array containing the data of the specified collection.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId
+            }, function(err, resp, body) {
+                var json = JSON.parse(body);
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.equal(json.Title, "Autobot collectionUpdate");
+                assert.equal(json.update, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsidseries"></a>
+</p>
+<h2>GET /dev/collections/:id/series</h2>
+<p>should respond with an array of all the series corresponding to the given id.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId + '/series'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, seriesId);
+                assert.include(body, "Autobot seriesUpdate");
+                assert.include(body, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsidseriesid"></a>
+</p>
+<h2>GET /dev/collections/:id/series/:id</h2>
+<p>should respond with the array containing the data of the specified series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId
+            }, function(err, resp, body) {
+                var json = JSON.parse(body);
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.equal(json.Title, "Autobot seriesUpdate");
+                assert.equal(json.update, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsidseriesiditems"></a>
+</p>
+<h2>GET /dev/collections/:id/series/:id/items</h2>
+<p>should respond with an array of all the items corresponding to the given ids.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, itemId);
+                assert.include(body, "Autobot titleUpdate");
+                assert.include(body, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsidseriesiditemsid"></a>
+</p>
+<h2>GET /dev/collections/:id/series/:id/items/:id</h2>
+<p>should respond with the array containing the data of the specified item.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
+            }, function(err, resp, body) {
+                var json = JSON.parse(body);
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.equal(json.Title, "Autobot titleUpdate");
+                assert.equal(json.update, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-delete-devcollectionsidseriesiditemsid"></a>
+</p>
+<h2>DELETE /dev/collections/:id/series/:id/items/:id</h2>
+<p>should respond with the id of the deleted item.
+
+</p>
+<pre><code class="js">            request({
+                method : 'DELETE',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, itemId);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-delete-devcollectionsidseriesid"></a>
+</p>
+<h2>DELETE /dev/collections/:id/series/:id</h2>
+<p>should respond with the id of the deleted series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'DELETE',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, seriesId);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-delete-devcollectionsid"></a>
+</p>
+<h2>DELETE /dev/collections/:id</h2>
+<p>should respond with the id of the deleted collection.
+
+</p>
+<pre><code class="js">            request({
+                method : 'DELETE',
+                uri : socket + '/dev/collections/' + collectionId
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, collectionId);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+</div>
+					</article>
+				</div>
+				<div class="span3">
+					<nav id="toc"><ul><li><a href="/contact">contact</a></li><li><a href="/api-for-dri-api">api for dri api</a></li><li><a href="/api-for-node-fedora">api for node fedora</a></li><li><a href="/api-for-node-dri">api for node dri</a></li><li><a href="/all-pages">all pages</a></li></ul></nav>
+				</div>
+			</div>
+		</div>
+		<footer id="footer">
+			<hr>
+			<p>
+				<a href="/">DRIS Workflows</a> documentation site powered by <a href="https://github.com/flatiron/blacksmith">Blacksmith</a> / styled with <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>
+			</p>
+		</footer>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#toc ul').addClass('nav nav-list');
+			$('#toc ul').prepend('<li class="nav-header">Table of contents</li>')
+			$('.breadcrumb').removeClass('breadcrumb')
+		})
+	</script>
+</html>

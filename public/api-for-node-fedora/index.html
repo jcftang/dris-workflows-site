@@ -1,0 +1,137 @@
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="DRIS Workflows">
+		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest">
+		<title>API for node-fedoraDRIS Workflows</title>
+		<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all">
+	</head>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="#">DRIS</a>
+				<ul class="nav">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/contact">Contact</a>
+					</li>
+					<li>
+						<a href="all-pages">All Pages</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="span9">
+					<article class="article">
+						<div class="metadata">
+							<h1><span class="title"><a href="./api-for-node-fedora">API for node-fedora</a></span><small> <span class="about">by <strong class="author"> <span class="name">jtang</span> <span class="github"></span> </strong> </span> <span class="about"> on <em><time class="date">Tuesday, Apr 10 2012</time></em></span> </small></h1>
+							<div class="breadcrumbs">
+								@: / 
+							<a href="/api-for-node-fedora" class="breadcrumb">api-for-node-fedora</a></div>
+						</div>
+						<div class="content"><h1>TOC</h1>
+<ul>
+<li><a href="#test-cases-for-the-node-fedora-package">Test cases for the node-fedora package</a><ul>
+<li><a href="#test-cases-for-the-node-fedora-package-createfedoraobject-will-create-a-fedoraobject">createFedoraObject, will create a FedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-getfedoralist-get-a-list-of-fedoraobjects">getFedoraList, Get a list of FedoraObjects</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-getfedoraobject-get-a-fedoraobject">getFedoraObject, get a fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-deleteobject-will-delete-an-object-from-fedora">deleteObject, will delete an object from fedora</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-getnextpid-will-get-the-next-pid-that-is-available-from-fedora">getNextPID, will get the next PID that is available from fedora</a>
+<a name=""></a></li>
+</ul>
+</li>
+</ul>
+<p><a name="test-cases-for-the-node-fedora-package"></a>
+</p>
+<h1>Test cases for the node-fedora package</h1>
+<p><a name="test-cases-for-the-node-fedora-package-createfedoraobject-will-create-a-fedoraobject"></a>
+</p>
+<h2>createFedoraObject, will create a FedoraObject</h2>
+<p>should create a FedoraObject.
+
+</p>
+<pre><code class="js">            fedora.createFedoraObject(testNamespace,testLabel, function(result){
+                testResult = result;
+                result.should.exist;
+                result.should.include(testNamespace + ":");
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-getfedoralist-get-a-list-of-fedoraobjects"></a>
+</p>
+<h2>getFedoraList, Get a list of FedoraObjects</h2>
+<p>should return a list of FedoraObjects from the fedora repository.
+
+</p>
+<pre><code class="js">            fedora.getFedoraList("*",function(resultData){
+                resultData.should.exist;
+                resultData.should.include('result');
+                resultData.should.not.be.empty;
+            }, 
+            function(error){
+                should.not.exist(error);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-getfedoraobject-get-a-fedoraobject"></a>
+</p>
+<h2>getFedoraObject, get a fedoraObject</h2>
+<p>should return a fedoraObject.
+
+</p>
+<pre><code class="js">            fedora.getFedoraObject(testResult, function(resultData){
+                resultData.should.include(testResult);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-deleteobject-will-delete-an-object-from-fedora"></a>
+</p>
+<h2>deleteObject, will delete an object from fedora</h2>
+<p>should delete the requested object from fedora.
+
+</p>
+<pre><code class="js">            fedora.deleteObject(testResult, function(resultData){
+                var myregexp = new RegExp("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.?[0-9]*Z");
+                resultData.should.match(myregexp);
+                done();
+            }, function(error){
+                should.not.exist(error);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-getnextpid-will-get-the-next-pid-that-is-available-from-fedora"></a>
+</p>
+<h2>getNextPID, will get the next PID that is available from fedora</h2>
+<p>should return the next PID from fedora.
+
+</p>
+<pre><code class="js">            fedora.getNextPID("node", function(resultData){
+                resultData.should.include("node:");
+                done();
+            });</code></pre>
+</div>
+					</article>
+				</div>
+				<div class="span3">
+					<nav id="toc"><ul><li><a href="/contact">contact</a></li><li><a href="/api-for-dri-api">api for dri api</a></li><li><a href="/api-for-node-fedora">api for node fedora</a></li><li><a href="/api-for-node-dri">api for node dri</a></li><li><a href="/all-pages">all pages</a></li></ul></nav>
+				</div>
+			</div>
+		</div>
+		<footer id="footer">
+			<hr>
+			<p>
+				<a href="/">DRIS Workflows</a> documentation site powered by <a href="https://github.com/flatiron/blacksmith">Blacksmith</a> / styled with <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>
+			</p>
+		</footer>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#toc ul').addClass('nav nav-list');
+			$('#toc ul').prepend('<li class="nav-header">Table of contents</li>')
+			$('.breadcrumb').removeClass('breadcrumb')
+		})
+	</script>
+</html>

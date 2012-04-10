@@ -1,0 +1,291 @@
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="DRIS Workflows">
+		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest">
+		<title>API for node-driDRIS Workflows</title>
+		<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all">
+	</head>
+	<div class="navbar">
+		<div class="navbar-inner">
+			<div class="container-fluid">
+				<a class="brand" href="#">DRIS</a>
+				<ul class="nav">
+					<li>
+						<a href="/">Home</a>
+					</li>
+					<li>
+						<a href="/contact">Contact</a>
+					</li>
+					<li>
+						<a href="all-pages">All Pages</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span12">
+				<div class="span9">
+					<article class="article">
+						<div class="metadata">
+							<h1><span class="title"><a href="./api-for-node-dri">API for node-dri</a></span><small> <span class="about">by <strong class="author"> <span class="name">jtang</span> <span class="github"></span> </strong> </span> <span class="about"> on <em><time class="date">Tuesday, Apr 10 2012</time></em></span> </small></h1>
+							<div class="breadcrumbs">
+								@: / 
+							<a href="/api-for-node-dri" class="breadcrumb">api-for-node-dri</a></div>
+						</div>
+						<div class="content"><h1>TOC</h1>
+<ul>
+<li><a href="#test-cases-for-node-dri-package">Test cases for node-dri package</a><ul>
+<li><a href="#test-cases-for-node-dri-package-creating-a-collection">Creating a Collection</a></li>
+<li><a href="#test-cases-for-node-dri-package-creating-a-series">Creating a Series</a></li>
+<li><a href="#test-cases-for-node-dri-package-creating-an-item">Creating an Item</a></li>
+<li><a href="#test-cases-for-node-dri-package-getting-an-item">Getting an Item</a></li>
+<li><a href="#test-cases-for-node-dri-package-inserting-an-item">Inserting an Item</a></li>
+<li><a href="#test-cases-for-node-dri-package-getting-all-children-of-a-parent-item">Getting all children of a parent item</a></li>
+<li><a href="#test-cases-for-node-dri-package-pushing-the-item-into-fedora">Pushing the item into fedora</a></li>
+<li><a href="#test-cases-for-node-dri-package-getting-items-from-a-certain-type">Getting items from a certain type</a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-an-item-and-children-items">Removing an item and children items</a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-a-collection-and-children-series-andor-items">Removing a collection and children series and/or items</a></li>
+<li><a href="#test-cases-for-node-dri-package-getting-all-media-files">Getting all media files</a>
+<a name=""></a></li>
+</ul>
+</li>
+</ul>
+<p><a name="test-cases-for-node-dri-package"></a>
+</p>
+<h1>Test cases for node-dri package</h1>
+<p><a name="test-cases-for-node-dri-package-creating-a-collection"></a>
+</p>
+<h2>Creating a Collection</h2>
+<p>should create a collection and return the id of the collection.
+
+</p>
+<pre><code class="js">            var data = {};
+            data.Title = "AutoTestColl" + rnd;
+            data.type = "collection";
+            dri.createCollection(data, function(result) {
+                result.should.be.ok
+                collId = result;
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-creating-a-series"></a>
+</p>
+<h2>Creating a Series</h2>
+<p>should create a series and return the id of the series.
+
+</p>
+<pre><code class="js">            var data = {
+                collection : collId,
+                Title : "AutoTestSeries" + rnd,
+                author : "AutoBot",
+                type : "series"
+            };
+            dri.createSeries(data, function(result) {
+                result.should.be.ok
+                seriesId = result;
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-creating-an-item"></a>
+</p>
+<h2>Creating an Item</h2>
+<p>should create an Item and return the id of the Item.
+
+</p>
+<pre><code class="js">            var data = {
+                parentId : seriesId,
+                Title : "AutoBotTitle" + rnd,
+                Subtitle : "AutoBotSubitle" + rnd,
+                objectId : rnd,
+                type : "item"
+            };
+            dri.createItem(data, function(result) {
+                result.should.be.ok
+                itemId = result;
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-getting-an-item"></a>
+</p>
+<h2>Getting an Item</h2>
+<p>should get an Item and return the Item.
+
+</p>
+<pre><code class="js">            dri.getItem(itemId, function(result) {
+                should.equal(itemId, result._id);
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-inserting-an-item"></a>
+</p>
+<h2>Inserting an Item</h2>
+<p>Should create the new item, update the position of the other items and return the id of the created item.
+
+</p>
+<pre><code class="js">            var data = {
+                amount : 10,
+                parentId : seriesId,
+                objectId : 0,
+                Title : "AutoBotTitle" + rnd,
+                Subtitle : "AutoBotSubitle" + rnd,
+                type : "item"
+            };
+            for(var i = 0; i &lt; data.amount; i++) {
+                data.objectId = data.objectId +i;
+                dri.createItem(data, function(result) {
+                    result.should.be.ok;
+                }, function(e) {
+                    should.not.exist(e);
+                });
+            }
+            data.objectId = 3;
+            dri.updateIdOrder(data.parentId, data.objectId, 1, function(amount) {
+                amount.should.be.a("number");
+                dri.createItem(data, function(id) {
+                    dri.getItems(seriesId, function(result) {
+                        var str = result.length;
+                        should.equal(str, 12);
+                        done();
+                    }, function(e) {
+                        should.not.exist(e);
+                        done();
+                    });
+                }, function(e) {
+                    should.not.exist(e);
+                    done();
+                });
+            })</code></pre>
+<p><a name="test-cases-for-node-dri-package-getting-all-children-of-a-parent-item"></a>
+</p>
+<h2>Getting all children of a parent item</h2>
+<p>should get an array of children.
+
+</p>
+<pre><code class="js">            dri.getItems(seriesId, function(result) {
+                var str = result[0].parentId;
+                should.equal(str, seriesId);
+                done();
+            }, function(e) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-pushing-the-item-into-fedora"></a>
+</p>
+<h2>Pushing the item into fedora</h2>
+<p>should push the item into fedora and return the fedora id from that item.
+
+</p>
+<pre><code class="js">            dri.approveItem(itemId, "cfedoraLib", function(pid) {
+                pid.should.include(":");
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-getting-items-from-a-certain-type"></a>
+</p>
+<h2>Getting items from a certain type</h2>
+<p>should return an array of items from a certain type (here series).
+
+</p>
+<pre><code class="js">            dri.getAllRecordsByType("series", function(data) {
+                should.equal(data[0].type, "series");
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-an-item-and-children-items"></a>
+</p>
+<h2>Removing an item and children items</h2>
+<p>should return the id of the removed item.
+
+</p>
+<pre><code class="js">            dri.removeItem(seriesId, function(id) {
+                should.equal(seriesId, id);
+                dri.getItems(id, function(result) {
+                    var str = result.length;
+                    should.equal(0, str);
+                }, function(e) {
+                    should.not.exist(e);
+                });
+            }, function(err) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-an-item-and-children-items"></a>
+</p>
+<h2>Removing an item and children items</h2>
+<p>should return the id of the removed item.
+
+</p>
+<pre><code class="js">            dri.removeItem(itemId, function(id) {
+                should.equal(itemId, id);
+                dri.getItems(id, function(result) {
+                    var str = result.length;
+                    should.equal(0, str);
+                }, function(e) {
+                    should.not.exist(e);
+                });
+            }, function(err) {
+                should.not.exist(e);
+
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-a-collection-and-children-series-andor-items"></a>
+</p>
+<h2>Removing a collection and children series and/or items</h2>
+<p>should return the id of the removed collection.
+
+</p>
+<pre><code class="js">
+            dri.removeItem(collId, function(id) {
+                should.equal(collId, id);
+                dri.getItems(id, function(result) {
+                    var str = result.length;
+                    should.equal(0, str);
+                }, function(e) {
+                    should.not.exist(e);
+                });
+            }, function(err) {
+                should.not.exist(e);
+
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-getting-all-media-files"></a>
+</p>
+<h2>Getting all media files</h2>
+<p>should return an array with the media files metadata.
+
+</p>
+<pre><code class="js">            dri.getAllMediaItems(function(data) {
+                should.exist(data);
+                done();
+            });</code></pre>
+</div>
+					</article>
+				</div>
+				<div class="span3">
+					<nav id="toc"><ul><li><a href="/contact">contact</a></li><li><a href="/api-for-dri-api">api for dri api</a></li><li><a href="/api-for-node-fedora">api for node fedora</a></li><li><a href="/api-for-node-dri">api for node dri</a></li><li><a href="/all-pages">all pages</a></li></ul></nav>
+				</div>
+			</div>
+		</div>
+		<footer id="footer">
+			<hr>
+			<p>
+				<a href="/">DRIS Workflows</a> documentation site powered by <a href="https://github.com/flatiron/blacksmith">Blacksmith</a> / styled with <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>
+			</p>
+		</footer>
+	</div>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+	<script>
+		$(document).ready(function() {
+			$('#toc ul').addClass('nav nav-list');
+			$('#toc ul').prepend('<li class="nav-header">Table of contents</li>')
+			$('.breadcrumb').removeClass('breadcrumb')
+		})
+	</script>
+</html>

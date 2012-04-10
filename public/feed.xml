@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Tue, 10 Apr 2012 16:36:38 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+
+</p>
+<h2>HOWEST</h2>
+<ul>
+<li>Groot Bluemink Quirijn <a href="mailto:Quirijn.Groot.Bluemink@howest.be">Quirijn.Groot.Bluemink@howest.be</a></li>
+<li>Van Wambeke Matthias <a href="mailto:Matthias.Van.Wambeke@howest.be">Matthias.Van.Wambeke@howest.be</a></li>
+</ul>
+<h2>TCHPC, Trinity College Dublin</h2>
+<ul>
+<li>Jimmy Tang <a href="mailto:jtang@tchpc.tcd.ie">jtang@tchpc.tcd.ie</a> - 01-896-4466 - 086-3135905</li>
+<li>Darach Golden <a href="mailto:darach@tchpc.tcd.ie">darach@tchpc.tcd.ie</a> - 01-896-3847 - 087-8229592</li>
+</ul>
+<h2>DRIS, Trinity College Dublin</h2>
+]]></description><link>http://undefined/contact</link><guid isPermaLink="true">http://undefined/contact</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 16:28:57 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-dri-api">API for dri-api</a>]]></title><description><![CDATA[<p>Express test server listening on port 4001 in test mode
+</p>
+<h1>TOC</h1>
+<ul>
+<li><a href="#apiv2-tests">APIv2 tests</a><ul>
+<li><a href="#apiv2-tests-get-">GET /</a></li>
+<li><a href="#apiv2-tests-post-devcollections">POST /dev/collections</a></li>
+<li><a href="#apiv2-tests-post-devcollectionsidseries">POST /dev/collections/:id/series</a></li>
+<li><a href="#apiv2-tests-post-devcollectionsidseriesiditems">POST /dev/collections/:id/series/:id/items</a></li>
+<li><a href="#apiv2-tests-put-devcollectionsidseriesiditemsid">PUT /dev/collections/:id/series/:id/items/:id</a></li>
+<li><a href="#apiv2-tests-put-devcollectionsidseriesid">PUT /dev/collections/:id/series/:id</a></li>
+<li><a href="#apiv2-tests-put-devcollectionsid">PUT /dev/collections/:id</a></li>
+<li><a href="#apiv2-tests-get-devcollections">GET /dev/collections</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsid">GET /dev/collections/:id</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsidseries">GET /dev/collections/:id/series</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsidseriesid">GET /dev/collections/:id/series/:id</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsidseriesiditems">GET /dev/collections/:id/series/:id/items</a></li>
+<li><a href="#apiv2-tests-get-devcollectionsidseriesiditemsid">GET /dev/collections/:id/series/:id/items/:id</a></li>
+<li><a href="#apiv2-tests-delete-devcollectionsidseriesiditemsid">DELETE /dev/collections/:id/series/:id/items/:id</a></li>
+<li><a href="#apiv2-tests-delete-devcollectionsidseriesid">DELETE /dev/collections/:id/series/:id</a></li>
+<li><a href="#apiv2-tests-delete-devcollectionsid">DELETE /dev/collections/:id</a>
+<a name=""></a></li>
+</ul>
+</li>
+</ul>
+<p><a name="apiv2-tests"></a>
+</p>
+<h1>APIv2 tests</h1>
+<p><a name="apiv2-tests-get-"></a>
+</p>
+<h2>GET /</h2>
+<p>should respond with the documentation page.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, '&lt;title&gt;DRI API&lt;/title&gt;');
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-post-devcollections"></a>
+</p>
+<h2>POST /dev/collections</h2>
+<p>should respond with the id of the created collection.
+
+</p>
+<pre><code class="js">            request({
+                method : 'POST',
+                uri : socket + '/dev/collections',
+                form : {
+                    Title : 'Autobot collection'
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                collectionId = body;
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-post-devcollectionsidseries"></a>
+</p>
+<h2>POST /dev/collections/:id/series</h2>
+<p>should respond with the id of the created series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'POST',
+                uri : socket + '/dev/collections/' + collectionId + '/series',
+                form : {
+                    Title : 'Autobot series',
+                    author : 'Autobot',
+                    parentId : collectionId
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                seriesId = body;
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-post-devcollectionsidseriesiditems"></a>
+</p>
+<h2>POST /dev/collections/:id/series/:id/items</h2>
+<p>should respond with the id of the created item.
+
+</p>
+<pre><code class="js">            request({
+                method : 'POST',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items',
+                form : {
+                    Title : 'Autobot title',
+                    Subtitle : 'Autobot Subtitle',
+                    parentId : seriesId
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                itemId = body;
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-put-devcollectionsidseriesiditemsid"></a>
+</p>
+<h2>PUT /dev/collections/:id/series/:id/items/:id</h2>
+<p>should respond with the id of the updated item.
+
+</p>
+<pre><code class="js">            request({
+                method : 'PUT',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId,
+                form : {
+                    _id : itemId,
+                    Title : 'Autobot titleUpdate',
+                    Subtitle : 'Autobot Subtitle',
+                    update : 'update',
+                    type : 'item',
+                    parentId : seriesId
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-put-devcollectionsidseriesid"></a>
+</p>
+<h2>PUT /dev/collections/:id/series/:id</h2>
+<p>should respond with the id of the updated series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'PUT',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId,
+                form : {
+                    _id : seriesId,
+                    Title : 'Autobot seriesUpdate',
+                    author : 'Autobot',
+                    update : 'update',
+                    type : 'series',
+                    parentId : collectionId
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-put-devcollectionsid"></a>
+</p>
+<h2>PUT /dev/collections/:id</h2>
+<p>should respond with the id of the updated series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'PUT',
+                uri : socket + '/dev/collections/' + collectionId,
+                form : {
+                    _id : collectionId,
+                    Title : 'Autobot collectionUpdate',
+                    type : 'collection',
+                    update : 'update'
+                }
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollections"></a>
+</p>
+<h2>GET /dev/collections</h2>
+<p>should respond with an array of all the collections.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, collectionId);
+                assert.include(body, "Autobot collectionUpdate");
+                assert.include(body, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsid"></a>
+</p>
+<h2>GET /dev/collections/:id</h2>
+<p>should respond with the array containing the data of the specified collection.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId
+            }, function(err, resp, body) {
+                var json = JSON.parse(body);
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.equal(json.Title, "Autobot collectionUpdate");
+                assert.equal(json.update, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsidseries"></a>
+</p>
+<h2>GET /dev/collections/:id/series</h2>
+<p>should respond with an array of all the series corresponding to the given id.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId + '/series'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, seriesId);
+                assert.include(body, "Autobot seriesUpdate");
+                assert.include(body, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsidseriesid"></a>
+</p>
+<h2>GET /dev/collections/:id/series/:id</h2>
+<p>should respond with the array containing the data of the specified series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId
+            }, function(err, resp, body) {
+                var json = JSON.parse(body);
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.equal(json.Title, "Autobot seriesUpdate");
+                assert.equal(json.update, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsidseriesiditems"></a>
+</p>
+<h2>GET /dev/collections/:id/series/:id/items</h2>
+<p>should respond with an array of all the items corresponding to the given ids.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, itemId);
+                assert.include(body, "Autobot titleUpdate");
+                assert.include(body, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-get-devcollectionsidseriesiditemsid"></a>
+</p>
+<h2>GET /dev/collections/:id/series/:id/items/:id</h2>
+<p>should respond with the array containing the data of the specified item.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
+            }, function(err, resp, body) {
+                var json = JSON.parse(body);
+                assert.isNull(err);
+                assert.isDefined(body);
+                assert.equal(json.Title, "Autobot titleUpdate");
+                assert.equal(json.update, "update");
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-delete-devcollectionsidseriesiditemsid"></a>
+</p>
+<h2>DELETE /dev/collections/:id/series/:id/items/:id</h2>
+<p>should respond with the id of the deleted item.
+
+</p>
+<pre><code class="js">            request({
+                method : 'DELETE',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, itemId);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-delete-devcollectionsidseriesid"></a>
+</p>
+<h2>DELETE /dev/collections/:id/series/:id</h2>
+<p>should respond with the id of the deleted series.
+
+</p>
+<pre><code class="js">            request({
+                method : 'DELETE',
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, seriesId);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+<p><a name="apiv2-tests-delete-devcollectionsid"></a>
+</p>
+<h2>DELETE /dev/collections/:id</h2>
+<p>should respond with the id of the deleted collection.
+
+</p>
+<pre><code class="js">            request({
+                method : 'DELETE',
+                uri : socket + '/dev/collections/' + collectionId
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, collectionId);
+                assert.length(body, 24);
+                done();
+            });</code></pre>
+]]></description><link>http://undefined/api-for-dri-api</link><guid isPermaLink="true">http://undefined/api-for-dri-api</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:25:30 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-fedora">API for node-fedora</a>]]></title><description><![CDATA[<h1>TOC</h1>
+<ul>
+<li><a href="#test-cases-for-the-node-fedora-package">Test cases for the node-fedora package</a><ul>
+<li><a href="#test-cases-for-the-node-fedora-package-createfedoraobject-will-create-a-fedoraobject">createFedoraObject, will create a FedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-getfedoralist-get-a-list-of-fedoraobjects">getFedoraList, Get a list of FedoraObjects</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-getfedoraobject-get-a-fedoraobject">getFedoraObject, get a fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-deleteobject-will-delete-an-object-from-fedora">deleteObject, will delete an object from fedora</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-getnextpid-will-get-the-next-pid-that-is-available-from-fedora">getNextPID, will get the next PID that is available from fedora</a>
+<a name=""></a></li>
+</ul>
+</li>
+</ul>
+<p><a name="test-cases-for-the-node-fedora-package"></a>
+</p>
+<h1>Test cases for the node-fedora package</h1>
+<p><a name="test-cases-for-the-node-fedora-package-createfedoraobject-will-create-a-fedoraobject"></a>
+</p>
+<h2>createFedoraObject, will create a FedoraObject</h2>
+<p>should create a FedoraObject.
+
+</p>
+<pre><code class="js">            fedora.createFedoraObject(testNamespace,testLabel, function(result){
+                testResult = result;
+                result.should.exist;
+                result.should.include(testNamespace + ":");
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-getfedoralist-get-a-list-of-fedoraobjects"></a>
+</p>
+<h2>getFedoraList, Get a list of FedoraObjects</h2>
+<p>should return a list of FedoraObjects from the fedora repository.
+
+</p>
+<pre><code class="js">            fedora.getFedoraList("*",function(resultData){
+                resultData.should.exist;
+                resultData.should.include('result');
+                resultData.should.not.be.empty;
+            }, 
+            function(error){
+                should.not.exist(error);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-getfedoraobject-get-a-fedoraobject"></a>
+</p>
+<h2>getFedoraObject, get a fedoraObject</h2>
+<p>should return a fedoraObject.
+
+</p>
+<pre><code class="js">            fedora.getFedoraObject(testResult, function(resultData){
+                resultData.should.include(testResult);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-deleteobject-will-delete-an-object-from-fedora"></a>
+</p>
+<h2>deleteObject, will delete an object from fedora</h2>
+<p>should delete the requested object from fedora.
+
+</p>
+<pre><code class="js">            fedora.deleteObject(testResult, function(resultData){
+                var myregexp = new RegExp("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.?[0-9]*Z");
+                resultData.should.match(myregexp);
+                done();
+            }, function(error){
+                should.not.exist(error);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-getnextpid-will-get-the-next-pid-that-is-available-from-fedora"></a>
+</p>
+<h2>getNextPID, will get the next PID that is available from fedora</h2>
+<p>should return the next PID from fedora.
+
+</p>
+<pre><code class="js">            fedora.getNextPID("node", function(resultData){
+                resultData.should.include("node:");
+                done();
+            });</code></pre>
+]]></description><link>http://undefined/api-for-node-fedora</link><guid isPermaLink="true">http://undefined/api-for-node-fedora</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:21:17 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-dri">API for node-dri</a>]]></title><description><![CDATA[<h1>TOC</h1>
+<ul>
+<li><a href="#test-cases-for-node-dri-package">Test cases for node-dri package</a><ul>
+<li><a href="#test-cases-for-node-dri-package-creating-a-collection">Creating a Collection</a></li>
+<li><a href="#test-cases-for-node-dri-package-creating-a-series">Creating a Series</a></li>
+<li><a href="#test-cases-for-node-dri-package-creating-an-item">Creating an Item</a></li>
+<li><a href="#test-cases-for-node-dri-package-getting-an-item">Getting an Item</a></li>
+<li><a href="#test-cases-for-node-dri-package-inserting-an-item">Inserting an Item</a></li>
+<li><a href="#test-cases-for-node-dri-package-getting-all-children-of-a-parent-item">Getting all children of a parent item</a></li>
+<li><a href="#test-cases-for-node-dri-package-pushing-the-item-into-fedora">Pushing the item into fedora</a></li>
+<li><a href="#test-cases-for-node-dri-package-getting-items-from-a-certain-type">Getting items from a certain type</a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-an-item-and-children-items">Removing an item and children items</a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-a-collection-and-children-series-andor-items">Removing a collection and children series and/or items</a></li>
+<li><a href="#test-cases-for-node-dri-package-getting-all-media-files">Getting all media files</a>
+<a name=""></a></li>
+</ul>
+</li>
+</ul>
+<p><a name="test-cases-for-node-dri-package"></a>
+</p>
+<h1>Test cases for node-dri package</h1>
+<p><a name="test-cases-for-node-dri-package-creating-a-collection"></a>
+</p>
+<h2>Creating a Collection</h2>
+<p>should create a collection and return the id of the collection.
+
+</p>
+<pre><code class="js">            var data = {};
+            data.Title = "AutoTestColl" + rnd;
+            data.type = "collection";
+            dri.createCollection(data, function(result) {
+                result.should.be.ok
+                collId = result;
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-creating-a-series"></a>
+</p>
+<h2>Creating a Series</h2>
+<p>should create a series and return the id of the series.
+
+</p>
+<pre><code class="js">            var data = {
+                collection : collId,
+                Title : "AutoTestSeries" + rnd,
+                author : "AutoBot",
+                type : "series"
+            };
+            dri.createSeries(data, function(result) {
+                result.should.be.ok
+                seriesId = result;
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-creating-an-item"></a>
+</p>
+<h2>Creating an Item</h2>
+<p>should create an Item and return the id of the Item.
+
+</p>
+<pre><code class="js">            var data = {
+                parentId : seriesId,
+                Title : "AutoBotTitle" + rnd,
+                Subtitle : "AutoBotSubitle" + rnd,
+                objectId : rnd,
+                type : "item"
+            };
+            dri.createItem(data, function(result) {
+                result.should.be.ok
+                itemId = result;
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-getting-an-item"></a>
+</p>
+<h2>Getting an Item</h2>
+<p>should get an Item and return the Item.
+
+</p>
+<pre><code class="js">            dri.getItem(itemId, function(result) {
+                should.equal(itemId, result._id);
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-inserting-an-item"></a>
+</p>
+<h2>Inserting an Item</h2>
+<p>Should create the new item, update the position of the other items and return the id of the created item.
+
+</p>
+<pre><code class="js">            var data = {
+                amount : 10,
+                parentId : seriesId,
+                objectId : 0,
+                Title : "AutoBotTitle" + rnd,
+                Subtitle : "AutoBotSubitle" + rnd,
+                type : "item"
+            };
+            for(var i = 0; i &lt; data.amount; i++) {
+                data.objectId = data.objectId +i;
+                dri.createItem(data, function(result) {
+                    result.should.be.ok;
+                }, function(e) {
+                    should.not.exist(e);
+                });
+            }
+            data.objectId = 3;
+            dri.updateIdOrder(data.parentId, data.objectId, 1, function(amount) {
+                amount.should.be.a("number");
+                dri.createItem(data, function(id) {
+                    dri.getItems(seriesId, function(result) {
+                        var str = result.length;
+                        should.equal(str, 12);
+                        done();
+                    }, function(e) {
+                        should.not.exist(e);
+                        done();
+                    });
+                }, function(e) {
+                    should.not.exist(e);
+                    done();
+                });
+            })</code></pre>
+<p><a name="test-cases-for-node-dri-package-getting-all-children-of-a-parent-item"></a>
+</p>
+<h2>Getting all children of a parent item</h2>
+<p>should get an array of children.
+
+</p>
+<pre><code class="js">            dri.getItems(seriesId, function(result) {
+                var str = result[0].parentId;
+                should.equal(str, seriesId);
+                done();
+            }, function(e) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-pushing-the-item-into-fedora"></a>
+</p>
+<h2>Pushing the item into fedora</h2>
+<p>should push the item into fedora and return the fedora id from that item.
+
+</p>
+<pre><code class="js">            dri.approveItem(itemId, "cfedoraLib", function(pid) {
+                pid.should.include(":");
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-getting-items-from-a-certain-type"></a>
+</p>
+<h2>Getting items from a certain type</h2>
+<p>should return an array of items from a certain type (here series).
+
+</p>
+<pre><code class="js">            dri.getAllRecordsByType("series", function(data) {
+                should.equal(data[0].type, "series");
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-an-item-and-children-items"></a>
+</p>
+<h2>Removing an item and children items</h2>
+<p>should return the id of the removed item.
+
+</p>
+<pre><code class="js">            dri.removeItem(seriesId, function(id) {
+                should.equal(seriesId, id);
+                dri.getItems(id, function(result) {
+                    var str = result.length;
+                    should.equal(0, str);
+                }, function(e) {
+                    should.not.exist(e);
+                });
+            }, function(err) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-an-item-and-children-items"></a>
+</p>
+<h2>Removing an item and children items</h2>
+<p>should return the id of the removed item.
+
+</p>
+<pre><code class="js">            dri.removeItem(itemId, function(id) {
+                should.equal(itemId, id);
+                dri.getItems(id, function(result) {
+                    var str = result.length;
+                    should.equal(0, str);
+                }, function(e) {
+                    should.not.exist(e);
+                });
+            }, function(err) {
+                should.not.exist(e);
+
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-a-collection-and-children-series-andor-items"></a>
+</p>
+<h2>Removing a collection and children series and/or items</h2>
+<p>should return the id of the removed collection.
+
+</p>
+<pre><code class="js">
+            dri.removeItem(collId, function(id) {
+                should.equal(collId, id);
+                dri.getItems(id, function(result) {
+                    var str = result.length;
+                    should.equal(0, str);
+                }, function(e) {
+                    should.not.exist(e);
+                });
+            }, function(err) {
+                should.not.exist(e);
+
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-getting-all-media-files"></a>
+</p>
+<h2>Getting all media files</h2>
+<p>should return an array with the media files metadata.
+
+</p>
+<pre><code class="js">            dri.getAllMediaItems(function(data) {
+                should.exist(data);
+                done();
+            });</code></pre>
+]]></description><link>http://undefined/api-for-node-dri</link><guid isPermaLink="true">http://undefined/api-for-node-dri</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:18:59 GMT</pubDate></item><item><title><![CDATA[<a href=".">DRIS Workflows</a>]]></title><description><![CDATA[<p>The DRIS Workflows package is a prototype system developed by some interns at TCHPC during the 2012 internship.
+
+</p>
+<h2>Primary authors of DRIS Workflows</h2>
+<ul>
+<li><a href="mailto:Matthias.Van.Wambeke@howest.be">Matthias.Van.Wambeke@howest.be</a></li>
+<li><a href="mailto:Quirijn.Groot.Bluemink@howest.be">Quirijn.Groot.Bluemink@howest.be</a>
+
+</li>
+</ul>
+<p>With help from the TCHPC and DRIS team at TCD.
+</p>
+]]></description><link>http://undefined.</link><guid isPermaLink="true">http://undefined.</guid><dc:creator><![CDATA[Jimmy Tang]]></dc:creator><pubDate>Thu, 29 Mar 2012 08:55:54 GMT</pubDate></item><item><title><![CDATA[DRIS Workflows -- Untitled]]></title><link>http://undefined/all-pages</link><guid isPermaLink="true">http://undefined/all-pages</guid><dc:creator><![CDATA[TCHPC]]></dc:creator><pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate></item></channel></rss>
