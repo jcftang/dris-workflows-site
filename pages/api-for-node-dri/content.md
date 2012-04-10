@@ -1,3 +1,8 @@
+rem
+rem
+rem
+rem
+rem
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Creating a Collection](#test-cases-for-node-dri-package-creating-a-collection)
@@ -9,8 +14,7 @@
      - [Pushing the item into fedora](#test-cases-for-node-dri-package-pushing-the-item-into-fedora)
      - [Getting items from a certain type](#test-cases-for-node-dri-package-getting-items-from-a-certain-type)
      - [Removing an item and children items](#test-cases-for-node-dri-package-removing-an-item-and-children-items)
-     - [Removing a series and children items](#test-cases-for-node-dri-package-removing-a-series-and-children-items)
-     - [Removing a colection and children series or items](#test-cases-for-node-dri-package-removing-a-colection-and-children-series-or-items)
+     - [Removing a colection and children series and/or items](#test-cases-for-node-dri-package-removing-a-colection-and-children-series-andor-items)
      - [Getting all media files](#test-cases-for-node-dri-package-getting-all-media-files)
 <a name="" />
  
@@ -172,40 +176,37 @@ should return an array of items from a certain type (here series).
 should return the id of the removed item.
 
 ```js
-			dri.removeItem(itemId, function(id) {
-				should.equal(itemId, id);
-				done();
-			}, function(err) {
-				should.not.exist(e);
-				done();
-			});
-```
-
-<a name="test-cases-for-node-dri-package-removing-a-series-and-children-items" />
-## Removing a series and children items
-should return the id of the removed series.
-
-```js
 			dri.removeItem(seriesId, function(id) {
 				should.equal(seriesId, id);
-				done();
 			}, function(err) {
 				should.not.exist(e);
-				done();
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-removing-a-colection-and-children-series-or-items" />
-## Removing a colection and children series or items
+<a name="test-cases-for-node-dri-package-removing-an-item-and-children-items" />
+## Removing an item and children items
+should return the id of the removed item.
+
+```js
+			dri.removeItem(itemId, function(id) {
+				should.equal(itemId, id);
+			}, function(err) {
+				should.not.exist(e);
+
+			});
+```
+
+<a name="test-cases-for-node-dri-package-removing-a-colection-and-children-series-andor-items" />
+## Removing a colection and children series and/or items
 should return the id of the removed collection.
 
 ```js
-			dri.removeItem(collId, function(id) {
+			
+				dri.removeItem(collId, function(id) {
 				should.equal(collId, id);
-				done();
 			}, function(err) {
 				should.not.exist(e);
-				done();
+
 			});
 ```
 
