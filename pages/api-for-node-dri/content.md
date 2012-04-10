@@ -173,6 +173,12 @@ should return the id of the removed item.
 ```js
 			dri.removeItem(seriesId, function(id) {
 				should.equal(seriesId, id);
+				dri.getItems(id, function(result) {
+					var str = result.length;
+					should.equal(0, str);
+				}, function(e) {
+					should.not.exist(e);
+				});
 			}, function(err) {
 				should.not.exist(e);
 			});
@@ -185,6 +191,12 @@ should return the id of the removed item.
 ```js
 			dri.removeItem(itemId, function(id) {
 				should.equal(itemId, id);
+				dri.getItems(id, function(result) {
+					var str = result.length;
+					should.equal(0, str);
+				}, function(e) {
+					should.not.exist(e);
+				});
 			}, function(err) {
 				should.not.exist(e);
 
@@ -196,9 +208,15 @@ should return the id of the removed item.
 should return the id of the removed collection.
 
 ```js
-			
-				dri.removeItem(collId, function(id) {
+
+			dri.removeItem(collId, function(id) {
 				should.equal(collId, id);
+				dri.getItems(id, function(result) {
+					var str = result.length;
+					should.equal(0, str);
+				}, function(e) {
+					should.not.exist(e);
+				});
 			}, function(err) {
 				should.not.exist(e);
 
