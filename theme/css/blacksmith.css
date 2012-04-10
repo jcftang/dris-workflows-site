@@ -9,7 +9,7 @@
   padding-bottom: 15px;
 }
 
-h1 .title {
+h1, h2 .title {
   padding-bottom: 0px;
   margin-bottom: 0px;
 }

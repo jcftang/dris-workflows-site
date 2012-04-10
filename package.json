@@ -1,6 +1,6 @@
 {
   "author": "Jimmy Tang <jtang@tchpc.tcd.ie> (http://www.tchpc.tcd.ie/)",
-  "name": "dris-workflows",
+  "name": "dris-workflows-site",
   "description": "A docs site for DRIS Workflows",
   "version": "0.0.1",
   "homepage": "",
@@ -14,7 +14,7 @@
   "dependencies": {
     "http-server": "0.2.9"
   },
-  "devDependencies": {
+  "optionalDependencies": {
     "blacksmith": "0.0.11"
   },
   "analyze": false,

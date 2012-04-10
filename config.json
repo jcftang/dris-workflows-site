@@ -1,4 +1,7 @@
 {
+  "title": "DRIS Workflows",
+  "author": "TCHPC",
+  "description": "DRIS Workflow documentation pages",
   "tags": [
     "node-dri",
     "node-fedora",
