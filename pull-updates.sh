@@ -9,9 +9,18 @@ REPOS="dri-api node-dri node-fedora"
 mkdir -p build
 for i in $REPOS
 do
-	git clone ssh://git@howest-server.tchpc.tcd.ie/howest/node/$i build/$i
+	if [ -d build/$i ];
+	then
+		pushd build/$i
+		git pull
+		popd
+
+	else
+		git clone ssh://git@howest-server.tchpc.tcd.ie/howest/node/$i build/$i
+	fi
 	pushd build/$i
 	npm install
+	npm update
 	make docs
 	cp docs/test.md ../../pages/api-for-$i/content.md
 	popd
