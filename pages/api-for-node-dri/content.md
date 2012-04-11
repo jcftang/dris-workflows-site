@@ -1,30 +1,32 @@
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
-     - [Creating a Collection](#test-cases-for-node-dri-package-creating-a-collection)
+     - [Creating a Dri-Collection](#test-cases-for-node-dri-package-creating-a-dri-collection)
      - [Creating a Series](#test-cases-for-node-dri-package-creating-a-series)
      - [Creating an Item](#test-cases-for-node-dri-package-creating-an-item)
+     - [Adding an Item to series](#test-cases-for-node-dri-package-adding-an-item-to-series)
      - [Getting an Item](#test-cases-for-node-dri-package-getting-an-item)
-     - [Inserting an Item](#test-cases-for-node-dri-package-inserting-an-item)
-     - [Getting all children of a parent item](#test-cases-for-node-dri-package-getting-all-children-of-a-parent-item)
+     - [Getting a Series](#test-cases-for-node-dri-package-getting-a-series)
+     - [Getting a Dri-Collection](#test-cases-for-node-dri-package-getting-a-dri-collection)
      - [Pushing the item into fedora](#test-cases-for-node-dri-package-pushing-the-item-into-fedora)
-     - [Getting items from a certain type](#test-cases-for-node-dri-package-getting-items-from-a-certain-type)
-     - [Removing an item and children items](#test-cases-for-node-dri-package-removing-an-item-and-children-items)
-     - [Removing a collection and children series and/or items](#test-cases-for-node-dri-package-removing-a-collection-and-children-series-andor-items)
-     - [Getting all media files](#test-cases-for-node-dri-package-getting-all-media-files)
 <a name="" />
  
 <a name="test-cases-for-node-dri-package" />
 # Test cases for node-dri package
-<a name="test-cases-for-node-dri-package-creating-a-collection" />
-## Creating a Collection
-should create a collection and return the id of the collection.
+<a name="test-cases-for-node-dri-package-creating-a-dri-collection" />
+## Creating a Dri-Collection
+should create a Dri-Collection and return the id of the Dri-Collection.
 
 ```js
-			var data = {};
-			data.Title = "AutoTestColl" + rnd;
-			data.type = "collection";
+			var data = {
+				properties : {
+					title : "AutoTestColl" + rnd,
+					subtitle : "AutoTestColl" + rnd
+				},
+				status : "Open"
+			};
 			dri.createCollection(data, function(result) {
 				result.should.be.ok
+				assert.length(result,24)
 				collId = result;
 				done();
 			}, function(e) {
@@ -38,13 +40,15 @@ should create a series and return the id of the series.
 
 ```js
 			var data = {
-				collection : collId,
-				Title : "AutoTestSeries" + rnd,
-				author : "AutoBot",
-				type : "series"
+				properties : {
+					title : "AutoTestColl" + rnd,
+					subtitle : "AutoTestColl" + rnd
+				},
+				status : "Open"
 			};
 			dri.createSeries(data, function(result) {
 				result.should.be.ok
+				assert.length(result,24)
 				seriesId = result;
 				done();
 			}, function(e) {
@@ -58,15 +62,31 @@ should create an Item and return the id of the Item.
 
 ```js
 			var data = {
-				parentId : seriesId,
-				Title : "AutoBotTitle" + rnd,
-				Subtitle : "AutoBotSubitle" + rnd,
-				objectId : rnd,
-				type : "item"
+				properties : {
+					title : "AutoTestColl" + rnd,
+					subtitle : "AutoTestColl" + rnd
+				},
+				status : "Approved"
 			};
 			dri.createItem(data, function(result) {
 				result.should.be.ok
+				assert.length(result,24)
 				itemId = result;
+				done();
+			}, function(e) {
+				should.not.exist(e);
+			});
+```
+
+<a name="test-cases-for-node-dri-package-adding-an-item-to-series" />
+## Adding an Item to series
+should add the given item to the given series.
+
+```js
+
+			dri.addItemToSeries(itemId, seriesId, function(result) {
+				result.should.be.ok
+				assert.include(result,itemId)
 				done();
 			}, function(e) {
 				should.not.exist(e);
@@ -79,65 +99,36 @@ should get an Item and return the Item.
 
 ```js
 			dri.getItem(itemId, function(result) {
-				should.equal(itemId, result._id);
+				assert.include(result._id,itemId)
 				done();
 			}, function(e) {
 				should.not.exist(e);
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-inserting-an-item" />
-## Inserting an Item
-Should create the new item, update the position of the other items and return the id of the created item.
+<a name="test-cases-for-node-dri-package-getting-a-series" />
+## Getting a Series
+should get an Series and return the Series.
 
 ```js
-			var data = {
-				amount : 10,
-				parentId : seriesId,
-				objectId : 0,
-				Title : "AutoBotTitle" + rnd,
-				Subtitle : "AutoBotSubitle" + rnd,
-				type : "item"
-			};
-			for(var i = 0; i < data.amount; i++) {
-				data.objectId = data.objectId +i;
-				dri.createItem(data, function(result) {
-					result.should.be.ok;
-				}, function(e) {
-					should.not.exist(e);
-				});
-			}
-			data.objectId = 3;
-			dri.updateIdOrder(data.parentId, data.objectId, 1, function(amount) {
-				amount.should.be.a("number");
-				dri.createItem(data, function(id) {
-					dri.getItems(seriesId, function(result) {
-						var str = result.length;
-						should.equal(str, 12);
-						done();
-					}, function(e) {
-						should.not.exist(e);
-						done();
-					});
-				}, function(e) {
-					should.not.exist(e);
-					done();
-				});
-			})
-```
-
-<a name="test-cases-for-node-dri-package-getting-all-children-of-a-parent-item" />
-## Getting all children of a parent item
-should get an array of children.
-
-```js
-			dri.getItems(seriesId, function(result) {
-				var str = result[0].parentId;
-				should.equal(str, seriesId);
+			dri.getSeries(seriesId, function(result) {
+				assert.equal(seriesId, result._id);
 				done();
 			}, function(e) {
 				should.not.exist(e);
+			});
+```
+
+<a name="test-cases-for-node-dri-package-getting-a-dri-collection" />
+## Getting a Dri-Collection
+should get an Dri-Collection and return the Dri-Collection.
+
+```js
+			dri.getCollection(collId, function(result) {
+				assert.equal(collId, result._id);
 				done();
+			}, function(e) {
+				should.not.exist(e);
 			});
 ```
 
@@ -151,85 +142,6 @@ should push the item into fedora and return the fedora id from that item.
 				done();
 			}, function(err) {
 				should.not.exist(e);
-				done();
-			});
-```
-
-<a name="test-cases-for-node-dri-package-getting-items-from-a-certain-type" />
-## Getting items from a certain type
-should return an array of items from a certain type (here series).
-
-```js
-			dri.getAllRecordsByType("series", function(data) {
-				should.equal(data[0].type, "series");
-				done();
-			});
-```
-
-<a name="test-cases-for-node-dri-package-removing-an-item-and-children-items" />
-## Removing an item and children items
-should return the id of the removed item.
-
-```js
-			dri.removeItem(seriesId, function(id) {
-				should.equal(seriesId, id);
-				dri.getItems(id, function(result) {
-					var str = result.length;
-					should.equal(0, str);
-				}, function(e) {
-					should.not.exist(e);
-				});
-			}, function(err) {
-				should.not.exist(e);
-			});
-```
-
-<a name="test-cases-for-node-dri-package-removing-an-item-and-children-items" />
-## Removing an item and children items
-should return the id of the removed item.
-
-```js
-			dri.removeItem(itemId, function(id) {
-				should.equal(itemId, id);
-				dri.getItems(id, function(result) {
-					var str = result.length;
-					should.equal(0, str);
-				}, function(e) {
-					should.not.exist(e);
-				});
-			}, function(err) {
-				should.not.exist(e);
-
-			});
-```
-
-<a name="test-cases-for-node-dri-package-removing-a-collection-and-children-series-andor-items" />
-## Removing a collection and children series and/or items
-should return the id of the removed collection.
-
-```js
-
-			dri.removeItem(collId, function(id) {
-				should.equal(collId, id);
-				dri.getItems(id, function(result) {
-					var str = result.length;
-					should.equal(0, str);
-				}, function(e) {
-					should.not.exist(e);
-				});
-			}, function(err) {
-				should.not.exist(e);
-
-			});
-```
-
-<a name="test-cases-for-node-dri-package-getting-all-media-files" />
-## Getting all media files
-should return an array with the media files metadata.
-
-```js
-			dri.getAllMediaItems(function(data) {
-				should.exist(data);
 				done();
 			});
 ```
