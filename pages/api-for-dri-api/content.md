@@ -1,3 +1,5 @@
+{ status: 'Open',
+  properties: { title: 'AutoTestColl', subtitle: 'AutoTestColl' } }
 # TOC
    - [Tests for DRI APIv2](#tests-for-dri-apiv2)
      - [GET /](#tests-for-dri-apiv2-get-)
@@ -34,12 +36,17 @@ should respond with the root page, this is just a sanity check.
 should respond with the id of the created collection.
 
 ```js
+
 			request({
 				method : 'POST',
 				uri : socket + '/dev/collections',
-				form : {
-					Title : 'Autobot collection'
+				json : {
+				"status" : "Open",
+				"properties" : {
+					"title" : "AutoTestColl",
+					"subtitle" : "AutoTestColl"
 				}
+			}
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.isDefined(body);
@@ -57,10 +64,12 @@ should respond with the id of the created series.
 			request({
 				method : 'POST',
 				uri : socket + '/dev/collections/' + collectionId + '/series',
-				form : {
-					Title : 'Autobot series',
-					author : 'Autobot',
-					parentId : collectionId
+				json : {
+					properties : {
+						title : "AutoTestSeries",
+						subtitle : "AutoTestSeries"
+					},
+					status : "Open"
 				}
 			}, function(err, resp, body) {
 				assert.isNull(err);
@@ -78,11 +87,13 @@ should respond with the id of the created item.
 ```js
 			request({
 				method : 'POST',
-				uri : socket + '/dev/collections/'
-					+ collectionId + '/series/' 
-					+ seriesId + '/items',
-				form : {
-					Title : 'Autobot title'
+				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items',
+				json : {
+					properties : {
+						title : "AutoTestTitle",
+						subtitle : "AutoTestTitle"
+					},
+					status : "Open"
 				}
 			}, function(err, resp, body) {
 				assert.isNull(err);
@@ -98,14 +109,14 @@ should respond with the id of the created item.
 should respond with an array of all the collections.
 
 ```js
-			
+
 			request({
 				method : 'GET',
 				uri : socket + '/dev/collections'
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.include(body, collectionId);
-				assert.include(body, "Autobot collection");
+				assert.include(body, "AutoTestColl");
 				done();
 			});
 ```
@@ -115,7 +126,7 @@ should respond with an array of all the collections.
 should respond with the array containing the data of the specified collection.
 
 ```js
-			
+
 			request({
 				method : 'GET',
 				uri : socket + '/dev/collections/' + collectionId
@@ -123,7 +134,7 @@ should respond with the array containing the data of the specified collection.
 				var json = JSON.parse(body);
 				assert.isNull(err);
 				assert.isDefined(body);
-				assert.equal(json.Title, "Autobot collection");
+				assert.equal(json.properties.title, "AutoTestColl");
 				done();
 			});
 ```
@@ -139,7 +150,7 @@ should respond with an array of all the series corresponding to the given id.
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.include(body, seriesId);
-				assert.include(body, "Autobot series");
+				assert.include(body, "AutoTestSeries");
 				done();
 			});
 ```
@@ -156,7 +167,7 @@ should respond with the array containing the data of the specified series.
 				var json = JSON.parse(body);
 				assert.isNull(err);
 				assert.isDefined(body);
-				assert.equal(json.Title, "Autobot series");
+				assert.equal(json.properties.title, "AutoTestSeries");
 				done();
 			});
 ```
@@ -168,13 +179,11 @@ should respond with an array of all the items corresponding to the given ids.
 ```js
 			request({
 				method : 'GET',
-				uri : socket + '/dev/collections/' 
-					+ collectionId + '/series/'
-					+ seriesId + '/items'
+				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items'
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.include(body, itemId);
-				assert.include(body, "Autobot title");
+				assert.include(body, "AutoTestTitle");
 				done();
 			});
 ```
@@ -186,14 +195,12 @@ should respond with the array containing the data of the specified item.
 ```js
 			request({
 				method : 'GET',
-				uri : socket + '/dev/collections/'
-					+ collectionId + '/series/'
-					+ seriesId + '/items/' + itemId
+				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
 			}, function(err, resp, body) {
 				var json = JSON.parse(body);
 				assert.isNull(err);
 				assert.isDefined(body);
-				assert.equal(json.Title, "Autobot title");
+				assert.equal(json.properties.title, "AutoTestTitle");
 				done();
 			});
 ```
