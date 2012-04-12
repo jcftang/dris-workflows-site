@@ -11,3 +11,5 @@ People to contact for more information relating to the work that was carried out
 * Darach Golden <darach@tchpc.tcd.ie> - 01-896-3847 - 087-8229592
 
 ## DRIS, Trinity College Dublin
+
+* DRIS Contacts not listed until permission is granted
