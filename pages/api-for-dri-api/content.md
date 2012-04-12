@@ -1,23 +1,22 @@
-Express test server listening on port 4001 in test mode
 # TOC
-   - [APIv2 tests](#apiv2-tests)
-     - [GET /](#apiv2-tests-get-)
-     - [POST /dev/collections](#apiv2-tests-post-devcollections)
-     - [POST /dev/collections/:id/series](#apiv2-tests-post-devcollectionsidseries)
-     - [POST /dev/collections/:id/series/:id/items](#apiv2-tests-post-devcollectionsidseriesiditems)
-     - [GET /dev/collections](#apiv2-tests-get-devcollections)
-     - [GET /dev/collections/:id](#apiv2-tests-get-devcollectionsid)
-     - [GET /dev/collections/:id/series](#apiv2-tests-get-devcollectionsidseries)
-     - [GET /dev/collections/:id/series/:id](#apiv2-tests-get-devcollectionsidseriesid)
-     - [GET /dev/collections/:id/series/:id/items](#apiv2-tests-get-devcollectionsidseriesiditems)
-     - [GET /dev/collections/:id/series/:id/items/:id](#apiv2-tests-get-devcollectionsidseriesiditemsid)
+   - [Tests for DRI APIv2](#tests-for-dri-apiv2)
+     - [GET /](#tests-for-dri-apiv2-get-)
+     - [POST /dev/collections](#tests-for-dri-apiv2-post-devcollections)
+     - [POST /dev/collections/:id/series](#tests-for-dri-apiv2-post-devcollectionsidseries)
+     - [POST /dev/collections/:id/series/:id/items](#tests-for-dri-apiv2-post-devcollectionsidseriesiditems)
+     - [GET /dev/collections](#tests-for-dri-apiv2-get-devcollections)
+     - [GET /dev/collections/:id](#tests-for-dri-apiv2-get-devcollectionsid)
+     - [GET /dev/collections/:id/series](#tests-for-dri-apiv2-get-devcollectionsidseries)
+     - [GET /dev/collections/:id/series/:id](#tests-for-dri-apiv2-get-devcollectionsidseriesid)
+     - [GET /dev/collections/:id/series/:id/items](#tests-for-dri-apiv2-get-devcollectionsidseriesiditems)
+     - [GET /dev/collections/:id/series/:id/items/:id](#tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid)
 <a name="" />
  
-<a name="apiv2-tests" />
-# APIv2 tests
-<a name="apiv2-tests-get-" />
+<a name="tests-for-dri-apiv2" />
+# Tests for DRI APIv2
+<a name="tests-for-dri-apiv2-get-" />
 ## GET /
-should respond with the documentation page.
+should respond with the root page, this is just a sanity check.
 
 ```js
 			request({
@@ -30,7 +29,7 @@ should respond with the documentation page.
 			});
 ```
 
-<a name="apiv2-tests-post-devcollections" />
+<a name="tests-for-dri-apiv2-post-devcollections" />
 ## POST /dev/collections
 should respond with the id of the created collection.
 
@@ -50,7 +49,7 @@ should respond with the id of the created collection.
 			});
 ```
 
-<a name="apiv2-tests-post-devcollectionsidseries" />
+<a name="tests-for-dri-apiv2-post-devcollectionsidseries" />
 ## POST /dev/collections/:id/series
 should respond with the id of the created series.
 
@@ -72,14 +71,16 @@ should respond with the id of the created series.
 			});
 ```
 
-<a name="apiv2-tests-post-devcollectionsidseriesiditems" />
+<a name="tests-for-dri-apiv2-post-devcollectionsidseriesiditems" />
 ## POST /dev/collections/:id/series/:id/items
 should respond with the id of the created item.
 
 ```js
 			request({
 				method : 'POST',
-				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items',
+				uri : socket + '/dev/collections/'
+					+ collectionId + '/series/' 
+					+ seriesId + '/items',
 				form : {
 					Title : 'Autobot title'
 				}
@@ -92,7 +93,7 @@ should respond with the id of the created item.
 			});
 ```
 
-<a name="apiv2-tests-get-devcollections" />
+<a name="tests-for-dri-apiv2-get-devcollections" />
 ## GET /dev/collections
 should respond with an array of all the collections.
 
@@ -109,7 +110,7 @@ should respond with an array of all the collections.
 			});
 ```
 
-<a name="apiv2-tests-get-devcollectionsid" />
+<a name="tests-for-dri-apiv2-get-devcollectionsid" />
 ## GET /dev/collections/:id
 should respond with the array containing the data of the specified collection.
 
@@ -127,7 +128,7 @@ should respond with the array containing the data of the specified collection.
 			});
 ```
 
-<a name="apiv2-tests-get-devcollectionsidseries" />
+<a name="tests-for-dri-apiv2-get-devcollectionsidseries" />
 ## GET /dev/collections/:id/series
 should respond with an array of all the series corresponding to the given id.
 
@@ -143,7 +144,7 @@ should respond with an array of all the series corresponding to the given id.
 			});
 ```
 
-<a name="apiv2-tests-get-devcollectionsidseriesid" />
+<a name="tests-for-dri-apiv2-get-devcollectionsidseriesid" />
 ## GET /dev/collections/:id/series/:id
 should respond with the array containing the data of the specified series.
 
@@ -160,14 +161,16 @@ should respond with the array containing the data of the specified series.
 			});
 ```
 
-<a name="apiv2-tests-get-devcollectionsidseriesiditems" />
+<a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditems" />
 ## GET /dev/collections/:id/series/:id/items
 should respond with an array of all the items corresponding to the given ids.
 
 ```js
 			request({
 				method : 'GET',
-				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items'
+				uri : socket + '/dev/collections/' 
+					+ collectionId + '/series/'
+					+ seriesId + '/items'
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.include(body, itemId);
@@ -176,14 +179,16 @@ should respond with an array of all the items corresponding to the given ids.
 			});
 ```
 
-<a name="apiv2-tests-get-devcollectionsidseriesiditemsid" />
+<a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid" />
 ## GET /dev/collections/:id/series/:id/items/:id
 should respond with the array containing the data of the specified item.
 
 ```js
 			request({
 				method : 'GET',
-				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
+				uri : socket + '/dev/collections/'
+					+ collectionId + '/series/'
+					+ seriesId + '/items/' + itemId
 			}, function(err, resp, body) {
 				var json = JSON.parse(body);
 				assert.isNull(err);
