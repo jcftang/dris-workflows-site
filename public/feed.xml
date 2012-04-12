@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Wed, 11 Apr 2012 21:23:48 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Thu, 12 Apr 2012 08:52:53 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -13,32 +13,30 @@
 <li>Darach Golden <a href="mailto:darach@tchpc.tcd.ie">darach@tchpc.tcd.ie</a> - 01-896-3847 - 087-8229592</li>
 </ul>
 <h2>DRIS, Trinity College Dublin</h2>
-]]></description><link>http://undefined/contact</link><guid isPermaLink="true">http://undefined/contact</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 16:28:57 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-dri-api">API for dri-api</a>]]></title><description><![CDATA[<p>Express test server listening on port 4001 in test mode
-</p>
-<h1>TOC</h1>
+]]></description><link>http://undefined/contact</link><guid isPermaLink="true">http://undefined/contact</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 16:28:57 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-dri-api">API for dri-api</a>]]></title><description><![CDATA[<h1>TOC</h1>
 <ul>
-<li><a href="#apiv2-tests">APIv2 tests</a><ul>
-<li><a href="#apiv2-tests-get-">GET /</a></li>
-<li><a href="#apiv2-tests-post-devcollections">POST /dev/collections</a></li>
-<li><a href="#apiv2-tests-post-devcollectionsidseries">POST /dev/collections/:id/series</a></li>
-<li><a href="#apiv2-tests-post-devcollectionsidseriesiditems">POST /dev/collections/:id/series/:id/items</a></li>
-<li><a href="#apiv2-tests-get-devcollections">GET /dev/collections</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsid">GET /dev/collections/:id</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsidseries">GET /dev/collections/:id/series</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsidseriesid">GET /dev/collections/:id/series/:id</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsidseriesiditems">GET /dev/collections/:id/series/:id/items</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsidseriesiditemsid">GET /dev/collections/:id/series/:id/items/:id</a>
+<li><a href="#tests-for-dri-apiv2">Tests for DRI APIv2</a><ul>
+<li><a href="#tests-for-dri-apiv2-get-">GET /</a></li>
+<li><a href="#tests-for-dri-apiv2-post-devcollections">POST /dev/collections</a></li>
+<li><a href="#tests-for-dri-apiv2-post-devcollectionsidseries">POST /dev/collections/:id/series</a></li>
+<li><a href="#tests-for-dri-apiv2-post-devcollectionsidseriesiditems">POST /dev/collections/:id/series/:id/items</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollections">GET /dev/collections</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsid">GET /dev/collections/:id</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsidseries">GET /dev/collections/:id/series</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsidseriesid">GET /dev/collections/:id/series/:id</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsidseriesiditems">GET /dev/collections/:id/series/:id/items</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid">GET /dev/collections/:id/series/:id/items/:id</a>
 <a name=""></a></li>
 </ul>
 </li>
 </ul>
-<p><a name="apiv2-tests"></a>
+<p><a name="tests-for-dri-apiv2"></a>
 </p>
-<h1>APIv2 tests</h1>
-<p><a name="apiv2-tests-get-"></a>
+<h1>Tests for DRI APIv2</h1>
+<p><a name="tests-for-dri-apiv2-get-"></a>
 </p>
 <h2>GET /</h2>
-<p>should respond with the documentation page.
+<p>should respond with the root page, this is just a sanity check.
 
 </p>
 <pre><code class="js">            request({
@@ -49,7 +47,7 @@
                 assert.include(body, '&lt;title&gt;DRI API&lt;/title&gt;');
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-post-devcollections"></a>
+<p><a name="tests-for-dri-apiv2-post-devcollections"></a>
 </p>
 <h2>POST /dev/collections</h2>
 <p>should respond with the id of the created collection.
@@ -68,7 +66,7 @@
                 collectionId = body;
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-post-devcollectionsidseries"></a>
+<p><a name="tests-for-dri-apiv2-post-devcollectionsidseries"></a>
 </p>
 <h2>POST /dev/collections/:id/series</h2>
 <p>should respond with the id of the created series.
@@ -89,7 +87,7 @@
                 seriesId = body;
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-post-devcollectionsidseriesiditems"></a>
+<p><a name="tests-for-dri-apiv2-post-devcollectionsidseriesiditems"></a>
 </p>
 <h2>POST /dev/collections/:id/series/:id/items</h2>
 <p>should respond with the id of the created item.
@@ -97,7 +95,9 @@
 </p>
 <pre><code class="js">            request({
                 method : 'POST',
-                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items',
+                uri : socket + '/dev/collections/'
+                    + collectionId + '/series/' 
+                    + seriesId + '/items',
                 form : {
                     Title : 'Autobot title'
                 }
@@ -108,7 +108,7 @@
                 itemId = body;
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollections"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollections"></a>
 </p>
 <h2>GET /dev/collections</h2>
 <p>should respond with an array of all the collections.
@@ -124,7 +124,7 @@
                 assert.include(body, "Autobot collection");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsid"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsid"></a>
 </p>
 <h2>GET /dev/collections/:id</h2>
 <p>should respond with the array containing the data of the specified collection.
@@ -141,7 +141,7 @@
                 assert.equal(json.Title, "Autobot collection");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsidseries"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsidseries"></a>
 </p>
 <h2>GET /dev/collections/:id/series</h2>
 <p>should respond with an array of all the series corresponding to the given id.
@@ -156,7 +156,7 @@
                 assert.include(body, "Autobot series");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsidseriesid"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesid"></a>
 </p>
 <h2>GET /dev/collections/:id/series/:id</h2>
 <p>should respond with the array containing the data of the specified series.
@@ -172,7 +172,7 @@
                 assert.equal(json.Title, "Autobot series");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsidseriesiditems"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditems"></a>
 </p>
 <h2>GET /dev/collections/:id/series/:id/items</h2>
 <p>should respond with an array of all the items corresponding to the given ids.
@@ -180,14 +180,16 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items'
+                uri : socket + '/dev/collections/' 
+                    + collectionId + '/series/'
+                    + seriesId + '/items'
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, itemId);
                 assert.include(body, "Autobot title");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsidseriesiditemsid"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid"></a>
 </p>
 <h2>GET /dev/collections/:id/series/:id/items/:id</h2>
 <p>should respond with the array containing the data of the specified item.
@@ -195,7 +197,9 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
+                uri : socket + '/dev/collections/'
+                    + collectionId + '/series/'
+                    + seriesId + '/items/' + itemId
             }, function(err, resp, body) {
                 var json = JSON.parse(body);
                 assert.isNull(err);

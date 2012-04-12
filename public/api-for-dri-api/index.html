@@ -37,32 +37,30 @@
 								@: / 
 							<a href="/api-for-dri-api" class="breadcrumb">api-for-dri-api</a></div>
 						</div>
-						<div class="content"><p>Express test server listening on port 4001 in test mode
-</p>
-<h1>TOC</h1>
+						<div class="content"><h1>TOC</h1>
 <ul>
-<li><a href="#apiv2-tests">APIv2 tests</a><ul>
-<li><a href="#apiv2-tests-get-">GET /</a></li>
-<li><a href="#apiv2-tests-post-devcollections">POST /dev/collections</a></li>
-<li><a href="#apiv2-tests-post-devcollectionsidseries">POST /dev/collections/:id/series</a></li>
-<li><a href="#apiv2-tests-post-devcollectionsidseriesiditems">POST /dev/collections/:id/series/:id/items</a></li>
-<li><a href="#apiv2-tests-get-devcollections">GET /dev/collections</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsid">GET /dev/collections/:id</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsidseries">GET /dev/collections/:id/series</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsidseriesid">GET /dev/collections/:id/series/:id</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsidseriesiditems">GET /dev/collections/:id/series/:id/items</a></li>
-<li><a href="#apiv2-tests-get-devcollectionsidseriesiditemsid">GET /dev/collections/:id/series/:id/items/:id</a>
+<li><a href="#tests-for-dri-apiv2">Tests for DRI APIv2</a><ul>
+<li><a href="#tests-for-dri-apiv2-get-">GET /</a></li>
+<li><a href="#tests-for-dri-apiv2-post-devcollections">POST /dev/collections</a></li>
+<li><a href="#tests-for-dri-apiv2-post-devcollectionsidseries">POST /dev/collections/:id/series</a></li>
+<li><a href="#tests-for-dri-apiv2-post-devcollectionsidseriesiditems">POST /dev/collections/:id/series/:id/items</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollections">GET /dev/collections</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsid">GET /dev/collections/:id</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsidseries">GET /dev/collections/:id/series</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsidseriesid">GET /dev/collections/:id/series/:id</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsidseriesiditems">GET /dev/collections/:id/series/:id/items</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid">GET /dev/collections/:id/series/:id/items/:id</a>
 <a name=""></a></li>
 </ul>
 </li>
 </ul>
-<p><a name="apiv2-tests"></a>
+<p><a name="tests-for-dri-apiv2"></a>
 </p>
-<h1>APIv2 tests</h1>
-<p><a name="apiv2-tests-get-"></a>
+<h1>Tests for DRI APIv2</h1>
+<p><a name="tests-for-dri-apiv2-get-"></a>
 </p>
 <h2>GET /</h2>
-<p>should respond with the documentation page.
+<p>should respond with the root page, this is just a sanity check.
 
 </p>
 <pre><code class="js">            request({
@@ -73,7 +71,7 @@
                 assert.include(body, '&lt;title&gt;DRI API&lt;/title&gt;');
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-post-devcollections"></a>
+<p><a name="tests-for-dri-apiv2-post-devcollections"></a>
 </p>
 <h2>POST /dev/collections</h2>
 <p>should respond with the id of the created collection.
@@ -92,7 +90,7 @@
                 collectionId = body;
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-post-devcollectionsidseries"></a>
+<p><a name="tests-for-dri-apiv2-post-devcollectionsidseries"></a>
 </p>
 <h2>POST /dev/collections/:id/series</h2>
 <p>should respond with the id of the created series.
@@ -113,7 +111,7 @@
                 seriesId = body;
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-post-devcollectionsidseriesiditems"></a>
+<p><a name="tests-for-dri-apiv2-post-devcollectionsidseriesiditems"></a>
 </p>
 <h2>POST /dev/collections/:id/series/:id/items</h2>
 <p>should respond with the id of the created item.
@@ -121,7 +119,9 @@
 </p>
 <pre><code class="js">            request({
                 method : 'POST',
-                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items',
+                uri : socket + '/dev/collections/'
+                    + collectionId + '/series/' 
+                    + seriesId + '/items',
                 form : {
                     Title : 'Autobot title'
                 }
@@ -132,7 +132,7 @@
                 itemId = body;
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollections"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollections"></a>
 </p>
 <h2>GET /dev/collections</h2>
 <p>should respond with an array of all the collections.
@@ -148,7 +148,7 @@
                 assert.include(body, "Autobot collection");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsid"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsid"></a>
 </p>
 <h2>GET /dev/collections/:id</h2>
 <p>should respond with the array containing the data of the specified collection.
@@ -165,7 +165,7 @@
                 assert.equal(json.Title, "Autobot collection");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsidseries"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsidseries"></a>
 </p>
 <h2>GET /dev/collections/:id/series</h2>
 <p>should respond with an array of all the series corresponding to the given id.
@@ -180,7 +180,7 @@
                 assert.include(body, "Autobot series");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsidseriesid"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesid"></a>
 </p>
 <h2>GET /dev/collections/:id/series/:id</h2>
 <p>should respond with the array containing the data of the specified series.
@@ -196,7 +196,7 @@
                 assert.equal(json.Title, "Autobot series");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsidseriesiditems"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditems"></a>
 </p>
 <h2>GET /dev/collections/:id/series/:id/items</h2>
 <p>should respond with an array of all the items corresponding to the given ids.
@@ -204,14 +204,16 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items'
+                uri : socket + '/dev/collections/' 
+                    + collectionId + '/series/'
+                    + seriesId + '/items'
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, itemId);
                 assert.include(body, "Autobot title");
                 done();
             });</code></pre>
-<p><a name="apiv2-tests-get-devcollectionsidseriesiditemsid"></a>
+<p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid"></a>
 </p>
 <h2>GET /dev/collections/:id/series/:id/items/:id</h2>
 <p>should respond with the array containing the data of the specified item.
@@ -219,7 +221,9 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
+                uri : socket + '/dev/collections/'
+                    + collectionId + '/series/'
+                    + seriesId + '/items/' + itemId
             }, function(err, resp, body) {
                 var json = JSON.parse(body);
                 assert.isNull(err);

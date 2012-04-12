@@ -21,7 +21,10 @@ do
 	pushd build/$i
 	npm install
 	npm update
-	make docs
+	echo "Testing build/$i first"
+	make test || exit 1
+	echo "Generate docs for build/$i"
+	make docs || exit 1
 	cp docs/test.md ../../pages/api-for-$i/content.md
 	popd
 done
