@@ -43,11 +43,13 @@
 <li><a href="#test-cases-for-node-dri-package-creating-a-dri-collection">Creating a Dri-Collection</a></li>
 <li><a href="#test-cases-for-node-dri-package-creating-a-series">Creating a Series</a></li>
 <li><a href="#test-cases-for-node-dri-package-creating-an-item">Creating an Item</a></li>
-<li><a href="#test-cases-for-node-dri-package-adding-an-item-to-series">Adding an Item to series</a></li>
 <li><a href="#test-cases-for-node-dri-package-getting-an-item">Getting an Item</a></li>
 <li><a href="#test-cases-for-node-dri-package-getting-a-series">Getting a Series</a></li>
 <li><a href="#test-cases-for-node-dri-package-getting-a-dri-collection">Getting a Dri-Collection</a></li>
-<li><a href="#test-cases-for-node-dri-package-pushing-the-item-into-fedora">Pushing the item into fedora</a>
+<li><a href="#test-cases-for-node-dri-package-pushing-the-item-into-fedora">Pushing the item into fedora</a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-the-item-">Removing the item </a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-the-series-">Removing the series </a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-the-dri-collection-">Removing the dri-collection </a>
 <a name=""></a></li>
 </ul>
 </li>
@@ -118,20 +120,6 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-adding-an-item-to-series"></a>
-</p>
-<h2>Adding an Item to series</h2>
-<p>should add the given item to the given series.
-
-</p>
-<pre><code class="js">
-            dri.addItemToSeries(itemId, seriesId, function(result) {
-                result.should.be.ok
-                assert.include(result,itemId)
-                done();
-            }, function(e) {
-                should.not.exist(e);
-            });</code></pre>
 <p><a name="test-cases-for-node-dri-package-getting-an-item"></a>
 </p>
 <h2>Getting an Item</h2>
@@ -176,6 +164,45 @@
 </p>
 <pre><code class="js">            dri.approveItem(itemId, "cfedoraLib", function(pid) {
                 pid.should.include(":");
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-the-item-"></a>
+</p>
+<h2>Removing the item</h2>
+<p>should remove the item from MongoDB.
+
+</p>
+<pre><code class="js">            dri.removeItem(itemId, function(result) {
+                assert.include(result,itemId)
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-the-series-"></a>
+</p>
+<h2>Removing the series</h2>
+<p>should remove the series from MongoDB.
+
+</p>
+<pre><code class="js">            dri.removeSeries(seriesId, function(result) {
+                assert.include(result,seriesId)
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-the-dri-collection-"></a>
+</p>
+<h2>Removing the dri-collection</h2>
+<p>should remove the dri-collection from MongoDB.
+
+</p>
+<pre><code class="js">            dri.removeCollection(collId, function(result) {
+                assert.include(result,collId)
                 done();
             }, function(err) {
                 should.not.exist(e);

@@ -40,11 +40,11 @@
 						<div class="content"><h1>TOC</h1>
 <ul>
 <li><a href="#test-cases-for-the-node-fedora-package">Test cases for the node-fedora package</a><ul>
-<li><a href="#test-cases-for-the-node-fedora-package-createfedoraobject-will-create-a-fedoraobject">createFedoraObject, will create a FedoraObject</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-getfedoralist-get-a-list-of-fedoraobjects">getFedoraList, Get a list of FedoraObjects</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-getfedoraobject-get-a-fedoraobject">getFedoraObject, get a fedoraObject</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-deleteobject-will-delete-an-object-from-fedora">deleteObject, will delete an object from fedora</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-getnextpid-will-get-the-next-pid-that-is-available-from-fedora">getNextPID, will get the next PID that is available from fedora</a>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject">Calling createFedoraObject(), will create a fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-getfedoralist-get-a-list-of-fedoraobjects">Calling getFedoraList(), Get a list of fedoraObjects</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-getfedoraobject-get-a-fedoraobject">Calling getFedoraObject(), get a fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-deleteobject-will-delete-an-object-from-fedora">Calling deleteObject(), will delete an object from fedora</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-getnextpid-will-get-the-next-pid-that-is-available-from-fedora">Calling getNextPID(), will get the next PID that is available from fedora</a>
 <a name=""></a></li>
 </ul>
 </li>
@@ -52,25 +52,25 @@
 <p><a name="test-cases-for-the-node-fedora-package"></a>
 </p>
 <h1>Test cases for the node-fedora package</h1>
-<p><a name="test-cases-for-the-node-fedora-package-createfedoraobject-will-create-a-fedoraobject"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject"></a>
 </p>
-<h2>createFedoraObject, will create a FedoraObject</h2>
-<p>should create a FedoraObject.
+<h2>Calling createFedoraObject(), will create a fedoraObject</h2>
+<p>should create a fedoraObject.
 
 </p>
-<pre><code class="js">            fedora.createFedoraObject(testNamespace,testLabel, function(result){
+<pre><code class="js">            fedora.createFedoraObject(testNamespace, testLabel, function(result){
                 testResult = result;
                 result.should.exist;
                 result.should.include(testNamespace + ":");
                 done();
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-getfedoralist-get-a-list-of-fedoraobjects"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-getfedoralist-get-a-list-of-fedoraobjects"></a>
 </p>
-<h2>getFedoraList, Get a list of FedoraObjects</h2>
-<p>should return a list of FedoraObjects from the fedora repository.
+<h2>Calling getFedoraList(), Get a list of fedoraObjects</h2>
+<p>should return a list of fedoraObjects from the fedora repository.
 
 </p>
-<pre><code class="js">            fedora.getFedoraList("*",function(resultData){
+<pre><code class="js">            fedora.getFedoraList("*", function(resultData){
                 resultData.should.exist;
                 resultData.should.include('result');
                 resultData.should.not.be.empty;
@@ -78,9 +78,9 @@
             function(error){
                 should.not.exist(error);
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-getfedoraobject-get-a-fedoraobject"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-getfedoraobject-get-a-fedoraobject"></a>
 </p>
-<h2>getFedoraObject, get a fedoraObject</h2>
+<h2>Calling getFedoraObject(), get a fedoraObject</h2>
 <p>should return a fedoraObject.
 
 </p>
@@ -88,9 +88,9 @@
                 resultData.should.include(testResult);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-deleteobject-will-delete-an-object-from-fedora"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-deleteobject-will-delete-an-object-from-fedora"></a>
 </p>
-<h2>deleteObject, will delete an object from fedora</h2>
+<h2>Calling deleteObject(), will delete an object from fedora</h2>
 <p>should delete the requested object from fedora.
 
 </p>
@@ -101,9 +101,9 @@
             }, function(error){
                 should.not.exist(error);
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-getnextpid-will-get-the-next-pid-that-is-available-from-fedora"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-getnextpid-will-get-the-next-pid-that-is-available-from-fedora"></a>
 </p>
-<h2>getNextPID, will get the next PID that is available from fedora</h2>
+<h2>Calling getNextPID(), will get the next PID that is available from fedora</h2>
 <p>should return the next PID from fedora.
 
 </p>

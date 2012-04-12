@@ -83,7 +83,10 @@
 								@: / 
 							<a href="" class="breadcrumb">api-for-dri-api</a></div>
 						</div>
-						<div class="content"><h1>TOC</h1>
+						<div class="content"><p>{ status: 'Open',
+  properties: { title: 'AutoTestColl', subtitle: 'AutoTestColl' } }
+</p>
+<h1>TOC</h1>
 <ul>
 <li><a href="#tests-for-dri-apiv2">Tests for DRI APIv2</a><ul>
 <li><a href="#tests-for-dri-apiv2-get-">GET /</a></li>
@@ -123,12 +126,17 @@
 <p>should respond with the id of the created collection.
 
 </p>
-<pre><code class="js">            request({
+<pre><code class="js">
+            request({
                 method : 'POST',
                 uri : socket + '/dev/collections',
-                form : {
-                    Title : 'Autobot collection'
+                json : {
+                "status" : "Open",
+                "properties" : {
+                    "title" : "AutoTestColl",
+                    "subtitle" : "AutoTestColl"
                 }
+            }
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.isDefined(body);
@@ -145,10 +153,12 @@
 <pre><code class="js">            request({
                 method : 'POST',
                 uri : socket + '/dev/collections/' + collectionId + '/series',
-                form : {
-                    Title : 'Autobot series',
-                    author : 'Autobot',
-                    parentId : collectionId
+                json : {
+                    properties : {
+                        title : "AutoTestSeries",
+                        subtitle : "AutoTestSeries"
+                    },
+                    status : "Open"
                 }
             }, function(err, resp, body) {
                 assert.isNull(err);
@@ -165,11 +175,13 @@
 </p>
 <pre><code class="js">            request({
                 method : 'POST',
-                uri : socket + '/dev/collections/'
-                    + collectionId + '/series/' 
-                    + seriesId + '/items',
-                form : {
-                    Title : 'Autobot title'
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items',
+                json : {
+                    properties : {
+                        title : "AutoTestTitle",
+                        subtitle : "AutoTestTitle"
+                    },
+                    status : "Open"
                 }
             }, function(err, resp, body) {
                 assert.isNull(err);
@@ -191,7 +203,7 @@
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, collectionId);
-                assert.include(body, "Autobot collection");
+                assert.include(body, "AutoTestColl");
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devcollectionsid"></a>
@@ -208,7 +220,7 @@
                 var json = JSON.parse(body);
                 assert.isNull(err);
                 assert.isDefined(body);
-                assert.equal(json.Title, "Autobot collection");
+                assert.equal(json.properties.title, "AutoTestColl");
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devcollectionsidseries"></a>
@@ -223,7 +235,7 @@
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, seriesId);
-                assert.include(body, "Autobot series");
+                assert.include(body, "AutoTestSeries");
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesid"></a>
@@ -239,7 +251,7 @@
                 var json = JSON.parse(body);
                 assert.isNull(err);
                 assert.isDefined(body);
-                assert.equal(json.Title, "Autobot series");
+                assert.equal(json.properties.title, "AutoTestSeries");
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditems"></a>
@@ -250,13 +262,11 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/collections/' 
-                    + collectionId + '/series/'
-                    + seriesId + '/items'
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items'
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, itemId);
-                assert.include(body, "Autobot title");
+                assert.include(body, "AutoTestTitle");
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid"></a>
@@ -267,14 +277,12 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/collections/'
-                    + collectionId + '/series/'
-                    + seriesId + '/items/' + itemId
+                uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
             }, function(err, resp, body) {
                 var json = JSON.parse(body);
                 assert.isNull(err);
                 assert.isDefined(body);
-                assert.equal(json.Title, "Autobot title");
+                assert.equal(json.properties.title, "AutoTestTitle");
                 done();
             });</code></pre>
 </div>
@@ -288,11 +296,11 @@
 						<div class="content"><h1>TOC</h1>
 <ul>
 <li><a href="#test-cases-for-the-node-fedora-package">Test cases for the node-fedora package</a><ul>
-<li><a href="#test-cases-for-the-node-fedora-package-createfedoraobject-will-create-a-fedoraobject">createFedoraObject, will create a FedoraObject</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-getfedoralist-get-a-list-of-fedoraobjects">getFedoraList, Get a list of FedoraObjects</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-getfedoraobject-get-a-fedoraobject">getFedoraObject, get a fedoraObject</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-deleteobject-will-delete-an-object-from-fedora">deleteObject, will delete an object from fedora</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-getnextpid-will-get-the-next-pid-that-is-available-from-fedora">getNextPID, will get the next PID that is available from fedora</a>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject">Calling createFedoraObject(), will create a fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-getfedoralist-get-a-list-of-fedoraobjects">Calling getFedoraList(), Get a list of fedoraObjects</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-getfedoraobject-get-a-fedoraobject">Calling getFedoraObject(), get a fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-deleteobject-will-delete-an-object-from-fedora">Calling deleteObject(), will delete an object from fedora</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-getnextpid-will-get-the-next-pid-that-is-available-from-fedora">Calling getNextPID(), will get the next PID that is available from fedora</a>
 <a name=""></a></li>
 </ul>
 </li>
@@ -300,25 +308,25 @@
 <p><a name="test-cases-for-the-node-fedora-package"></a>
 </p>
 <h1>Test cases for the node-fedora package</h1>
-<p><a name="test-cases-for-the-node-fedora-package-createfedoraobject-will-create-a-fedoraobject"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject"></a>
 </p>
-<h2>createFedoraObject, will create a FedoraObject</h2>
-<p>should create a FedoraObject.
+<h2>Calling createFedoraObject(), will create a fedoraObject</h2>
+<p>should create a fedoraObject.
 
 </p>
-<pre><code class="js">            fedora.createFedoraObject(testNamespace,testLabel, function(result){
+<pre><code class="js">            fedora.createFedoraObject(testNamespace, testLabel, function(result){
                 testResult = result;
                 result.should.exist;
                 result.should.include(testNamespace + ":");
                 done();
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-getfedoralist-get-a-list-of-fedoraobjects"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-getfedoralist-get-a-list-of-fedoraobjects"></a>
 </p>
-<h2>getFedoraList, Get a list of FedoraObjects</h2>
-<p>should return a list of FedoraObjects from the fedora repository.
+<h2>Calling getFedoraList(), Get a list of fedoraObjects</h2>
+<p>should return a list of fedoraObjects from the fedora repository.
 
 </p>
-<pre><code class="js">            fedora.getFedoraList("*",function(resultData){
+<pre><code class="js">            fedora.getFedoraList("*", function(resultData){
                 resultData.should.exist;
                 resultData.should.include('result');
                 resultData.should.not.be.empty;
@@ -326,9 +334,9 @@
             function(error){
                 should.not.exist(error);
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-getfedoraobject-get-a-fedoraobject"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-getfedoraobject-get-a-fedoraobject"></a>
 </p>
-<h2>getFedoraObject, get a fedoraObject</h2>
+<h2>Calling getFedoraObject(), get a fedoraObject</h2>
 <p>should return a fedoraObject.
 
 </p>
@@ -336,9 +344,9 @@
                 resultData.should.include(testResult);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-deleteobject-will-delete-an-object-from-fedora"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-deleteobject-will-delete-an-object-from-fedora"></a>
 </p>
-<h2>deleteObject, will delete an object from fedora</h2>
+<h2>Calling deleteObject(), will delete an object from fedora</h2>
 <p>should delete the requested object from fedora.
 
 </p>
@@ -349,9 +357,9 @@
             }, function(error){
                 should.not.exist(error);
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-getnextpid-will-get-the-next-pid-that-is-available-from-fedora"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-getnextpid-will-get-the-next-pid-that-is-available-from-fedora"></a>
 </p>
-<h2>getNextPID, will get the next PID that is available from fedora</h2>
+<h2>Calling getNextPID(), will get the next PID that is available from fedora</h2>
 <p>should return the next PID from fedora.
 
 </p>
@@ -373,11 +381,13 @@
 <li><a href="#test-cases-for-node-dri-package-creating-a-dri-collection">Creating a Dri-Collection</a></li>
 <li><a href="#test-cases-for-node-dri-package-creating-a-series">Creating a Series</a></li>
 <li><a href="#test-cases-for-node-dri-package-creating-an-item">Creating an Item</a></li>
-<li><a href="#test-cases-for-node-dri-package-adding-an-item-to-series">Adding an Item to series</a></li>
 <li><a href="#test-cases-for-node-dri-package-getting-an-item">Getting an Item</a></li>
 <li><a href="#test-cases-for-node-dri-package-getting-a-series">Getting a Series</a></li>
 <li><a href="#test-cases-for-node-dri-package-getting-a-dri-collection">Getting a Dri-Collection</a></li>
-<li><a href="#test-cases-for-node-dri-package-pushing-the-item-into-fedora">Pushing the item into fedora</a>
+<li><a href="#test-cases-for-node-dri-package-pushing-the-item-into-fedora">Pushing the item into fedora</a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-the-item-">Removing the item </a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-the-series-">Removing the series </a></li>
+<li><a href="#test-cases-for-node-dri-package-removing-the-dri-collection-">Removing the dri-collection </a>
 <a name=""></a></li>
 </ul>
 </li>
@@ -448,20 +458,6 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-adding-an-item-to-series"></a>
-</p>
-<h2>Adding an Item to series</h2>
-<p>should add the given item to the given series.
-
-</p>
-<pre><code class="js">
-            dri.addItemToSeries(itemId, seriesId, function(result) {
-                result.should.be.ok
-                assert.include(result,itemId)
-                done();
-            }, function(e) {
-                should.not.exist(e);
-            });</code></pre>
 <p><a name="test-cases-for-node-dri-package-getting-an-item"></a>
 </p>
 <h2>Getting an Item</h2>
@@ -506,6 +502,45 @@
 </p>
 <pre><code class="js">            dri.approveItem(itemId, "cfedoraLib", function(pid) {
                 pid.should.include(":");
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-the-item-"></a>
+</p>
+<h2>Removing the item</h2>
+<p>should remove the item from MongoDB.
+
+</p>
+<pre><code class="js">            dri.removeItem(itemId, function(result) {
+                assert.include(result,itemId)
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-the-series-"></a>
+</p>
+<h2>Removing the series</h2>
+<p>should remove the series from MongoDB.
+
+</p>
+<pre><code class="js">            dri.removeSeries(seriesId, function(result) {
+                assert.include(result,seriesId)
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-removing-the-dri-collection-"></a>
+</p>
+<h2>Removing the dri-collection</h2>
+<p>should remove the dri-collection from MongoDB.
+
+</p>
+<pre><code class="js">            dri.removeCollection(collId, function(result) {
+                assert.include(result,collId)
                 done();
             }, function(err) {
                 should.not.exist(e);
