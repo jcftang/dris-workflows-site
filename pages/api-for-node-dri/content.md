@@ -1,3 +1,4 @@
+make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Creating a Dri-Collection](#test-cases-for-node-dri-package-creating-a-dri-collection)
@@ -175,3 +176,4 @@ should remove the dri-collection from MongoDB.
 			});
 ```
 
+make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'

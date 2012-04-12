@@ -1,3 +1,4 @@
+make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
 { status: 'Open',
   properties: { title: 'AutoTestColl', subtitle: 'AutoTestColl' } }
 # TOC
@@ -205,3 +206,4 @@ should respond with the array containing the data of the specified item.
 			});
 ```
 
+make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
