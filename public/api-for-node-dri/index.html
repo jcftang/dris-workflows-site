@@ -40,18 +40,18 @@
 						<div class="content"><h1>TOC</h1>
 <ul>
 <li><a href="#test-cases-for-node-dri-package">Test cases for node-dri package</a><ul>
-<li><a href="#test-cases-for-node-dri-package-calling-getobjecttypes-will-get-object-types">Calling getObjectTypes(), will get object types</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-createobject-to-create-a-collection">Calling createObject() to create a collection</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-createobject-to-create-a-series">Calling createObject() to create a series</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-createobject-to-create-an-item">Calling createObject() to create an item</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-getobject-to-get-an-item">Calling getObject() to get an item</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-getobject-to-get-a-series">Calling getObject() to get a Series</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-getchildren-to-get-the-children-of-a-series">Calling getChildren() to get the children of a series</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-getobject-to-get-a-collection">Calling getObject() to get a collection</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-approveitem-with-a-item-id">Calling approveItem() with a item id</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-removeobject-with-a-item-id">Calling removeObject() with a item id</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-removeobject-with-a-series-id">calling removeObject() with a series id</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-removeobject-with-a-collection-id">Calling removeObject() with a collection id</a>
+<li><a href="#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types">Calling getObjectTypes(onSuccess, onError), will get object types</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-collection">Calling createObject(data, onSuccess, onError) to create a collection</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-series">Calling createObject(data, onSuccess, onError) to create a series</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item">Calling createObject(data, onSuccess, onError) to create an item</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item">Calling getObject(id, onSuccess, onError) to get an item</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-series">Calling getObject(id, onSuccess, onError) to get a Series</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series">Calling getChildren(parentId, onSuccess, onError) to get the children of a series</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection">Calling getObject(id, onSuccess, onError) to get a collection</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id">Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id">Calling removeObject(id, onSuccess, onError) with a item id</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id">calling removeObject(id, onSuccess, onError) with a series id</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id">Calling removeObject(id, onSuccess, onError) with a collection id</a>
 <a name=""></a></li>
 </ul>
 </li>
@@ -59,9 +59,9 @@
 <p><a name="test-cases-for-node-dri-package"></a>
 </p>
 <h1>Test cases for node-dri package</h1>
-<p><a name="test-cases-for-node-dri-package-calling-getobjecttypes-will-get-object-types"></a>
+<p><a name="test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types"></a>
 </p>
-<h2>Calling getObjectTypes(), will get object types</h2>
+<h2>Calling getObjectTypes(onSuccess, onError), will get object types</h2>
 <p>should return an array of all the object types.
 
 </p>
@@ -71,9 +71,9 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-createobject-to-create-a-collection"></a>
+<p><a name="test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-collection"></a>
 </p>
-<h2>Calling createObject() to create a collection</h2>
+<h2>Calling createObject(data, onSuccess, onError) to create a collection</h2>
 <p>should create a collection and return the id of the collection.
 
 </p>
@@ -93,9 +93,9 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-createobject-to-create-a-series"></a>
+<p><a name="test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-series"></a>
 </p>
-<h2>Calling createObject() to create a series</h2>
+<h2>Calling createObject(data, onSuccess, onError) to create a series</h2>
 <p>should create a series and return the id of the series.
 
 </p>
@@ -116,9 +116,9 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-createobject-to-create-an-item"></a>
+<p><a name="test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item"></a>
 </p>
-<h2>Calling createObject() to create an item</h2>
+<h2>Calling createObject(data, onSuccess, onError) to create an item</h2>
 <p>should create an Item and return the id of the Item.
 
 </p>
@@ -139,9 +139,9 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-getobject-to-get-an-item"></a>
+<p><a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item"></a>
 </p>
-<h2>Calling getObject() to get an item</h2>
+<h2>Calling getObject(id, onSuccess, onError) to get an item</h2>
 <p>should get an Item and return the Item.
 
 </p>
@@ -151,9 +151,9 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-getobject-to-get-a-series"></a>
+<p><a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-series"></a>
 </p>
-<h2>Calling getObject() to get a Series</h2>
+<h2>Calling getObject(id, onSuccess, onError) to get a Series</h2>
 <p>should get an series and return the series.
 
 </p>
@@ -163,9 +163,9 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-getchildren-to-get-the-children-of-a-series"></a>
+<p><a name="test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series"></a>
 </p>
-<h2>Calling getChildren() to get the children of a series</h2>
+<h2>Calling getChildren(parentId, onSuccess, onError) to get the children of a series</h2>
 <p>should get the series and return the children.
 
 </p>
@@ -175,9 +175,9 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-getobject-to-get-a-collection"></a>
+<p><a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection"></a>
 </p>
-<h2>Calling getObject() to get a collection</h2>
+<h2>Calling getObject(id, onSuccess, onError) to get a collection</h2>
 <p>should get a collection and return the collection.
 
 </p>
@@ -187,9 +187,9 @@
             }, function(e) {
                 should.not.exist(e);
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-approveitem-with-a-item-id"></a>
+<p><a name="test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id"></a>
 </p>
-<h2>Calling approveItem() with a item id</h2>
+<h2>Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id</h2>
 <p>should push the item into fedora and return the fedora id from that item.
 
 </p>
@@ -200,9 +200,9 @@
                 should.not.exist(e);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-removeobject-with-a-item-id"></a>
+<p><a name="test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id"></a>
 </p>
-<h2>Calling removeObject() with a item id</h2>
+<h2>Calling removeObject(id, onSuccess, onError) with a item id</h2>
 <p>should remove the item from MongoDB.
 
 </p>
@@ -213,9 +213,9 @@
                 should.not.exist(e);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-removeobject-with-a-series-id"></a>
+<p><a name="test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id"></a>
 </p>
-<h2>calling removeObject() with a series id</h2>
+<h2>calling removeObject(id, onSuccess, onError) with a series id</h2>
 <p>should remove the series from MongoDB.
 
 </p>
@@ -226,9 +226,9 @@
                 should.not.exist(e);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-removeobject-with-a-collection-id"></a>
+<p><a name="test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id"></a>
 </p>
-<h2>Calling removeObject() with a collection id</h2>
+<h2>Calling removeObject(id, onSuccess, onError) with a collection id</h2>
 <p>should remove the collection from MongoDB.
 
 </p>

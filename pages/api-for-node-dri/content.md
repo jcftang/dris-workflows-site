@@ -1,23 +1,23 @@
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
-     - [Calling getObjectTypes(), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypes-will-get-object-types)
-     - [Calling createObject() to create a collection](#test-cases-for-node-dri-package-calling-createobject-to-create-a-collection)
-     - [Calling createObject() to create a series](#test-cases-for-node-dri-package-calling-createobject-to-create-a-series)
-     - [Calling createObject() to create an item](#test-cases-for-node-dri-package-calling-createobject-to-create-an-item)
-     - [Calling getObject() to get an item](#test-cases-for-node-dri-package-calling-getobject-to-get-an-item)
-     - [Calling getObject() to get a Series](#test-cases-for-node-dri-package-calling-getobject-to-get-a-series)
-     - [Calling getChildren() to get the children of a series](#test-cases-for-node-dri-package-calling-getchildren-to-get-the-children-of-a-series)
-     - [Calling getObject() to get a collection](#test-cases-for-node-dri-package-calling-getobject-to-get-a-collection)
-     - [Calling approveItem() with a item id](#test-cases-for-node-dri-package-calling-approveitem-with-a-item-id)
-     - [Calling removeObject() with a item id](#test-cases-for-node-dri-package-calling-removeobject-with-a-item-id)
-     - [calling removeObject() with a series id](#test-cases-for-node-dri-package-calling-removeobject-with-a-series-id)
-     - [Calling removeObject() with a collection id](#test-cases-for-node-dri-package-calling-removeobject-with-a-collection-id)
+     - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
+     - [Calling createObject(data, onSuccess, onError) to create a collection](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-collection)
+     - [Calling createObject(data, onSuccess, onError) to create a series](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-series)
+     - [Calling createObject(data, onSuccess, onError) to create an item](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item)
+     - [Calling getObject(id, onSuccess, onError) to get an item](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item)
+     - [Calling getObject(id, onSuccess, onError) to get a Series](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-series)
+     - [Calling getChildren(parentId, onSuccess, onError) to get the children of a series](#test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series)
+     - [Calling getObject(id, onSuccess, onError) to get a collection](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection)
+     - [Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id)
+     - [Calling removeObject(id, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id)
+     - [calling removeObject(id, onSuccess, onError) with a series id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id)
+     - [Calling removeObject(id, onSuccess, onError) with a collection id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id)
 <a name="" />
  
 <a name="test-cases-for-node-dri-package" />
 # Test cases for node-dri package
-<a name="test-cases-for-node-dri-package-calling-getobjecttypes-will-get-object-types" />
-## Calling getObjectTypes(), will get object types
+<a name="test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types" />
+## Calling getObjectTypes(onSuccess, onError), will get object types
 should return an array of all the object types.
 
 ```js
@@ -29,8 +29,8 @@ should return an array of all the object types.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-createobject-to-create-a-collection" />
-## Calling createObject() to create a collection
+<a name="test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-collection" />
+## Calling createObject(data, onSuccess, onError) to create a collection
 should create a collection and return the id of the collection.
 
 ```js
@@ -52,8 +52,8 @@ should create a collection and return the id of the collection.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-createobject-to-create-a-series" />
-## Calling createObject() to create a series
+<a name="test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-series" />
+## Calling createObject(data, onSuccess, onError) to create a series
 should create a series and return the id of the series.
 
 ```js
@@ -76,8 +76,8 @@ should create a series and return the id of the series.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-createobject-to-create-an-item" />
-## Calling createObject() to create an item
+<a name="test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item" />
+## Calling createObject(data, onSuccess, onError) to create an item
 should create an Item and return the id of the Item.
 
 ```js
@@ -100,8 +100,8 @@ should create an Item and return the id of the Item.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-getobject-to-get-an-item" />
-## Calling getObject() to get an item
+<a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item" />
+## Calling getObject(id, onSuccess, onError) to get an item
 should get an Item and return the Item.
 
 ```js
@@ -113,8 +113,8 @@ should get an Item and return the Item.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-getobject-to-get-a-series" />
-## Calling getObject() to get a Series
+<a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-series" />
+## Calling getObject(id, onSuccess, onError) to get a Series
 should get an series and return the series.
 
 ```js
@@ -126,8 +126,8 @@ should get an series and return the series.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-getchildren-to-get-the-children-of-a-series" />
-## Calling getChildren() to get the children of a series
+<a name="test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series" />
+## Calling getChildren(parentId, onSuccess, onError) to get the children of a series
 should get the series and return the children.
 
 ```js
@@ -139,8 +139,8 @@ should get the series and return the children.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-getobject-to-get-a-collection" />
-## Calling getObject() to get a collection
+<a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection" />
+## Calling getObject(id, onSuccess, onError) to get a collection
 should get a collection and return the collection.
 
 ```js
@@ -152,8 +152,8 @@ should get a collection and return the collection.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-approveitem-with-a-item-id" />
-## Calling approveItem() with a item id
+<a name="test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id" />
+## Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id
 should push the item into fedora and return the fedora id from that item.
 
 ```js
@@ -166,8 +166,8 @@ should push the item into fedora and return the fedora id from that item.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-removeobject-with-a-item-id" />
-## Calling removeObject() with a item id
+<a name="test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id" />
+## Calling removeObject(id, onSuccess, onError) with a item id
 should remove the item from MongoDB.
 
 ```js
@@ -180,8 +180,8 @@ should remove the item from MongoDB.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-removeobject-with-a-series-id" />
-## calling removeObject() with a series id
+<a name="test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id" />
+## calling removeObject(id, onSuccess, onError) with a series id
 should remove the series from MongoDB.
 
 ```js
@@ -194,8 +194,8 @@ should remove the series from MongoDB.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-calling-removeobject-with-a-collection-id" />
-## Calling removeObject() with a collection id
+<a name="test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id" />
+## Calling removeObject(id, onSuccess, onError) with a collection id
 should remove the collection from MongoDB.
 
 ```js
