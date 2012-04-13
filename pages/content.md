@@ -48,7 +48,7 @@ Currently the DRIS Workflows web-application depends on some internal
 servers in TCHPC, this is required to pull the latest development versions
 of dri-api, node-fedora, node-dri.
 
-If you are on VPN to TCHPC or TCD it is possible to do the following to
+If you are on a VPN to TCHPC or TCD it is possible to do the following to
 install the API server and the Web application.
 
 ### Deployment of API server (Required)

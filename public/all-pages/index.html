@@ -49,7 +49,98 @@
 </li>
 </ul>
 <p>With help from the TCHPC and DRIS team at TCD.
+
 </p>
+<h2>Architecture</h2>
+<p>The DRIS Workflows application consists of a number of components,
+there are some planned features which have yet to be implemented.
+
+</p>
+<ul>
+<li>dri-api (REST API server)<ul>
+<li>node-dri (Back-office operations)<ul>
+<li>node-fedora (Fedora-commons interface, planned on turning this
+into a plugin)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dri-auth (oauth2 provider, planned)</li>
+</ul>
+<h3>Overview of current Architecture</h3>
+<p><img src="/img/HighLevelArch-mvanwamb-qgrootbl-jtang-2012-04-13-dris-workflows.png" alt="">
+
+</p>
+<p>The architecture of the system is in an unstable state as we test the
+design of the object model.
+
+</p>
+<h2>Licensing</h2>
+<p>TBD - ultimately GPLv2 or MIT based license?
+
+</p>
+<h2>Requirements</h2>
+<p>The pre-requisites for installing the DRIS Workflows package.
+
+</p>
+<ul>
+<li>Nodejs 0.6.x - <a href="http://www.nodejs.org">http://www.nodejs.org</a> - developed with</li>
+<li>Mongodb 2.0.x - <a href="http://www.mongodb.org">http://www.mongodb.org</a> - developed with</li>
+<li>fedora-commons 3.5 - <a href="http://fedora-commons.org/">http://fedora-commons.org/</a> - tested against REST api</li>
+</ul>
+<p>The systems that we have tested on
+
+</p>
+<ul>
+<li>Tested on OSX 10.6.x, 10.7.x, SL6.x, Windows 7</li>
+<li>Browsers tested with Chrome</li>
+</ul>
+<h2>Installation</h2>
+<p>Currently the DRIS Workflows web-application depends on some internal
+servers in TCHPC, this is required to pull the latest development versions
+of dri-api, node-fedora, node-dri.
+
+</p>
+<p>If you are on VPN to TCHPC or TCD it is possible to do the following to
+install the API server and the Web application.
+
+</p>
+<h3>Deployment of API server (Required)</h3>
+<pre><code><span class="identifier">git</span> <span class="identifier"><span class="keymethods">clone</span></span> <span class="identifier">ssh</span><span class="symbol">:</span>/<span class="regexp">/git@howest-server.tchpc.tcd.ie/howest</span><span class="regexp">/node/dri</span>-<span class="identifier">api</span>.<span class="identifier">git</span>
+<span class="identifier">cd</span> <span class="identifier">dri</span>-<span class="identifier">api</span>
+<span class="identifier">npm</span> <span class="identifier">install</span></code></pre>
+<p>Once the <em>dri-api</em> server is installed with its dependancies, it must
+be started by doing the following.
+
+</p>
+<pre><code>node app.js</code></pre>
+<h3>Deployment of DRIS Workflows (Required)</h3>
+<pre><code><span class="identifier">git</span> <span class="identifier"><span class="keymethods">clone</span></span> <span class="identifier">ssh</span><span class="symbol">:</span>/<span class="regexp">/git@howest-server.tchpc.tcd.ie/howest</span><span class="regexp">/node/dris</span>-<span class="identifier">workflows</span>.<span class="identifier">git</span>
+<span class="identifier">cd</span> <span class="identifier">dris</span>-<span class="identifier">workflows</span>
+<span class="identifier">npm</span> <span class="identifier">install</span></code></pre>
+<p>Once the <em>dris-workflow</em> application is installed with its dependancies, it must
+be started by doing the following.
+
+</p>
+<pre><code>node app.js</code></pre>
+<h2>Testing</h2>
+<p>The tests are written with the <a href="http://visionmedia.github.com/mocha/">mocha</a> test framework.
+The DRIS Workflows and dependent packages have tests which can be run as follows
+
+</p>
+<p>The intent is to release a set of API tests which can be used as a basis
+for DRIS (DRI) compliance testing for those who wish to implement or
+re-implement a compatible system.
+
+</p>
+<h3>Linux and OSX</h3>
+<pre><code><span class="identifier">cd</span> <span class="constant">PACKAGE</span>
+<span class="identifier">make</span> <span class="identifier"><span class="keymethods">test</span></span></code></pre>
+<h3>Windows</h3>
+<pre><code><span class="identifier">cd</span> <span class="constant">PACKAGE</span>
+<span class="constant">NODE_PATH</span>=.<span class="regexp">/lib NODE_ENV=test ./node</span><span class="identifier">_modules</span>/.<span class="identifier">bin</span>/<span class="identifier">mocha</span> \
+--<span class="identifier">reporter</span> <span class="identifier">spec</span> \
+<span class="identifier"><span class="keymethods">test</span></span>/*.<span class="identifier">js</span></code></pre>
 </div>
 					</article><article class="article">
 						<div class="metadata">
