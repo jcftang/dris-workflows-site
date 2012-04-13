@@ -1,23 +1,23 @@
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
-     - [Get object types](#test-cases-for-node-dri-package-get-object-types)
-     - [Creating a Dri-Collection](#test-cases-for-node-dri-package-creating-a-dri-collection)
-     - [Creating a Series](#test-cases-for-node-dri-package-creating-a-series)
-     - [Creating an Item](#test-cases-for-node-dri-package-creating-an-item)
-     - [Getting an Item](#test-cases-for-node-dri-package-getting-an-item)
-     - [Getting a Series](#test-cases-for-node-dri-package-getting-a-series)
-     - [Getting a Series children](#test-cases-for-node-dri-package-getting-a-series-children)
-     - [Getting a Dri-Collection](#test-cases-for-node-dri-package-getting-a-dri-collection)
-     - [Pushing the item into fedora](#test-cases-for-node-dri-package-pushing-the-item-into-fedora)
-     - [Removing the item ](#test-cases-for-node-dri-package-removing-the-item-)
-     - [Removing the series ](#test-cases-for-node-dri-package-removing-the-series-)
-     - [Removing the dri-collection ](#test-cases-for-node-dri-package-removing-the-dri-collection-)
+     - [Calling getObjectTypes(), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypes-will-get-object-types)
+     - [Calling createObject() to create a collection](#test-cases-for-node-dri-package-calling-createobject-to-create-a-collection)
+     - [Calling createObject() to create a series](#test-cases-for-node-dri-package-calling-createobject-to-create-a-series)
+     - [Calling createObject() to create an item](#test-cases-for-node-dri-package-calling-createobject-to-create-an-item)
+     - [Calling getObject() to get an item](#test-cases-for-node-dri-package-calling-getobject-to-get-an-item)
+     - [Calling getObject() to get a Series](#test-cases-for-node-dri-package-calling-getobject-to-get-a-series)
+     - [Calling getChildren() to get the children of a series](#test-cases-for-node-dri-package-calling-getchildren-to-get-the-children-of-a-series)
+     - [Calling getObject() to get a collection](#test-cases-for-node-dri-package-calling-getobject-to-get-a-collection)
+     - [Calling approveItem() with a item id](#test-cases-for-node-dri-package-calling-approveitem-with-a-item-id)
+     - [Calling removeObject() with a item id](#test-cases-for-node-dri-package-calling-removeobject-with-a-item-id)
+     - [calling removeObject() with a series id](#test-cases-for-node-dri-package-calling-removeobject-with-a-series-id)
+     - [Calling removeObject() with a collection id](#test-cases-for-node-dri-package-calling-removeobject-with-a-collection-id)
 <a name="" />
  
 <a name="test-cases-for-node-dri-package" />
 # Test cases for node-dri package
-<a name="test-cases-for-node-dri-package-get-object-types" />
-## Get object types
+<a name="test-cases-for-node-dri-package-calling-getobjecttypes-will-get-object-types" />
+## Calling getObjectTypes(), will get object types
 should return an array of all the object types.
 
 ```js
@@ -29,9 +29,9 @@ should return an array of all the object types.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-creating-a-dri-collection" />
-## Creating a Dri-Collection
-should create a Dri-Collection and return the id of the Dri-Collection.
+<a name="test-cases-for-node-dri-package-calling-createobject-to-create-a-collection" />
+## Calling createObject() to create a collection
+should create a collection and return the id of the collection.
 
 ```js
 			var data = {
@@ -52,8 +52,8 @@ should create a Dri-Collection and return the id of the Dri-Collection.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-creating-a-series" />
-## Creating a Series
+<a name="test-cases-for-node-dri-package-calling-createobject-to-create-a-series" />
+## Calling createObject() to create a series
 should create a series and return the id of the series.
 
 ```js
@@ -76,8 +76,8 @@ should create a series and return the id of the series.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-creating-an-item" />
-## Creating an Item
+<a name="test-cases-for-node-dri-package-calling-createobject-to-create-an-item" />
+## Calling createObject() to create an item
 should create an Item and return the id of the Item.
 
 ```js
@@ -100,8 +100,8 @@ should create an Item and return the id of the Item.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-getting-an-item" />
-## Getting an Item
+<a name="test-cases-for-node-dri-package-calling-getobject-to-get-an-item" />
+## Calling getObject() to get an item
 should get an Item and return the Item.
 
 ```js
@@ -113,9 +113,9 @@ should get an Item and return the Item.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-getting-a-series" />
-## Getting a Series
-should get an Series and return the Series.
+<a name="test-cases-for-node-dri-package-calling-getobject-to-get-a-series" />
+## Calling getObject() to get a Series
+should get an series and return the series.
 
 ```js
 			dri.getObject(seriesId, function(result) {
@@ -126,9 +126,9 @@ should get an Series and return the Series.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-getting-a-series-children" />
-## Getting a Series children
-should get an Series and return the children.
+<a name="test-cases-for-node-dri-package-calling-getchildren-to-get-the-children-of-a-series" />
+## Calling getChildren() to get the children of a series
+should get the series and return the children.
 
 ```js
 			dri.getChildren(seriesId, function(result) {
@@ -139,9 +139,9 @@ should get an Series and return the children.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-getting-a-dri-collection" />
-## Getting a Dri-Collection
-should get an Dri-Collection and return the Dri-Collection.
+<a name="test-cases-for-node-dri-package-calling-getobject-to-get-a-collection" />
+## Calling getObject() to get a collection
+should get a collection and return the collection.
 
 ```js
 			dri.getObject(collId, function(result) {
@@ -152,8 +152,8 @@ should get an Dri-Collection and return the Dri-Collection.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-pushing-the-item-into-fedora" />
-## Pushing the item into fedora
+<a name="test-cases-for-node-dri-package-calling-approveitem-with-a-item-id" />
+## Calling approveItem() with a item id
 should push the item into fedora and return the fedora id from that item.
 
 ```js
@@ -166,8 +166,8 @@ should push the item into fedora and return the fedora id from that item.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-removing-the-item-" />
-## Removing the item 
+<a name="test-cases-for-node-dri-package-calling-removeobject-with-a-item-id" />
+## Calling removeObject() with a item id
 should remove the item from MongoDB.
 
 ```js
@@ -180,8 +180,8 @@ should remove the item from MongoDB.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-removing-the-series-" />
-## Removing the series 
+<a name="test-cases-for-node-dri-package-calling-removeobject-with-a-series-id" />
+## calling removeObject() with a series id
 should remove the series from MongoDB.
 
 ```js
@@ -194,9 +194,9 @@ should remove the series from MongoDB.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-removing-the-dri-collection-" />
-## Removing the dri-collection 
-should remove the dri-collection from MongoDB.
+<a name="test-cases-for-node-dri-package-calling-removeobject-with-a-collection-id" />
+## Calling removeObject() with a collection id
+should remove the collection from MongoDB.
 
 ```js
 			dri.removeObject(collId, function(result) {

@@ -75,12 +75,12 @@ be started by doing the following.
 
 ## Testing
 
-The tests are written with the [mocha](http://visionmedia.github.com/mocha/) test framework.
-The DRIS Workflows and dependent packages have tests which can be run as follows
-
 The intent is to release a set of API tests which can be used as a basis
 for DRIS (DRI) compliance testing for those who wish to implement or
 re-implement a compatible system.
+
+The tests are written with the [mocha](http://visionmedia.github.com/mocha/) test framework.
+The DRIS Workflows and dependent packages have tests which can be run as follows
 
 ### Linux and OSX
 
