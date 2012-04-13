@@ -7,6 +7,7 @@
      - [PUT /dev/objects/:id](#tests-for-dri-apiv2-put-devobjectsid)
      - [GET /dev/objects](#tests-for-dri-apiv2-get-devobjects)
      - [GET /dev/objects/:id/list](#tests-for-dri-apiv2-get-devobjectsidlist)
+     - [DELETE /dev/objects/:id](#tests-for-dri-apiv2-delete-devobjectsid)
 <a name="" />
  
 <a name="tests-for-dri-apiv2" />
@@ -198,6 +199,51 @@ should respond with the an array with all the children items.
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.include(body, collectionId);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-delete-devobjectsid" />
+## DELETE /dev/objects/:id
+should respond with the id of the deleted object.
+
+```js
+			request({
+				method : 'DELETE',
+				uri : socket + '/dev/objects/' + collectionId
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.include(body, collectionId);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-delete-devobjectsid" />
+## DELETE /dev/objects/:id
+should respond with the id of the deleted object.
+
+```js
+			request({
+				method : 'DELETE',
+				uri : socket + '/dev/objects/' + seriesId
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.include(body, seriesId);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-delete-devobjectsid" />
+## DELETE /dev/objects/:id
+should respond with the id of the deleted object.
+
+```js
+			request({
+				method : 'DELETE',
+				uri : socket + '/dev/objects/' + itemId
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.include(body, itemId);
 				done();
 			});
 ```
