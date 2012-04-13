@@ -62,6 +62,10 @@ be started by doing the following.
 
 	node app.js
 
+The fedora configuration needs to be refactored in the future, to
+configure the target fedora repository the administrator needs to edit
+_node_modules/fedora/lib/fedora.js_.
+
 ### Deployment of DRIS Workflows (Required)
 
 	git clone ssh://git@howest-server.tchpc.tcd.ie/howest/node/dris-workflows.git
