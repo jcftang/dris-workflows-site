@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Fri, 13 Apr 2012 14:56:39 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Fri, 13 Apr 2012 14:58:35 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -554,7 +554,7 @@ servers in TCHPC, this is required to pull the latest development versions
 of dri-api, node-fedora, node-dri.
 
 </p>
-<p>If you are on VPN to TCHPC or TCD it is possible to do the following to
+<p>If you are on a VPN to TCHPC or TCD it is possible to do the following to
 install the API server and the Web application.
 
 </p>
