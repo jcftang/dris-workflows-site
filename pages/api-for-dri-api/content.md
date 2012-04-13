@@ -1,18 +1,12 @@
-make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
-{ status: 'Open',
-  properties: { title: 'AutoTestColl', subtitle: 'AutoTestColl' } }
 # TOC
    - [Tests for DRI APIv2](#tests-for-dri-apiv2)
      - [GET /](#tests-for-dri-apiv2-get-)
-     - [POST /dev/collections](#tests-for-dri-apiv2-post-devcollections)
-     - [POST /dev/collections/:id/series](#tests-for-dri-apiv2-post-devcollectionsidseries)
-     - [POST /dev/collections/:id/series/:id/items](#tests-for-dri-apiv2-post-devcollectionsidseriesiditems)
-     - [GET /dev/collections](#tests-for-dri-apiv2-get-devcollections)
-     - [GET /dev/collections/:id](#tests-for-dri-apiv2-get-devcollectionsid)
-     - [GET /dev/collections/:id/series](#tests-for-dri-apiv2-get-devcollectionsidseries)
-     - [GET /dev/collections/:id/series/:id](#tests-for-dri-apiv2-get-devcollectionsidseriesid)
-     - [GET /dev/collections/:id/series/:id/items](#tests-for-dri-apiv2-get-devcollectionsidseriesiditems)
-     - [GET /dev/collections/:id/series/:id/items/:id](#tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid)
+     - [POST /dev/objects type = collection](#tests-for-dri-apiv2-post-devobjects-type--collection)
+     - [POST /dev/objects type = series](#tests-for-dri-apiv2-post-devobjects-type--series)
+     - [POST /dev/objects type = item](#tests-for-dri-apiv2-post-devobjects-type--item)
+     - [PUT /dev/objects/:id](#tests-for-dri-apiv2-put-devobjectsid)
+     - [GET /dev/objects](#tests-for-dri-apiv2-get-devobjects)
+     - [GET /dev/objects/:id/list](#tests-for-dri-apiv2-get-devobjectsidlist)
 <a name="" />
  
 <a name="tests-for-dri-apiv2" />
@@ -32,23 +26,25 @@ should respond with the root page, this is just a sanity check.
 			});
 ```
 
-<a name="tests-for-dri-apiv2-post-devcollections" />
-## POST /dev/collections
-should respond with the id of the created collection.
+<a name="tests-for-dri-apiv2-post-devobjects-type--collection" />
+## POST /dev/objects type = collection
+should respond with the id of the created object.
 
 ```js
 
 			request({
 				method : 'POST',
-				uri : socket + '/dev/collections',
+				uri : socket + '/dev/objects',
 				json : {
-				"status" : "Open",
-				"properties" : {
-					"title" : "AutoTestColl",
-					"subtitle" : "AutoTestColl"
+					"status" : "Open",
+					"properties" : {
+						"title" : "AutoTestSeries",
+						"subtitle" : "AutoTestSeries"
+					},
+					"type" : "collection"
 				}
-			}
 			}, function(err, resp, body) {
+
 				assert.isNull(err);
 				assert.isDefined(body);
 				assert.length(body, 24);
@@ -57,22 +53,26 @@ should respond with the id of the created collection.
 			});
 ```
 
-<a name="tests-for-dri-apiv2-post-devcollectionsidseries" />
-## POST /dev/collections/:id/series
-should respond with the id of the created series.
+<a name="tests-for-dri-apiv2-post-devobjects-type--series" />
+## POST /dev/objects type = series
+should respond with the id of the created object.
 
 ```js
+
 			request({
 				method : 'POST',
-				uri : socket + '/dev/collections/' + collectionId + '/series',
+				uri : socket + '/dev/objects',
 				json : {
-					properties : {
-						title : "AutoTestSeries",
-						subtitle : "AutoTestSeries"
+					"status" : "Open",
+					"properties" : {
+						"title" : "AutoTestItem",
+						"subtitle" : "AutoTestItem"
 					},
-					status : "Open"
+					"type" : "series",
+					parentId:collectionId
 				}
 			}, function(err, resp, body) {
+
 				assert.isNull(err);
 				assert.isDefined(body);
 				assert.length(body, 24);
@@ -81,22 +81,26 @@ should respond with the id of the created series.
 			});
 ```
 
-<a name="tests-for-dri-apiv2-post-devcollectionsidseriesiditems" />
-## POST /dev/collections/:id/series/:id/items
-should respond with the id of the created item.
+<a name="tests-for-dri-apiv2-post-devobjects-type--item" />
+## POST /dev/objects type = item
+should respond with the id of the created object.
 
 ```js
+
 			request({
 				method : 'POST',
-				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items',
+				uri : socket + '/dev/objects',
 				json : {
-					properties : {
-						title : "AutoTestTitle",
-						subtitle : "AutoTestTitle"
+					"status" : "Open",
+					"properties" : {
+						"title" : "AutoTestColl",
+						"subtitle" : "AutoTestColl"
 					},
-					status : "Open"
+					"type" : "item",
+					parentId:seriesId
 				}
 			}, function(err, resp, body) {
+
 				assert.isNull(err);
 				assert.isDefined(body);
 				assert.length(body, 24);
@@ -105,105 +109,96 @@ should respond with the id of the created item.
 			});
 ```
 
-<a name="tests-for-dri-apiv2-get-devcollections" />
-## GET /dev/collections
-should respond with an array of all the collections.
+<a name="tests-for-dri-apiv2-put-devobjectsid" />
+## PUT /dev/objects/:id
+should respond with the id of the updated object.
 
 ```js
+			request({
+				method : 'PUT',
+				uri : socket + '/dev/objects/' + collectionId,
+				json : {
+					properties : {
+						title : "I updated this collection"
+					}
+				}
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.equal(body, 1);
+				assert.isDefined(body);
+				done();
+			});
+```
 
+<a name="tests-for-dri-apiv2-put-devobjectsid" />
+## PUT /dev/objects/:id
+should respond with the id of the updated object.
+
+```js
+			request({
+				method : 'PUT',
+				uri : socket + '/dev/objects/' + seriesId,
+				json : {
+					properties : {
+						title : "I updated this series"
+					}
+				}
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.equal(body, 1);
+				assert.isDefined(body);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-put-devobjectsid" />
+## PUT /dev/objects/:id
+should respond with the id of the updated object.
+
+```js
+			request({
+				method : 'PUT',
+				uri : socket + '/dev/objects/' + itemId,
+				json : {
+					properties : {
+						title : "I updated this item"
+					}
+				}
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.equal(body, 1);
+				assert.isDefined(body);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devobjects" />
+## GET /dev/objects
+should respond with the an array with all the top level objects.
+
+```js
 			request({
 				method : 'GET',
-				uri : socket + '/dev/collections'
+				uri : socket + '/dev/objects'
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.include(body, '_id');
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devobjectsidlist" />
+## GET /dev/objects/:id/list
+should respond with the an array with all the children items.
+
+```js
+			request({
+				method : 'GET',
+				uri : socket + '/dev/objects/'+collectionId+'/list'
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.include(body, collectionId);
-				assert.include(body, "AutoTestColl");
 				done();
 			});
 ```
 
-<a name="tests-for-dri-apiv2-get-devcollectionsid" />
-## GET /dev/collections/:id
-should respond with the array containing the data of the specified collection.
-
-```js
-
-			request({
-				method : 'GET',
-				uri : socket + '/dev/collections/' + collectionId
-			}, function(err, resp, body) {
-				var json = JSON.parse(body);
-				assert.isNull(err);
-				assert.isDefined(body);
-				assert.equal(json.properties.title, "AutoTestColl");
-				done();
-			});
-```
-
-<a name="tests-for-dri-apiv2-get-devcollectionsidseries" />
-## GET /dev/collections/:id/series
-should respond with an array of all the series corresponding to the given id.
-
-```js
-			request({
-				method : 'GET',
-				uri : socket + '/dev/collections/' + collectionId + '/series'
-			}, function(err, resp, body) {
-				assert.isNull(err);
-				assert.include(body, seriesId);
-				assert.include(body, "AutoTestSeries");
-				done();
-			});
-```
-
-<a name="tests-for-dri-apiv2-get-devcollectionsidseriesid" />
-## GET /dev/collections/:id/series/:id
-should respond with the array containing the data of the specified series.
-
-```js
-			request({
-				method : 'GET',
-				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId
-			}, function(err, resp, body) {
-				var json = JSON.parse(body);
-				assert.isNull(err);
-				assert.isDefined(body);
-				assert.equal(json.properties.title, "AutoTestSeries");
-				done();
-			});
-```
-
-<a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditems" />
-## GET /dev/collections/:id/series/:id/items
-should respond with an array of all the items corresponding to the given ids.
-
-```js
-			request({
-				method : 'GET',
-				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items'
-			}, function(err, resp, body) {
-				assert.isNull(err);
-				assert.include(body, itemId);
-				assert.include(body, "AutoTestTitle");
-				done();
-			});
-```
-
-<a name="tests-for-dri-apiv2-get-devcollectionsidseriesiditemsid" />
-## GET /dev/collections/:id/series/:id/items/:id
-should respond with the array containing the data of the specified item.
-
-```js
-			request({
-				method : 'GET',
-				uri : socket + '/dev/collections/' + collectionId + '/series/' + seriesId + '/items/' + itemId
-			}, function(err, resp, body) {
-				var json = JSON.parse(body);
-				assert.isNull(err);
-				assert.isDefined(body);
-				assert.equal(json.properties.title, "AutoTestTitle");
-				done();
-			});
-```
-
-make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
