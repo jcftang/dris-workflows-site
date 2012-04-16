@@ -5,7 +5,7 @@ The DRIS Workflows package is a prototype system developed by some interns at TC
 * <Matthias.Van.Wambeke@howest.be>
 * <Quirijn.Groot.Bluemink@howest.be>
 
-With help from the TCHPC and DRIS team at TCD.
+With input from the TCHPC and DRIS team at TCD.
 
 ## Architecture
 
