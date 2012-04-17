@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Mon, 16 Apr 2012 16:46:16 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Tue, 17 Apr 2012 13:24:58 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -25,6 +25,8 @@
 <li><a href="#tests-for-dri-apiv2-post-devobjects-type--item">POST /dev/objects type = item</a></li>
 <li><a href="#tests-for-dri-apiv2-put-devobjectsid">PUT /dev/objects/:id</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjects">GET /dev/objects</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devobjectsid">GET /dev/objects/:id</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devobjectsiddc">GET /dev/objects/:id.dc</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsidlist">GET /dev/objects/:id/list</a></li>
 <li><a href="#tests-for-dri-apiv2-delete-devobjectsid">DELETE /dev/objects/:id</a>
 <a name=""></a></li>
@@ -107,8 +109,7 @@
 <p>should respond with the id of the created object.
 
 </p>
-<pre><code class="js">
-            request({
+<pre><code class="js">            request({
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
@@ -139,7 +140,8 @@
                 uri : socket + '/dev/objects/' + collectionId,
                 json : {
                     properties : {
-                        title : "I updated this collection"
+                        title : "I updated this collection",
+                        subtitle : "AutoTestSeries"
                     }
                 }
             }, function(err, resp, body) {
@@ -200,6 +202,35 @@
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, '_id');
+                done();
+            });</code></pre>
+<p><a name="tests-for-dri-apiv2-get-devobjectsid"></a>
+</p>
+<h2>GET /dev/objects/:id</h2>
+<p>should respond with the JSON of the selected object.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/objects/'+collectionId
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, collectionId);
+                done();
+            });</code></pre>
+<p><a name="tests-for-dri-apiv2-get-devobjectsiddc"></a>
+</p>
+<h2>GET /dev/objects/:id.dc</h2>
+<p>should respond with the Dublin core XML of the selected object.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/objects/'+collectionId+'.dc'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.include(body, collectionId);
+                assert.include(body, 'dc:');
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devobjectsidlist"></a>

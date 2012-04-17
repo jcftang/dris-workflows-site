@@ -6,6 +6,8 @@
      - [POST /dev/objects type = item](#tests-for-dri-apiv2-post-devobjects-type--item)
      - [PUT /dev/objects/:id](#tests-for-dri-apiv2-put-devobjectsid)
      - [GET /dev/objects](#tests-for-dri-apiv2-get-devobjects)
+     - [GET /dev/objects/:id](#tests-for-dri-apiv2-get-devobjectsid)
+     - [GET /dev/objects/:id.dc](#tests-for-dri-apiv2-get-devobjectsiddc)
      - [GET /dev/objects/:id/list](#tests-for-dri-apiv2-get-devobjectsidlist)
      - [DELETE /dev/objects/:id](#tests-for-dri-apiv2-delete-devobjectsid)
 <a name="" />
@@ -87,7 +89,6 @@ should respond with the id of the created object.
 should respond with the id of the created object.
 
 ```js
-
 			request({
 				method : 'POST',
 				uri : socket + '/dev/objects',
@@ -120,7 +121,8 @@ should respond with the id of the updated object.
 				uri : socket + '/dev/objects/' + collectionId,
 				json : {
 					properties : {
-						title : "I updated this collection"
+						title : "I updated this collection",
+						subtitle : "AutoTestSeries"
 					}
 				}
 			}, function(err, resp, body) {
@@ -184,6 +186,37 @@ should respond with the an array with all the top level objects.
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.include(body, '_id');
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devobjectsid" />
+## GET /dev/objects/:id
+should respond with the JSON of the selected object.
+
+```js
+			request({
+				method : 'GET',
+				uri : socket + '/dev/objects/'+collectionId
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.include(body, collectionId);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devobjectsiddc" />
+## GET /dev/objects/:id.dc
+should respond with the Dublin core XML of the selected object.
+
+```js
+			request({
+				method : 'GET',
+				uri : socket + '/dev/objects/'+collectionId+'.dc'
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.include(body, collectionId);
+				assert.include(body, 'dc:');
 				done();
 			});
 ```
