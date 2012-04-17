@@ -44,12 +44,12 @@
 <li><a href="#tests-for-dri-apiv2-post-devobjects-type--collection">POST /dev/objects type = collection</a></li>
 <li><a href="#tests-for-dri-apiv2-post-devobjects-type--series">POST /dev/objects type = series</a></li>
 <li><a href="#tests-for-dri-apiv2-post-devobjects-type--item">POST /dev/objects type = item</a></li>
-<li><a href="#tests-for-dri-apiv2-put-devobjectsid">PUT /dev/objects/:id</a></li>
+<li><a href="#tests-for-dri-apiv2-post-devobjectsidupdate">POST /dev/objects/:id/update</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjects">GET /dev/objects</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsid">GET /dev/objects/:id</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsiddc">GET /dev/objects/:id.dc</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsidlist">GET /dev/objects/:id/list</a></li>
-<li><a href="#tests-for-dri-apiv2-delete-devobjectsid">DELETE /dev/objects/:id</a>
+<li><a href="#tests-for-dri-apiv2-get-devobjectsiddelete">GET /dev/objects/:id/delete</a>
 <a name=""></a></li>
 </ul>
 </li>
@@ -114,7 +114,7 @@
                         "subtitle" : "AutoTestItem"
                     },
                     "type" : "series",
-                    parentId:collectionId
+                    parentId : collectionId
                 }
             }, function(err, resp, body) {
 
@@ -140,7 +140,7 @@
                         "subtitle" : "AutoTestColl"
                     },
                     "type" : "item",
-                    parentId:seriesId
+                    parentId : seriesId
                 }
             }, function(err, resp, body) {
 
@@ -150,15 +150,15 @@
                 itemId = body;
                 done();
             });</code></pre>
-<p><a name="tests-for-dri-apiv2-put-devobjectsid"></a>
+<p><a name="tests-for-dri-apiv2-post-devobjectsidupdate"></a>
 </p>
-<h2>PUT /dev/objects/:id</h2>
+<h2>POST /dev/objects/:id/update</h2>
 <p>should respond with the id of the updated object.
 
 </p>
 <pre><code class="js">            request({
-                method : 'PUT',
-                uri : socket + '/dev/objects/' + collectionId,
+                method : 'POST',
+                uri : socket + '/dev/objects/' + collectionId + '/update',
                 json : {
                     properties : {
                         title : "I updated this collection",
@@ -171,15 +171,15 @@
                 assert.isDefined(body);
                 done();
             });</code></pre>
-<p><a name="tests-for-dri-apiv2-put-devobjectsid"></a>
+<p><a name="tests-for-dri-apiv2-post-devobjectsidupdate"></a>
 </p>
-<h2>PUT /dev/objects/:id</h2>
+<h2>POST /dev/objects/:id/update</h2>
 <p>should respond with the id of the updated object.
 
 </p>
 <pre><code class="js">            request({
-                method : 'PUT',
-                uri : socket + '/dev/objects/' + seriesId,
+                method : 'POST',
+                uri : socket + '/dev/objects/' + seriesId + '/update',
                 json : {
                     properties : {
                         title : "I updated this series"
@@ -191,15 +191,15 @@
                 assert.isDefined(body);
                 done();
             });</code></pre>
-<p><a name="tests-for-dri-apiv2-put-devobjectsid"></a>
+<p><a name="tests-for-dri-apiv2-post-devobjectsidupdate"></a>
 </p>
-<h2>PUT /dev/objects/:id</h2>
+<h2>POST /dev/objects/:id/update</h2>
 <p>should respond with the id of the updated object.
 
 </p>
 <pre><code class="js">            request({
-                method : 'PUT',
-                uri : socket + '/dev/objects/' + itemId,
+                method : 'POST',
+                uri : socket + '/dev/objects/' + seriesId + '/update',
                 json : {
                     properties : {
                         title : "I updated this item"
@@ -233,10 +233,11 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/objects/'+collectionId
+                uri : socket + '/dev/objects/' + collectionId
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, collectionId);
+                assert.include(body, 'updated');
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devobjectsiddc"></a>
@@ -247,7 +248,7 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/objects/'+collectionId+'.dc'
+                uri : socket + '/dev/objects/' + collectionId + '.dc'
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, collectionId);
@@ -262,49 +263,49 @@
 </p>
 <pre><code class="js">            request({
                 method : 'GET',
-                uri : socket + '/dev/objects/'+collectionId+'/list'
+                uri : socket + '/dev/objects/' + collectionId + '/list'
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, collectionId);
                 done();
             });</code></pre>
-<p><a name="tests-for-dri-apiv2-delete-devobjectsid"></a>
+<p><a name="tests-for-dri-apiv2-get-devobjectsiddelete"></a>
 </p>
-<h2>DELETE /dev/objects/:id</h2>
+<h2>GET /dev/objects/:id/delete</h2>
 <p>should respond with the id of the deleted object.
 
 </p>
 <pre><code class="js">            request({
-                method : 'DELETE',
-                uri : socket + '/dev/objects/' + collectionId
+                method : 'GET',
+                uri : socket + '/dev/objects/' + collectionId + '/delete'
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, collectionId);
                 done();
             });</code></pre>
-<p><a name="tests-for-dri-apiv2-delete-devobjectsid"></a>
+<p><a name="tests-for-dri-apiv2-get-devobjectsiddelete"></a>
 </p>
-<h2>DELETE /dev/objects/:id</h2>
+<h2>GET /dev/objects/:id/delete</h2>
 <p>should respond with the id of the deleted object.
 
 </p>
 <pre><code class="js">            request({
-                method : 'DELETE',
-                uri : socket + '/dev/objects/' + seriesId
+                method : 'GET',
+                uri : socket + '/dev/objects/' + seriesId + '/delete'
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, seriesId);
                 done();
             });</code></pre>
-<p><a name="tests-for-dri-apiv2-delete-devobjectsid"></a>
+<p><a name="tests-for-dri-apiv2-get-devobjectsiddelete"></a>
 </p>
-<h2>DELETE /dev/objects/:id</h2>
+<h2>GET /dev/objects/:id/delete</h2>
 <p>should respond with the id of the deleted object.
 
 </p>
 <pre><code class="js">            request({
-                method : 'DELETE',
-                uri : socket + '/dev/objects/' + itemId
+                method : 'GET',
+                uri : socket + '/dev/objects/' + itemId + '/delete'
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, itemId);
