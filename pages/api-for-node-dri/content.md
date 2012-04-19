@@ -39,7 +39,7 @@ should create a collection and return the id of the collection.
 					title : "AutoTestColl" + rnd,
 					subtitle : "AutoTestColl" + rnd
 				},
-				status : "Open",
+				status : "open",
 				type:"collection"
 			};
 			dri.createObject(data, function(result) {
@@ -62,7 +62,7 @@ should create a series and return the id of the series.
 					title : "AutoTestSeries" + rnd,
 					subtitle : "AutoTestSeries" + rnd
 				},
-				status : "Open",
+				status : "open",
 				type:"series",
 				parentId: collId
 			};
@@ -86,7 +86,7 @@ should create an Item and return the id of the Item.
 					title : "AutoTestItem" + rnd,
 					subtitle : "AutoTestItem" + rnd
 				},
-				status : "Open",
+				status : "open",
 				type:"item",
 				parentId: seriesId
 			};

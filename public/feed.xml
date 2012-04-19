@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Wed, 18 Apr 2012 11:46:18 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Thu, 19 Apr 2012 11:16:30 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -61,7 +61,7 @@
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "Open",
+                    "status" : "open",
                     "properties" : {
                         "title" : "AutoTestSeries",
                         "subtitle" : "AutoTestSeries"
@@ -87,7 +87,7 @@
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "Open",
+                    "status" : "open",
                     "properties" : {
                         "title" : "AutoTestItem",
                         "subtitle" : "AutoTestItem"
@@ -113,7 +113,7 @@
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "Open",
+                    "status" : "open",
                     "properties" : {
                         "title" : "AutoTestColl",
                         "subtitle" : "AutoTestColl"
@@ -139,9 +139,10 @@
                 method : 'POST',
                 uri : socket + '/dev/objects/' + collectionId + '/update',
                 json : {
-                    properties : {
-                        title : "I updated this collection",
-                        subtitle : "AutoTestSeries"
+                    "status":"open",
+                    "properties" : {
+                        "title" : "I updated this collection",
+                        "subtitle" : "AutoTestSeries"
                     }
                 }
             }, function(err, resp, body) {
@@ -409,7 +410,7 @@
                     title : "AutoTestColl" + rnd,
                     subtitle : "AutoTestColl" + rnd
                 },
-                status : "Open",
+                status : "open",
                 type:"collection"
             };
             dri.createObject(data, function(result) {
@@ -431,7 +432,7 @@
                     title : "AutoTestSeries" + rnd,
                     subtitle : "AutoTestSeries" + rnd
                 },
-                status : "Open",
+                status : "open",
                 type:"series",
                 parentId: collId
             };
@@ -454,7 +455,7 @@
                     title : "AutoTestItem" + rnd,
                     subtitle : "AutoTestItem" + rnd
                 },
-                status : "Open",
+                status : "open",
                 type:"item",
                 parentId: seriesId
             };
@@ -596,7 +597,7 @@ into a plugin)</li>
 <li>dri-auth (oauth2 provider, planned)</li>
 </ul>
 <h3>Overview of current Architecture</h3>
-<p><img src="/img/HighLevelArch-mvanwamb-qgrootbl-jtang-2012-04-13-dris-workflows.png" alt="">
+<p><img src="/img/HighLevelArch-mvanwamb-qgrootbl-jtang-2012-04-13-dris-workflows.png" alt="" />
 
 </p>
 <p>The architecture of the system is in an unstable state as we test the

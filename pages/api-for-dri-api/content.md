@@ -39,7 +39,7 @@ should respond with the id of the created object.
 				method : 'POST',
 				uri : socket + '/dev/objects',
 				json : {
-					"status" : "Open",
+					"status" : "open",
 					"properties" : {
 						"title" : "AutoTestSeries",
 						"subtitle" : "AutoTestSeries"
@@ -66,7 +66,7 @@ should respond with the id of the created object.
 				method : 'POST',
 				uri : socket + '/dev/objects',
 				json : {
-					"status" : "Open",
+					"status" : "open",
 					"properties" : {
 						"title" : "AutoTestItem",
 						"subtitle" : "AutoTestItem"
@@ -93,7 +93,7 @@ should respond with the id of the created object.
 				method : 'POST',
 				uri : socket + '/dev/objects',
 				json : {
-					"status" : "Open",
+					"status" : "open",
 					"properties" : {
 						"title" : "AutoTestColl",
 						"subtitle" : "AutoTestColl"
@@ -120,9 +120,10 @@ should respond with the id of the updated object.
 				method : 'POST',
 				uri : socket + '/dev/objects/' + collectionId + '/update',
 				json : {
-					properties : {
-						title : "I updated this collection",
-						subtitle : "AutoTestSeries"
+					"status":"open",
+					"properties" : {
+						"title" : "I updated this collection",
+						"subtitle" : "AutoTestSeries"
 					}
 				}
 			}, function(err, resp, body) {

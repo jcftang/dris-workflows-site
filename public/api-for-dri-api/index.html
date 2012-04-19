@@ -1,12 +1,12 @@
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta name="description" content="DRIS Workflows">
-		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest">
+		<meta charset="utf-8" />
+		<meta name="description" content="DRIS Workflows" />
+		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest" />
 		<title>API for dri-api DRIS Workflows</title>
 		<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
-		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all">
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all" />
 	</head>
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -82,7 +82,7 @@
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "Open",
+                    "status" : "open",
                     "properties" : {
                         "title" : "AutoTestSeries",
                         "subtitle" : "AutoTestSeries"
@@ -108,7 +108,7 @@
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "Open",
+                    "status" : "open",
                     "properties" : {
                         "title" : "AutoTestItem",
                         "subtitle" : "AutoTestItem"
@@ -134,7 +134,7 @@
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "Open",
+                    "status" : "open",
                     "properties" : {
                         "title" : "AutoTestColl",
                         "subtitle" : "AutoTestColl"
@@ -160,9 +160,10 @@
                 method : 'POST',
                 uri : socket + '/dev/objects/' + collectionId + '/update',
                 json : {
-                    properties : {
-                        title : "I updated this collection",
-                        subtitle : "AutoTestSeries"
+                    "status":"open",
+                    "properties" : {
+                        "title" : "I updated this collection",
+                        "subtitle" : "AutoTestSeries"
                     }
                 }
             }, function(err, resp, body) {
@@ -320,7 +321,7 @@
 			</div>
 		</div>
 		<footer id="footer">
-			<hr>
+			<hr />
 			<p>
 				<a href="/">DRIS Workflows</a> documentation site powered by <a href="https://github.com/flatiron/blacksmith">Blacksmith</a> / styled with <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>
 			</p>
