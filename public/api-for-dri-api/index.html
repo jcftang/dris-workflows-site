@@ -1,12 +1,12 @@
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="description" content="DRIS Workflows" />
-		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest" />
+		<meta charset="utf-8">
+		<meta name="description" content="DRIS Workflows">
+		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest">
 		<title>API for dri-api DRIS Workflows</title>
 		<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
-		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all">
 	</head>
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -37,7 +37,9 @@
 								@: / 
 							<a href="/api-for-dri-api" class="breadcrumb">api-for-dri-api</a></div>
 						</div>
-						<div class="content"><h1>TOC</h1>
+						<div class="content"><p>aFedoraLib:6
+</p>
+<h1>TOC</h1>
 <ul>
 <li><a href="#tests-for-dri-apiv2">Tests for DRI APIv2</a><ul>
 <li><a href="#tests-for-dri-apiv2-get-">GET /</a></li>
@@ -49,6 +51,7 @@
 <li><a href="#tests-for-dri-apiv2-get-devobjectsid">GET /dev/objects/:id</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsiddc">GET /dev/objects/:id.dc</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsidlist">GET /dev/objects/:id/list</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devobjectsidapprove">GET /dev/objects/:id/approve</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsiddelete">GET /dev/objects/:id/delete</a>
 <a name=""></a></li>
 </ul>
@@ -270,6 +273,20 @@
                 assert.include(body, collectionId);
                 done();
             });</code></pre>
+<p><a name="tests-for-dri-apiv2-get-devobjectsidapprove"></a>
+</p>
+<h2>GET /dev/objects/:id/approve</h2>
+<p>should respond with the Fedora pid.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/objects/' + collectionId + '/approve'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                console.log(body)
+                done();
+            });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devobjectsiddelete"></a>
 </p>
 <h2>GET /dev/objects/:id/delete</h2>
@@ -321,7 +338,7 @@
 			</div>
 		</div>
 		<footer id="footer">
-			<hr />
+			<hr>
 			<p>
 				<a href="/">DRIS Workflows</a> documentation site powered by <a href="https://github.com/flatiron/blacksmith">Blacksmith</a> / styled with <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>
 			</p>

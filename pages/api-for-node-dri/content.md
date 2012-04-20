@@ -157,7 +157,7 @@ should get a collection and return the collection.
 should push the item into fedora and return the fedora id from that item.
 
 ```js
-			dri.approveItem(itemId, "cfedoraLib", function(pid) {
+			dri.approveItem(itemId, "afedoraLib", function(pid) {
 				pid.should.include(":");
 				done();
 			}, function(err) {

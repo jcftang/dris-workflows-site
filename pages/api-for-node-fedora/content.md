@@ -3,6 +3,7 @@
      - [Calling createFedoraObject(), will create a fedoraObject](#test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject)
      - [Calling getFedoraList(), Get a list of fedoraObjects](#test-cases-for-the-node-fedora-package-calling-getfedoralist-get-a-list-of-fedoraobjects)
      - [Calling getFedoraObject(), get a fedoraObject](#test-cases-for-the-node-fedora-package-calling-getfedoraobject-get-a-fedoraobject)
+     - [Calling addDatastream(), to add a Datastream to an existing fedoraObject](#test-cases-for-the-node-fedora-package-calling-adddatastream-to-add-a-datastream-to-an-existing-fedoraobject)
      - [Calling deleteObject(), will delete an object from fedora](#test-cases-for-the-node-fedora-package-calling-deleteobject-will-delete-an-object-from-fedora)
      - [Calling getNextPID(), will get the next PID that is available from fedora](#test-cases-for-the-node-fedora-package-calling-getnextpid-will-get-the-next-pid-that-is-available-from-fedora)
 <a name="" />
@@ -45,6 +46,21 @@ should return a fedoraObject.
 			fedora.getFedoraObject(testResult, function(resultData){
 				resultData.should.include(testResult);
 				done();
+			});
+```
+
+<a name="test-cases-for-the-node-fedora-package-calling-adddatastream-to-add-a-datastream-to-an-existing-fedoraobject" />
+## Calling addDatastream(), to add a Datastream to an existing fedoraObject
+should return the datastream.
+
+```js
+			var data = '<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"><dc:title>jhdgj</dc:title><dc:identifier>4f8ffc8ff889d6ab44000001</dc:identifier></oai_dc:dc>'
+			fedora.addDatastream(testResult, "DC", data, function(resultData){
+				
+				resultData.should.include(testResult);
+				done();
+			}, function(err){
+				console.log(err);
 			});
 ```
 
