@@ -1,3 +1,4 @@
+make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
@@ -208,3 +209,4 @@ should remove the collection from MongoDB.
 			});
 ```
 
+make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
