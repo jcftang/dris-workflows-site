@@ -1,4 +1,3 @@
-make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
@@ -13,6 +12,7 @@ make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/
      - [Calling removeObject(id, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id)
      - [calling removeObject(id, onSuccess, onError) with a series id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id)
      - [Calling removeObject(id, onSuccess, onError) with a collection id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id)
+     - [Calling saveBinary(data)](#test-cases-for-node-dri-package-calling-savebinarydata)
 <a name="" />
  
 <a name="test-cases-for-node-dri-package" />
@@ -38,14 +38,14 @@ should create a collection and return the id of the collection.
 			var data = {
 				properties : {
 					title : "AutoTestColl" + rnd,
-					subtitle : "AutoTestColl" + rnd
+					subtitle : "SubAutoTestColl" + rnd
 				},
 				status : "open",
-				type:"collection"
+				type : "collection"
 			};
 			dri.createObject(data, function(result) {
 				result.should.be.ok
-				assert.length(result,24)
+				assert.length(result, 24)
 				collId = result;
 				done();
 			}, function(e) {
@@ -61,15 +61,15 @@ should create a series and return the id of the series.
 			var data = {
 				properties : {
 					title : "AutoTestSeries" + rnd,
-					subtitle : "AutoTestSeries" + rnd
+					subtitle : "SubAutoTestSeries" + rnd
 				},
 				status : "open",
-				type:"series",
-				parentId: collId
+				type : "series",
+				parentId : collId
 			};
 			dri.createObject(data, function(result) {
 				result.should.be.ok
-				assert.length(result,24)
+				assert.length(result, 24)
 				seriesId = result;
 				done();
 			}, function(e) {
@@ -85,15 +85,15 @@ should create an Item and return the id of the Item.
 			var data = {
 				properties : {
 					title : "AutoTestItem" + rnd,
-					subtitle : "AutoTestItem" + rnd
+					subtitle : "SubAutoTestItem" + rnd
 				},
 				status : "open",
-				type:"item",
-				parentId: seriesId
+				type : "item",
+				parentId : seriesId
 			};
 			dri.createObject(data, function(result) {
 				result.should.be.ok
-				assert.length(result,24)
+				assert.length(result, 24)
 				itemId = result;
 				done();
 			}, function(e) {
@@ -107,7 +107,7 @@ should get an Item and return the Item.
 
 ```js
 			dri.getObject(itemId, function(result) {
-				assert.include(result._id,itemId)
+				assert.include(result._id, itemId)
 				done();
 			}, function(e) {
 				should.not.exist(e);
@@ -133,7 +133,7 @@ should get the series and return the children.
 
 ```js
 			dri.getChildren(seriesId, function(result) {
-				assert.include(result[0],itemId);
+				assert.include(result[0], itemId);
 				done();
 			}, function(e) {
 				should.not.exist(e);
@@ -173,7 +173,7 @@ should remove the item from MongoDB.
 
 ```js
 			dri.removeObject(itemId, function(result) {
-				assert.include(result,itemId)
+				assert.include(result, itemId)
 				done();
 			}, function(err) {
 				should.not.exist(e);
@@ -187,7 +187,7 @@ should remove the series from MongoDB.
 
 ```js
 			dri.removeObject(seriesId, function(result) {
-				assert.include(result,seriesId)
+				assert.include(result, seriesId)
 				done();
 			}, function(err) {
 				should.not.exist(e);
@@ -201,7 +201,7 @@ should remove the collection from MongoDB.
 
 ```js
 			dri.removeObject(collId, function(result) {
-				assert.include(result,collId)
+				assert.include(result, collId)
 				done();
 			}, function(err) {
 				should.not.exist(e);
@@ -209,4 +209,16 @@ should remove the collection from MongoDB.
 			});
 ```
 
-make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
+<a name="test-cases-for-node-dri-package-calling-savebinarydata" />
+## Calling saveBinary(data)
+should store a binary file on the filesystem.
+
+```js
+			dri.saveBinary(null, function(result) {
+				assert.equal(1, result);
+				done();
+			}, function(err) {
+				done();
+			});
+```
+

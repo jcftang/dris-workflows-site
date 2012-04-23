@@ -1,4 +1,3 @@
-make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'
 # TOC
    - [Test cases for the node-fedora package](#test-cases-for-the-node-fedora-package)
      - [Calling createFedoraObject(), will create a fedoraObject](#test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject)
@@ -90,4 +89,3 @@ should return the next PID from fedora.
 			});
 ```
 
-make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'

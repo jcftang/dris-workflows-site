@@ -179,8 +179,7 @@ The DRIS Workflows and dependent packages have tests which can be run as follows
 								@: / 
 							<a href="" class="breadcrumb">api-for-dri-api</a></div>
 						</div>
-						<div class="content"><p>make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
-aFedoraLib:12
+						<div class="content"><p>aFedoraLib:99
 </p>
 <h1>TOC</h1>
 <ul>
@@ -472,8 +471,6 @@ aFedoraLib:12
                 assert.include(body, itemId);
                 done();
             });</code></pre>
-<p>make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
-</p>
 </div>
 					</article><article class="article">
 						<div class="metadata">
@@ -482,9 +479,7 @@ aFedoraLib:12
 								@: / 
 							<a href="" class="breadcrumb">api-for-node-fedora</a></div>
 						</div>
-						<div class="content"><p>make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'
-</p>
-<h1>TOC</h1>
+						<div class="content"><h1>TOC</h1>
 <ul>
 <li><a href="#test-cases-for-the-node-fedora-package">Test cases for the node-fedora package</a><ul>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject">Calling createFedoraObject(), will create a fedoraObject</a></li>
@@ -573,8 +568,6 @@ aFedoraLib:12
                 resultData.should.include("node:");
                 done();
             });</code></pre>
-<p>make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'
-</p>
 </div>
 					</article><article class="article">
 						<div class="metadata">
@@ -583,9 +576,7 @@ aFedoraLib:12
 								@: / 
 							<a href="" class="breadcrumb">api-for-node-dri</a></div>
 						</div>
-						<div class="content"><p>make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
-</p>
-<h1>TOC</h1>
+						<div class="content"><h1>TOC</h1>
 <ul>
 <li><a href="#test-cases-for-node-dri-package">Test cases for node-dri package</a><ul>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types">Calling getObjectTypes(onSuccess, onError), will get object types</a></li>
@@ -599,7 +590,8 @@ aFedoraLib:12
 <li><a href="#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id">Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id">Calling removeObject(id, onSuccess, onError) with a item id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id">calling removeObject(id, onSuccess, onError) with a series id</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id">Calling removeObject(id, onSuccess, onError) with a collection id</a>
+<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id">Calling removeObject(id, onSuccess, onError) with a collection id</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-savebinarydata">Calling saveBinary(data)</a>
 <a name=""></a></li>
 </ul>
 </li>
@@ -628,14 +620,14 @@ aFedoraLib:12
 <pre><code class="js">            var data = {
                 properties : {
                     title : "AutoTestColl" + rnd,
-                    subtitle : "AutoTestColl" + rnd
+                    subtitle : "SubAutoTestColl" + rnd
                 },
                 status : "open",
-                type:"collection"
+                type : "collection"
             };
             dri.createObject(data, function(result) {
                 result.should.be.ok
-                assert.length(result,24)
+                assert.length(result, 24)
                 collId = result;
                 done();
             }, function(e) {
@@ -650,15 +642,15 @@ aFedoraLib:12
 <pre><code class="js">            var data = {
                 properties : {
                     title : "AutoTestSeries" + rnd,
-                    subtitle : "AutoTestSeries" + rnd
+                    subtitle : "SubAutoTestSeries" + rnd
                 },
                 status : "open",
-                type:"series",
-                parentId: collId
+                type : "series",
+                parentId : collId
             };
             dri.createObject(data, function(result) {
                 result.should.be.ok
-                assert.length(result,24)
+                assert.length(result, 24)
                 seriesId = result;
                 done();
             }, function(e) {
@@ -673,15 +665,15 @@ aFedoraLib:12
 <pre><code class="js">            var data = {
                 properties : {
                     title : "AutoTestItem" + rnd,
-                    subtitle : "AutoTestItem" + rnd
+                    subtitle : "SubAutoTestItem" + rnd
                 },
                 status : "open",
-                type:"item",
-                parentId: seriesId
+                type : "item",
+                parentId : seriesId
             };
             dri.createObject(data, function(result) {
                 result.should.be.ok
-                assert.length(result,24)
+                assert.length(result, 24)
                 itemId = result;
                 done();
             }, function(e) {
@@ -694,7 +686,7 @@ aFedoraLib:12
 
 </p>
 <pre><code class="js">            dri.getObject(itemId, function(result) {
-                assert.include(result._id,itemId)
+                assert.include(result._id, itemId)
                 done();
             }, function(e) {
                 should.not.exist(e);
@@ -718,7 +710,7 @@ aFedoraLib:12
 
 </p>
 <pre><code class="js">            dri.getChildren(seriesId, function(result) {
-                assert.include(result[0],itemId);
+                assert.include(result[0], itemId);
                 done();
             }, function(e) {
                 should.not.exist(e);
@@ -755,7 +747,7 @@ aFedoraLib:12
 
 </p>
 <pre><code class="js">            dri.removeObject(itemId, function(result) {
-                assert.include(result,itemId)
+                assert.include(result, itemId)
                 done();
             }, function(err) {
                 should.not.exist(e);
@@ -768,7 +760,7 @@ aFedoraLib:12
 
 </p>
 <pre><code class="js">            dri.removeObject(seriesId, function(result) {
-                assert.include(result,seriesId)
+                assert.include(result, seriesId)
                 done();
             }, function(err) {
                 should.not.exist(e);
@@ -781,14 +773,24 @@ aFedoraLib:12
 
 </p>
 <pre><code class="js">            dri.removeObject(collId, function(result) {
-                assert.include(result,collId)
+                assert.include(result, collId)
                 done();
             }, function(err) {
                 should.not.exist(e);
                 done();
             });</code></pre>
-<p>make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
+<p><a name="test-cases-for-node-dri-package-calling-savebinarydata"></a>
 </p>
+<h2>Calling saveBinary(data)</h2>
+<p>should store a binary file on the filesystem.
+
+</p>
+<pre><code class="js">            dri.saveBinary(null, function(result) {
+                assert.equal(1, result);
+                done();
+            }, function(err) {
+                done();
+            });</code></pre>
 </div>
 					</article></div>
 				<div class="span3">
