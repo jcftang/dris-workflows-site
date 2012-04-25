@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Mon, 23 Apr 2012 08:56:11 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Wed, 25 Apr 2012 11:17:50 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -720,4 +720,23 @@ The DRIS Workflows and dependent packages have tests which can be run as follows
 <span class="constant">NODE_PATH</span>=.<span class="regexp">/lib NODE_ENV=test ./node</span><span class="identifier">_modules</span>/.<span class="identifier">bin</span>/<span class="identifier">mocha</span> \
 --<span class="identifier">reporter</span> <span class="identifier">spec</span> \
 <span class="identifier"><span class="keymethods">test</span></span>/*.<span class="identifier">js</span></code></pre>
+<h2>mrconfig</h2>
+<p>If you are using <a href="http://joey.kitenet.net/code/mr/">mr</a>, the following
+config file can be used to checkout all the relavent packages.
+
+</p>
+<pre><code>[dri-api]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/dri-api' 'dri-api'
+
+[dris-workflows]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/dris-workflows' 'dris-workflows'
+
+[dris-workflows-site]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/dris-workflows-site' 'dris-workflows-site'
+
+[node-dri]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/node-dri' 'node-dri'
+
+[node-fedora]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/node-fedora' 'node-fedora'</code></pre>
 ]]></description><link>http://undefined.</link><guid isPermaLink="true">http://undefined.</guid><dc:creator><![CDATA[Jimmy Tang]]></dc:creator><pubDate>Thu, 29 Mar 2012 08:55:54 GMT</pubDate></item><item><title><![CDATA[DRIS Workflows -- Untitled]]></title><link>http://undefined/all-pages</link><guid isPermaLink="true">http://undefined/all-pages</guid><dc:creator><![CDATA[TCHPC]]></dc:creator><pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate></item></channel></rss>

@@ -97,3 +97,23 @@ The DRIS Workflows and dependent packages have tests which can be run as follows
 	NODE_PATH=./lib NODE_ENV=test ./node_modules/.bin/mocha \
 	--reporter spec \
 	test/*.js
+
+## mrconfig
+
+If you are using [mr](http://joey.kitenet.net/code/mr/), the following
+config file can be used to checkout all the relavent packages.
+
+	[dri-api]
+	checkout = git clone 'ssh://git@lonsdale.tchpc.tcd.ie/navr/node/dri-api' 'dri-api'
+
+	[dris-workflows]
+	checkout = git clone 'ssh://git@lonsdale.tchpc.tcd.ie/navr/node/dris-workflows' 'dris-workflows'
+
+	[dris-workflows-site]
+	checkout = git clone 'ssh://git@lonsdale.tchpc.tcd.ie/navr/node/dris-workflows-site' 'dris-workflows-site'
+
+	[node-dri]
+	checkout = git clone 'ssh://git@lonsdale.tchpc.tcd.ie/navr/node/node-dri' 'node-dri'
+
+	[node-fedora]
+	checkout = git clone 'ssh://git@lonsdale.tchpc.tcd.ie/navr/node/node-fedora' 'node-fedora'

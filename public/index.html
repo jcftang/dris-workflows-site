@@ -145,6 +145,25 @@ The DRIS Workflows and dependent packages have tests which can be run as follows
 <span class="constant">NODE_PATH</span>=.<span class="regexp">/lib NODE_ENV=test ./node</span><span class="identifier">_modules</span>/.<span class="identifier">bin</span>/<span class="identifier">mocha</span> \
 --<span class="identifier">reporter</span> <span class="identifier">spec</span> \
 <span class="identifier"><span class="keymethods">test</span></span>/*.<span class="identifier">js</span></code></pre>
+<h2>mrconfig</h2>
+<p>If you are using <a href="http://joey.kitenet.net/code/mr/">mr</a>, the following
+config file can be used to checkout all the relavent packages.
+
+</p>
+<pre><code>[dri-api]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/dri-api' 'dri-api'
+
+[dris-workflows]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/dris-workflows' 'dris-workflows'
+
+[dris-workflows-site]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/dris-workflows-site' 'dris-workflows-site'
+
+[node-dri]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/node-dri' 'node-dri'
+
+[node-fedora]
+checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/node-fedora' 'node-fedora'</code></pre>
 </div>
 					</article>
 				</div>
