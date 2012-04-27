@@ -10,9 +10,8 @@
      - [Calling getObject(id, onSuccess, onError) to get a collection](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection)
      - [Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id)
      - [Calling removeObject(id, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id)
-     - [calling removeObject(id, onSuccess, onError) with a series id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id)
+     - [Calling removeObject(id, onSuccess, onError) with a series id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id)
      - [Calling removeObject(id, onSuccess, onError) with a collection id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id)
-     - [Calling saveBinary(data)](#test-cases-for-node-dri-package-calling-savebinarydata)
 <a name="" />
  
 <a name="test-cases-for-node-dri-package" />
@@ -182,7 +181,7 @@ should remove the item from MongoDB.
 ```
 
 <a name="test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id" />
-## calling removeObject(id, onSuccess, onError) with a series id
+## Calling removeObject(id, onSuccess, onError) with a series id
 should remove the series from MongoDB.
 
 ```js
@@ -205,19 +204,6 @@ should remove the collection from MongoDB.
 				done();
 			}, function(err) {
 				should.not.exist(e);
-				done();
-			});
-```
-
-<a name="test-cases-for-node-dri-package-calling-savebinarydata" />
-## Calling saveBinary(data)
-should store a binary file on the filesystem.
-
-```js
-			dri.saveBinary(null, function(result) {
-				assert.equal(1, result);
-				done();
-			}, function(err) {
 				done();
 			});
 ```

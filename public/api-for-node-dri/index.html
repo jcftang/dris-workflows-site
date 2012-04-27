@@ -50,9 +50,8 @@
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection">Calling getObject(id, onSuccess, onError) to get a collection</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id">Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id">Calling removeObject(id, onSuccess, onError) with a item id</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id">calling removeObject(id, onSuccess, onError) with a series id</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id">Calling removeObject(id, onSuccess, onError) with a collection id</a></li>
-<li><a href="#test-cases-for-node-dri-package-calling-savebinarydata">Calling saveBinary(data)</a>
+<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id">Calling removeObject(id, onSuccess, onError) with a series id</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id">Calling removeObject(id, onSuccess, onError) with a collection id</a>
 <a name=""></a></li>
 </ul>
 </li>
@@ -216,7 +215,7 @@
             });</code></pre>
 <p><a name="test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id"></a>
 </p>
-<h2>calling removeObject(id, onSuccess, onError) with a series id</h2>
+<h2>Calling removeObject(id, onSuccess, onError) with a series id</h2>
 <p>should remove the series from MongoDB.
 
 </p>
@@ -238,18 +237,6 @@
                 done();
             }, function(err) {
                 should.not.exist(e);
-                done();
-            });</code></pre>
-<p><a name="test-cases-for-node-dri-package-calling-savebinarydata"></a>
-</p>
-<h2>Calling saveBinary(data)</h2>
-<p>should store a binary file on the filesystem.
-
-</p>
-<pre><code class="js">            dri.saveBinary(null, function(result) {
-                assert.equal(1, result);
-                done();
-            }, function(err) {
                 done();
             });</code></pre>
 </div>

@@ -15,9 +15,9 @@
 should create a fedoraObject.
 
 ```js
-			fedora.createFedoraObject(testNamespace, testLabel, function(result){
+			fedora.createFedoraObject(testNamespace, testLabel, function(result) {
 				testResult = result;
-				result.should.exist;
+				result.should.exist
 				result.should.include(testNamespace + ":");
 				done();
 			});
@@ -28,12 +28,11 @@ should create a fedoraObject.
 should return a list of fedoraObjects from the fedora repository.
 
 ```js
-			fedora.getFedoraList("*", function(resultData){
-				resultData.should.exist;
+			fedora.getFedoraList("*", function(resultData) {
+				resultData.should.exist
 				resultData.should.include('result');
-				resultData.should.not.be.empty;
-			}, 
-			function(error){
+				resultData.should.not.be.empty
+			}, function(error) {
 				should.not.exist(error);
 			});
 ```
@@ -43,7 +42,7 @@ should return a list of fedoraObjects from the fedora repository.
 should return a fedoraObject.
 
 ```js
-			fedora.getFedoraObject(testResult, function(resultData){
+			fedora.getFedoraObject(testResult, function(resultData) {
 				resultData.should.include(testResult);
 				done();
 			});
@@ -55,11 +54,11 @@ should return the datastream.
 
 ```js
 			var data = '<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"><dc:title>jhdgj</dc:title><dc:identifier>4f8ffc8ff889d6ab44000001</dc:identifier></oai_dc:dc>'
-			fedora.addDatastream(testResult, "DC", data, function(resultData){
-				
+			fedora.addDatastream(testResult, "DC", data, function(resultData) {
+
 				resultData.should.include(testResult);
 				done();
-			}, function(err){
+			}, function(err) {
 				console.log(err);
 			});
 ```
@@ -69,11 +68,11 @@ should return the datastream.
 should delete the requested object from fedora.
 
 ```js
-			fedora.deleteObject(testResult, function(resultData){
+			fedora.deleteObject(testResult, function(resultData) {
 				var myregexp = new RegExp("[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}.?[0-9]*Z");
 				resultData.should.match(myregexp);
 				done();
-			}, function(error){
+			}, function(error) {
 				should.not.exist(error);
 			});
 ```
@@ -83,7 +82,7 @@ should delete the requested object from fedora.
 should return the next PID from fedora.
 
 ```js
-			fedora.getNextPID("node", function(resultData){
+			fedora.getNextPID("node", function(resultData) {
 				resultData.should.include("node:");
 				done();
 			});
