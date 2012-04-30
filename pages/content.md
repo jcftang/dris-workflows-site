@@ -117,3 +117,27 @@ config file can be used to checkout all the relavent packages.
 
 	[node-fedora]
 	checkout = git clone 'ssh://git@lonsdale.tchpc.tcd.ie/navr/node/node-fedora' 'node-fedora'
+
+
+## Apache deployment
+
+Sample apache deployment, this assumes that dri-api and dris-workflows are CNAMES for dri-devel where the applications are being run.
+
+	<Proxy *>
+	Order deny,allow
+	Allow from all
+	</Proxy>
+
+	# api server
+	<VirtualHost 134.226.115.72:80>
+		ServerName              dri-api.tchpc.tcd.ie
+		ProxyPass /             http://dri-api.tchpc.tcd.ie:4000/
+		ProxyPassReverse /      http://dri-api.tchpc.tcd.ie:4000/
+	</VirtualHost>
+
+	# web application
+	<VirtualHost 134.226.115.72:80>
+		ServerName              dris-workflows.tchpc.tcd.ie
+		ProxyPass /             http://dris-workflows.tchpc.tcd.ie:3000/
+		ProxyPassReverse /      http://dris-workflows.tchpc.tcd.ie:3000/
+	</VirtualHost>
