@@ -1,3 +1,8 @@
+DRI package configured
+{ uploadDirectory: '/tmp/uploads/',
+  fedoraURL: 'howest-server.tchpc.tcd.ie',
+  fedoraPort: 9191,
+  fedoraAuth: 'fedoraAdmin:admin' }
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)

@@ -1,10 +1,17 @@
-aFedoraLib:296
+DRI package configured
+{ uploadDirectory: '/tmp/uploads/',
+  fedoraURL: 'howest-server.tchpc.tcd.ie',
+  fedoraPort: 9191,
+  fedoraAuth: 'fedoraAdmin:admin' }
+/tmp/uploads/
+aFedoraLib:398
 # TOC
    - [Tests for DRI APIv2](#tests-for-dri-apiv2)
      - [GET /](#tests-for-dri-apiv2-get-)
      - [POST /dev/objects type = collection](#tests-for-dri-apiv2-post-devobjects-type--collection)
      - [POST /dev/objects type = series](#tests-for-dri-apiv2-post-devobjects-type--series)
      - [POST /dev/objects type = item](#tests-for-dri-apiv2-post-devobjects-type--item)
+     - [POST /dev/objects type = item with binary object](#tests-for-dri-apiv2-post-devobjects-type--item-with-binary-object)
      - [POST /dev/objects/:id/update](#tests-for-dri-apiv2-post-devobjectsidupdate)
      - [GET /dev/objects](#tests-for-dri-apiv2-get-devobjects)
      - [GET /dev/objects/:id](#tests-for-dri-apiv2-get-devobjectsid)
@@ -113,6 +120,20 @@ should respond with the id of the created object.
 			});
 ```
 
+<a name="tests-for-dri-apiv2-post-devobjects-type--item-with-binary-object" />
+## POST /dev/objects type = item with binary object
+should respond with the id of the created object.
+
+```js
+			var req = superagent.post(socket + '/dev/objects')
+			.attach( __dirname + '/car.jpg', 'upload')
+			req.end(function(resp) {
+				 assert.isDefined(resp.text);
+				 assert.length(resp.text, 24);
+				done();
+			});
+```
+
 <a name="tests-for-dri-apiv2-post-devobjectsidupdate" />
 ## POST /dev/objects/:id/update
 should respond with the id of the updated object.
@@ -122,7 +143,7 @@ should respond with the id of the updated object.
 				method : 'POST',
 				uri : socket + '/dev/objects/' + collectionId + '/update',
 				json : {
-					"status":"open",
+					"status" : "open",
 					"properties" : {
 						"title" : "I updated this collection",
 						"subtitle" : "AutoTestSeries"

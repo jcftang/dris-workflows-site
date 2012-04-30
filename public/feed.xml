@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Fri, 27 Apr 2012 12:23:54 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Mon, 30 Apr 2012 11:06:10 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -16,7 +16,13 @@
 <ul>
 <li>DRIS Contacts not listed until permission is granted</li>
 </ul>
-]]></description><link>http://undefined/contact</link><guid isPermaLink="true">http://undefined/contact</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 16:28:57 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-dri-api">API for dri-api</a>]]></title><description><![CDATA[<p>aFedoraLib:296
+]]></description><link>http://undefined/contact</link><guid isPermaLink="true">http://undefined/contact</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 16:28:57 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-dri-api">API for dri-api</a>]]></title><description><![CDATA[<p>DRI package configured
+{ uploadDirectory: '/tmp/uploads/',
+  fedoraURL: 'howest-server.tchpc.tcd.ie',
+  fedoraPort: 9191,
+  fedoraAuth: 'fedoraAdmin:admin' }
+/tmp/uploads/
+aFedoraLib:398
 </p>
 <h1>TOC</h1>
 <ul>
@@ -25,6 +31,7 @@
 <li><a href="#tests-for-dri-apiv2-post-devobjects-type--collection">POST /dev/objects type = collection</a></li>
 <li><a href="#tests-for-dri-apiv2-post-devobjects-type--series">POST /dev/objects type = series</a></li>
 <li><a href="#tests-for-dri-apiv2-post-devobjects-type--item">POST /dev/objects type = item</a></li>
+<li><a href="#tests-for-dri-apiv2-post-devobjects-type--item-with-binary-object">POST /dev/objects type = item with binary object</a></li>
 <li><a href="#tests-for-dri-apiv2-post-devobjectsidupdate">POST /dev/objects/:id/update</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjects">GET /dev/objects</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsid">GET /dev/objects/:id</a></li>
@@ -132,6 +139,19 @@
                 itemId = body;
                 done();
             });</code></pre>
+<p><a name="tests-for-dri-apiv2-post-devobjects-type--item-with-binary-object"></a>
+</p>
+<h2>POST /dev/objects type = item with binary object</h2>
+<p>should respond with the id of the created object.
+
+</p>
+<pre><code class="js">            var req = superagent.post(socket + '/dev/objects')
+            .attach( __dirname + '/car.jpg', 'upload')
+            req.end(function(resp) {
+                 assert.isDefined(resp.text);
+                 assert.length(resp.text, 24);
+                done();
+            });</code></pre>
 <p><a name="tests-for-dri-apiv2-post-devobjectsidupdate"></a>
 </p>
 <h2>POST /dev/objects/:id/update</h2>
@@ -142,7 +162,7 @@
                 method : 'POST',
                 uri : socket + '/dev/objects/' + collectionId + '/update',
                 json : {
-                    "status":"open",
+                    "status" : "open",
                     "properties" : {
                         "title" : "I updated this collection",
                         "subtitle" : "AutoTestSeries"
@@ -396,7 +416,13 @@
                 resultData.should.include("node:");
                 done();
             });</code></pre>
-]]></description><link>http://undefined/api-for-node-fedora</link><guid isPermaLink="true">http://undefined/api-for-node-fedora</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:21:17 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-dri">API for node-dri</a>]]></title><description><![CDATA[<h1>TOC</h1>
+]]></description><link>http://undefined/api-for-node-fedora</link><guid isPermaLink="true">http://undefined/api-for-node-fedora</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:21:17 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-dri">API for node-dri</a>]]></title><description><![CDATA[<p>DRI package configured
+{ uploadDirectory: '/tmp/uploads/',
+  fedoraURL: 'howest-server.tchpc.tcd.ie',
+  fedoraPort: 9191,
+  fedoraAuth: 'fedoraAdmin:admin' }
+</p>
+<h1>TOC</h1>
 <ul>
 <li><a href="#test-cases-for-node-dri-package">Test cases for node-dri package</a><ul>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types">Calling getObjectTypes(onSuccess, onError), will get object types</a></li>
@@ -725,4 +751,26 @@ checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.
 
 [node-fedora]
 checkout = git clone 'ssh:<span class="comment">//g</span>it@lonsdale.tchpc.tcd.ie/navr/node/node-fedora' 'node-fedora'</code></pre>
+<h2>Apache deployment</h2>
+<p>Sample apache deployment, this assumes that dri-api and dris-workflows are CNAMES for dri-devel where the applications are being run.
+
+</p>
+<pre><code>&lt;Proxy *&gt;
+Order deny,allow
+Allow from all
+&lt;/Proxy&gt;
+
+<span class="comment"># api server</span>
+&lt;VirtualHost <span class="number">134.226</span>.<span class="number">115.72</span>:<span class="number">80</span>&gt;
+    ServerName              dri-api.tchpc.tcd.ie
+    ProxyPass /             http:<span class="comment">//d</span>ri-api.tchpc.tcd.ie:<span class="number">4000</span>/
+    ProxyPassReverse /      http:<span class="comment">//d</span>ri-api.tchpc.tcd.ie:<span class="number">4000</span>/
+&lt;/VirtualHost&gt;
+
+<span class="comment"># web application</span>
+&lt;VirtualHost <span class="number">134.226</span>.<span class="number">115.72</span>:<span class="number">80</span>&gt;
+    ServerName              dris-workflows.tchpc.tcd.ie
+    ProxyPass /             http:<span class="comment">//d</span>ris-workflows.tchpc.tcd.ie:<span class="number">3000</span>/
+    ProxyPassReverse /      http:<span class="comment">//d</span>ris-workflows.tchpc.tcd.ie:<span class="number">3000</span>/
+&lt;/VirtualHost&gt;</code></pre>
 ]]></description><link>http://undefined.</link><guid isPermaLink="true">http://undefined.</guid><dc:creator><![CDATA[Jimmy Tang]]></dc:creator><pubDate>Thu, 29 Mar 2012 08:55:54 GMT</pubDate></item><item><title><![CDATA[DRIS Workflows -- Untitled]]></title><link>http://undefined/all-pages</link><guid isPermaLink="true">http://undefined/all-pages</guid><dc:creator><![CDATA[TCHPC]]></dc:creator><pubDate>Thu, 01 Jan 1970 00:00:00 GMT</pubDate></item></channel></rss>
