@@ -4,14 +4,14 @@ DRI package configured
   fedoraPort: 9191,
   fedoraAuth: 'fedoraAdmin:admin' }
 /tmp/uploads/
-Item created: aFedoraLib:452
-{"_id":"4fa2679285ca26c372000001","status":"approved","type":"collection","properties":{"title":"I updated this collection","subtitle":"AutoTestSeries"}}
+Item created: aFedoraLib:455
+{"_id":"4fa274705417f31b79000001","status":"approved","type":"collection","properties":{"title":"I updated this collection","subtitle":"AutoTestSeries"}}
 { [MongoError: not okForStorage]
   name: 'MongoError',
   err: 'not okForStorage',
   code: 12527,
   n: 0,
-  connectionId: 8,
+  connectionId: 14,
   ok: 1 }
 # TOC
    - [Tests for DRI APIv2](#tests-for-dri-apiv2)
