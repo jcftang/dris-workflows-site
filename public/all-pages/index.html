@@ -1,12 +1,12 @@
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta name="description" content="DRIS Workflows">
-		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest">
+		<meta charset="utf-8" />
+		<meta name="description" content="DRIS Workflows" />
+		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest" />
 		<title> DRIS Workflows</title>
 		<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
-		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all">
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all" />
 	</head>
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -68,7 +68,7 @@ into a plugin)</li>
 <li>dri-auth (oauth2 provider, planned)</li>
 </ul>
 <h3>Overview of current Architecture</h3>
-<p><img src="/img/HighLevelArch-mvanwamb-qgrootbl-jtang-2012-04-13-dris-workflows.png" alt="">
+<p><img src="/img/HighLevelArch-mvanwamb-qgrootbl-jtang-2012-04-13-dris-workflows.png" alt="" />
 
 </p>
 <p>The architecture of the system is in an unstable state as we test the
@@ -226,7 +226,15 @@ Allow from all
   fedoraPort: 9191,
   fedoraAuth: 'fedoraAdmin:admin' }
 /tmp/uploads/
-aFedoraLib:398
+Item created: aFedoraLib:452
+{"_id":"4fa2679285ca26c372000001","status":"approved","type":"collection","properties":{"title":"I updated this collection","subtitle":"AutoTestSeries"}}
+{ [MongoError: not okForStorage]
+  name: 'MongoError',
+  err: 'not okForStorage',
+  code: 12527,
+  n: 0,
+  connectionId: 8,
+  ok: 1 }
 </p>
 <h1>TOC</h1>
 <ul>
@@ -637,10 +645,13 @@ aFedoraLib:398
 							<a href="" class="breadcrumb">api-for-node-dri</a></div>
 						</div>
 						<div class="content"><p>DRI package configured
-{ uploadDirectory: '/tmp/uploads/',
-  fedoraURL: 'howest-server.tchpc.tcd.ie',
-  fedoraPort: 9191,
-  fedoraAuth: 'fedoraAdmin:admin' }
+{ titleInfo: { subtitle: 'SubAutoTestItem778', title: 'AutoTestItem778' } }
+{ fedoraId: 'afedoraLib:192',
+  status: 'open',
+  type: 'item',
+  parentId: '4fa267a0fcea7cf272000002',
+  _id: 4fa267a0fcea7cf272000003,
+  properties: { titleInfo: { title: 'AutoTestItem778', subtitle: 'SubAutoTestItem778' } } }
 </p>
 <h1>TOC</h1>
 <ul>
@@ -684,8 +695,10 @@ aFedoraLib:398
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    title : "AutoTestColl" + rnd,
-                    subtitle : "SubAutoTestColl" + rnd
+                    titleInfo : {
+                        title : "AutoTestColl" + rnd,
+                        subtitle : "SubAutoTestColl" + rnd
+                    }
                 },
                 status : "open",
                 type : "collection"
@@ -706,8 +719,10 @@ aFedoraLib:398
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    title : "AutoTestSeries" + rnd,
-                    subtitle : "SubAutoTestSeries" + rnd
+                    titleInfo : {
+                        title : "AutoTestSeries" + rnd,
+                        subtitle : "SubAutoTestSeries" + rnd
+                    }
                 },
                 status : "open",
                 type : "series",
@@ -729,8 +744,10 @@ aFedoraLib:398
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    title : "AutoTestItem" + rnd,
-                    subtitle : "SubAutoTestItem" + rnd
+                    titleInfo : {
+                        title : "AutoTestItem" + rnd,
+                        subtitle : "SubAutoTestItem" + rnd
+                    }
                 },
                 status : "open",
                 type : "item",
@@ -852,7 +869,7 @@ aFedoraLib:398
 			</div>
 		</div>
 		<footer id="footer">
-			<hr>
+			<hr />
 			<p>
 				<a href="/">DRIS Workflows</a> documentation site powered by <a href="https://github.com/flatiron/blacksmith">Blacksmith</a> / styled with <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>
 			</p>

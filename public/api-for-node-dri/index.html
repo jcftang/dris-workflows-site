@@ -1,12 +1,12 @@
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-		<meta name="description" content="DRIS Workflows">
-		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest">
+		<meta charset="utf-8" />
+		<meta name="description" content="DRIS Workflows" />
+		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest" />
 		<title>API for node-dri DRIS Workflows</title>
 		<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
-		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all">
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all" />
 	</head>
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -38,10 +38,13 @@
 							<a href="/api-for-node-dri" class="breadcrumb">api-for-node-dri</a></div>
 						</div>
 						<div class="content"><p>DRI package configured
-{ uploadDirectory: '/tmp/uploads/',
-  fedoraURL: 'howest-server.tchpc.tcd.ie',
-  fedoraPort: 9191,
-  fedoraAuth: 'fedoraAdmin:admin' }
+{ titleInfo: { subtitle: 'SubAutoTestItem778', title: 'AutoTestItem778' } }
+{ fedoraId: 'afedoraLib:192',
+  status: 'open',
+  type: 'item',
+  parentId: '4fa267a0fcea7cf272000002',
+  _id: 4fa267a0fcea7cf272000003,
+  properties: { titleInfo: { title: 'AutoTestItem778', subtitle: 'SubAutoTestItem778' } } }
 </p>
 <h1>TOC</h1>
 <ul>
@@ -85,8 +88,10 @@
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    title : "AutoTestColl" + rnd,
-                    subtitle : "SubAutoTestColl" + rnd
+                    titleInfo : {
+                        title : "AutoTestColl" + rnd,
+                        subtitle : "SubAutoTestColl" + rnd
+                    }
                 },
                 status : "open",
                 type : "collection"
@@ -107,8 +112,10 @@
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    title : "AutoTestSeries" + rnd,
-                    subtitle : "SubAutoTestSeries" + rnd
+                    titleInfo : {
+                        title : "AutoTestSeries" + rnd,
+                        subtitle : "SubAutoTestSeries" + rnd
+                    }
                 },
                 status : "open",
                 type : "series",
@@ -130,8 +137,10 @@
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    title : "AutoTestItem" + rnd,
-                    subtitle : "SubAutoTestItem" + rnd
+                    titleInfo : {
+                        title : "AutoTestItem" + rnd,
+                        subtitle : "SubAutoTestItem" + rnd
+                    }
                 },
                 status : "open",
                 type : "item",
@@ -254,7 +263,7 @@
 			</div>
 		</div>
 		<footer id="footer">
-			<hr>
+			<hr />
 			<p>
 				<a href="/">DRIS Workflows</a> documentation site powered by <a href="https://github.com/flatiron/blacksmith">Blacksmith</a> / styled with <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>
 			</p>

@@ -1,8 +1,11 @@
 DRI package configured
-{ uploadDirectory: '/tmp/uploads/',
-  fedoraURL: 'howest-server.tchpc.tcd.ie',
-  fedoraPort: 9191,
-  fedoraAuth: 'fedoraAdmin:admin' }
+{ titleInfo: { subtitle: 'SubAutoTestItem778', title: 'AutoTestItem778' } }
+{ fedoraId: 'afedoraLib:192',
+  status: 'open',
+  type: 'item',
+  parentId: '4fa267a0fcea7cf272000002',
+  _id: 4fa267a0fcea7cf272000003,
+  properties: { titleInfo: { title: 'AutoTestItem778', subtitle: 'SubAutoTestItem778' } } }
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
@@ -41,8 +44,10 @@ should create a collection and return the id of the collection.
 ```js
 			var data = {
 				properties : {
-					title : "AutoTestColl" + rnd,
-					subtitle : "SubAutoTestColl" + rnd
+					titleInfo : {
+						title : "AutoTestColl" + rnd,
+						subtitle : "SubAutoTestColl" + rnd
+					}
 				},
 				status : "open",
 				type : "collection"
@@ -64,8 +69,10 @@ should create a series and return the id of the series.
 ```js
 			var data = {
 				properties : {
-					title : "AutoTestSeries" + rnd,
-					subtitle : "SubAutoTestSeries" + rnd
+					titleInfo : {
+						title : "AutoTestSeries" + rnd,
+						subtitle : "SubAutoTestSeries" + rnd
+					}
 				},
 				status : "open",
 				type : "series",
@@ -88,8 +95,10 @@ should create an Item and return the id of the Item.
 ```js
 			var data = {
 				properties : {
-					title : "AutoTestItem" + rnd,
-					subtitle : "SubAutoTestItem" + rnd
+					titleInfo : {
+						title : "AutoTestItem" + rnd,
+						subtitle : "SubAutoTestItem" + rnd
+					}
 				},
 				status : "open",
 				type : "item",
