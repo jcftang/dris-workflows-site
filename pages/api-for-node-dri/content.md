@@ -1,11 +1,11 @@
 DRI package configured
-{ titleInfo: { subtitle: 'SubAutoTestItem671', title: 'AutoTestItem671' } }
-{ fedoraId: 'afedoraLib:195',
+{ titleInfo: { subtitle: 'SubAutoTestItem745', title: 'AutoTestItem745' } }
+{ fedoraId: 'afedoraLib:201',
   status: 'open',
   type: 'item',
-  parentId: '4fa27476e18d134a79000002',
-  _id: 4fa27476e18d134a79000003,
-  properties: { titleInfo: { title: 'AutoTestItem671', subtitle: 'SubAutoTestItem671' } } }
+  parentId: '4fa3904743bff17bba000002',
+  _id: 4fa3904743bff17bba000003,
+  properties: { titleInfo: { title: 'AutoTestItem745', subtitle: 'SubAutoTestItem745' } } }
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)

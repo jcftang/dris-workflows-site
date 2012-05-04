@@ -1,17 +1,44 @@
 DRI package configured
-{ uploadDirectory: '/tmp/uploads/',
-  fedoraURL: 'howest-server.tchpc.tcd.ie',
-  fedoraPort: 9191,
-  fedoraAuth: 'fedoraAdmin:admin' }
+{ size: 98998,
+  path: '/tmp/87a1100a39ed76e9a238509613413e3c',
+  name: 'upload',
+  type: 'image/jpeg',
+  lastModifiedDate: Fri, 04 May 2012 08:16:00 GMT,
+  _writeStream: 
+   { path: '/tmp/87a1100a39ed76e9a238509613413e3c',
+     fd: 13,
+     writable: false,
+     flags: 'w',
+     encoding: 'binary',
+     mode: 438,
+     bytesWritten: 98998,
+     busy: false,
+     _queue: [],
+     _open: [Function],
+     drainable: true },
+  length: [Getter],
+  filename: [Getter],
+  mime: [Getter] }
 /tmp/uploads/
-Item created: aFedoraLib:455
-{"_id":"4fa274705417f31b79000001","status":"approved","type":"collection","properties":{"title":"I updated this collection","subtitle":"AutoTestSeries"}}
+{ subtitle: 'AutoTestSeries',
+  title: 'I updated this collection' }
+{ subtitle: 'AutoTestSeries',
+  title: 'I updated this collection' }
+{ fedoraId: 'aFedoraLib:474',
+  _id: 4fa39040efda8444ba000001,
+  status: 'open',
+  type: 'collection',
+  properties: 
+   { title: 'I updated this collection',
+     subtitle: 'AutoTestSeries' } }
+Item created: aFedoraLib:474
+{"fedoraId":"aFedoraLib:474","_id":"4fa39040efda8444ba000001","status":"approved","type":"collection","properties":{"title":"I updated this collection","subtitle":"AutoTestSeries"}}
 { [MongoError: not okForStorage]
   name: 'MongoError',
   err: 'not okForStorage',
   code: 12527,
   n: 0,
-  connectionId: 14,
+  connectionId: 27,
   ok: 1 }
 # TOC
    - [Tests for DRI APIv2](#tests-for-dri-apiv2)
@@ -19,7 +46,7 @@ Item created: aFedoraLib:455
      - [POST /dev/objects type = collection](#tests-for-dri-apiv2-post-devobjects-type--collection)
      - [POST /dev/objects type = series](#tests-for-dri-apiv2-post-devobjects-type--series)
      - [POST /dev/objects type = item](#tests-for-dri-apiv2-post-devobjects-type--item)
-     - [POST /dev/objects type = item with binary object](#tests-for-dri-apiv2-post-devobjects-type--item-with-binary-object)
+     - [POST /dev/upload type = item with binary object](#tests-for-dri-apiv2-post-devupload-type--item-with-binary-object)
      - [POST /dev/objects/:id/update](#tests-for-dri-apiv2-post-devobjectsidupdate)
      - [GET /dev/objects](#tests-for-dri-apiv2-get-devobjects)
      - [GET /dev/objects/:id](#tests-for-dri-apiv2-get-devobjectsid)
@@ -128,16 +155,16 @@ should respond with the id of the created object.
 			});
 ```
 
-<a name="tests-for-dri-apiv2-post-devobjects-type--item-with-binary-object" />
-## POST /dev/objects type = item with binary object
-should respond with the id of the created object.
+<a name="tests-for-dri-apiv2-post-devupload-type--item-with-binary-object" />
+## POST /dev/upload type = item with binary object
+should respond with the path of the uploaded file.
 
 ```js
-			var req = superagent.post(socket + '/dev/objects')
+			var req = superagent.post(socket + '/dev/upload')
 			.attach( __dirname + '/car.jpg', 'upload')
 			req.end(function(resp) {
 				 assert.isDefined(resp.text);
-				 assert.length(resp.text, 24);
+				 assert.equal(resp.text.substring(0,5), "/tmp/");
 				done();
 			});
 ```
