@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Fri, 04 May 2012 08:17:05 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Mon, 28 May 2012 13:01:10 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -16,48 +16,10 @@
 <ul>
 <li>DRIS Contacts not listed until permission is granted</li>
 </ul>
-]]></description><link>http://undefined/contact</link><guid isPermaLink="true">http://undefined/contact</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 16:28:57 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-dri-api">API for dri-api</a>]]></title><description><![CDATA[<p>DRI package configured
-{ size: 98998,
-  path: '/tmp/87a1100a39ed76e9a238509613413e3c',
-  name: 'upload',
-  type: 'image/jpeg',
-  lastModifiedDate: Fri, 04 May 2012 08:16:00 GMT,
-  _writeStream: 
-   { path: '/tmp/87a1100a39ed76e9a238509613413e3c',
-     fd: 13,
-     writable: false,
-     flags: 'w',
-     encoding: 'binary',
-     mode: 438,
-     bytesWritten: 98998,
-     busy: false,
-     _queue: [],
-     _open: [Function],
-     drainable: true },
-  length: [Getter],
-  filename: [Getter],
-  mime: [Getter] }
-/tmp/uploads/
-{ subtitle: 'AutoTestSeries',
-  title: 'I updated this collection' }
-{ subtitle: 'AutoTestSeries',
-  title: 'I updated this collection' }
-{ fedoraId: 'aFedoraLib:474',
-  _id: 4fa39040efda8444ba000001,
-  status: 'open',
-  type: 'collection',
-  properties: 
-   { title: 'I updated this collection',
-     subtitle: 'AutoTestSeries' } }
-Item created: aFedoraLib:474
-{"fedoraId":"aFedoraLib:474","_id":"4fa39040efda8444ba000001","status":"approved","type":"collection","properties":{"title":"I updated this collection","subtitle":"AutoTestSeries"}}
-{ [MongoError: not okForStorage]
-  name: 'MongoError',
-  err: 'not okForStorage',
-  code: 12527,
-  n: 0,
-  connectionId: 27,
-  ok: 1 }
+]]></description><link>http://undefined/contact</link><guid isPermaLink="true">http://undefined/contact</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 16:28:57 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-dri-api">API for dri-api</a>]]></title><description><![CDATA[<p>make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
+MongoDB: <a href="mongodb://localhost/dri">mongodb://localhost/dri</a>
+DRI package configured
+info: result
 </p>
 <h1>TOC</h1>
 <ul>
@@ -106,18 +68,18 @@ Item created: aFedoraLib:474
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "open",
-                    "properties" : {
-                        "title" : "AutoTestSeries",
-                        "subtitle" : "AutoTestSeries"
-                    },
-                    "type" : "collection"
+                    status : "open",
+                    type : "collection",
+                    properties : {
+                        titleInfo : [{
+                            title : "This is a Collection title!"
+                        }]
+                    }
                 }
             }, function(err, resp, body) {
-
                 assert.isNull(err);
                 assert.isDefined(body);
-                assert.length(body, 24);
+                assert.lengthOf(body, 24);
                 collectionId = body;
                 done();
             });</code></pre>
@@ -132,19 +94,19 @@ Item created: aFedoraLib:474
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "open",
-                    "properties" : {
-                        "title" : "AutoTestItem",
-                        "subtitle" : "AutoTestItem"
+                    status : "open",
+                    type : "series",
+                    properties : {
+                        titleInfo : [{
+                            title : "This is a Series title!"
+                        }]
                     },
-                    "type" : "series",
                     parentId : collectionId
                 }
             }, function(err, resp, body) {
-
                 assert.isNull(err);
                 assert.isDefined(body);
-                assert.length(body, 24);
+                assert.lengthOf(body, 24);
                 seriesId = body;
                 done();
             });</code></pre>
@@ -158,19 +120,19 @@ Item created: aFedoraLib:474
                 method : 'POST',
                 uri : socket + '/dev/objects',
                 json : {
-                    "status" : "open",
-                    "properties" : {
-                        "title" : "AutoTestColl",
-                        "subtitle" : "AutoTestColl"
+                    status : "open",
+                    properties : {
+                        titleInfo : [{
+                            title : "This is a item title!"
+                        }]
                     },
                     "type" : "item",
                     parentId : seriesId
                 }
             }, function(err, resp, body) {
-
                 assert.isNull(err);
                 assert.isDefined(body);
-                assert.length(body, 24);
+                assert.lengthOf(body, 24);
                 itemId = body;
                 done();
             });</code></pre>
@@ -180,11 +142,10 @@ Item created: aFedoraLib:474
 <p>should respond with the path of the uploaded file.
 
 </p>
-<pre><code class="js">            var req = superagent.post(socket + '/dev/upload')
-            .attach( __dirname + '/car.jpg', 'upload')
+<pre><code class="js">            var req = superagent.post(socket + '/dev/upload').attach(__dirname + '/car.jpg', 'upload')
             req.end(function(resp) {
-                 assert.isDefined(resp.text);
-                 assert.equal(resp.text.substring(0,5), "/tmp/");
+                assert.isDefined(resp.text);
+                assert.include(resp, "car.jpg");
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-post-devobjectsidupdate"></a>
@@ -197,10 +158,11 @@ Item created: aFedoraLib:474
                 method : 'POST',
                 uri : socket + '/dev/objects/' + collectionId + '/update',
                 json : {
-                    "status" : "open",
-                    "properties" : {
-                        "title" : "I updated this collection",
-                        "subtitle" : "AutoTestSeries"
+                    status : "open",
+                    properties : {
+                        titleInfo : [{
+                            title : "This is a updated collection title!"
+                        }]
                     }
                 }
             }, function(err, resp, body) {
@@ -219,8 +181,11 @@ Item created: aFedoraLib:474
                 method : 'POST',
                 uri : socket + '/dev/objects/' + seriesId + '/update',
                 json : {
+                    status : "open",
                     properties : {
-                        title : "I updated this series"
+                        titleInfo : [{
+                            title : "This is a updated series title!"
+                        }]
                     }
                 }
             }, function(err, resp, body) {
@@ -237,10 +202,13 @@ Item created: aFedoraLib:474
 </p>
 <pre><code class="js">            request({
                 method : 'POST',
-                uri : socket + '/dev/objects/' + seriesId + '/update',
+                uri : socket + '/dev/objects/' + itemId + '/update',
                 json : {
+                    status : "open",
                     properties : {
-                        title : "I updated this item"
+                        titleInfo : [{
+                            title : "This is a updated item title!"
+                        }]
                     }
                 }
             }, function(err, resp, body) {
@@ -318,7 +286,7 @@ Item created: aFedoraLib:474
                 uri : socket + '/dev/objects/' + collectionId + '/approve'
             }, function(err, resp, body) {
                 assert.isNull(err);
-                console.log(body)
+                assert.include(body, "This is a updated collection title!");
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devobjectsiddelete"></a>
@@ -363,13 +331,21 @@ Item created: aFedoraLib:474
                 assert.include(body, itemId);
                 done();
             });</code></pre>
-]]></description><link>http://undefined/api-for-dri-api</link><guid isPermaLink="true">http://undefined/api-for-dri-api</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:25:30 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-fedora">API for node-fedora</a>]]></title><description><![CDATA[<h1>TOC</h1>
+<p>make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
+</p>
+]]></description><link>http://undefined/api-for-dri-api</link><guid isPermaLink="true">http://undefined/api-for-dri-api</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:25:30 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-fedora">API for node-fedora</a>]]></title><description><![CDATA[<p>make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'
+info: Fedora package configured
+</p>
+<h1>TOC</h1>
 <ul>
 <li><a href="#test-cases-for-the-node-fedora-package">Test cases for the node-fedora package</a><ul>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject">Calling createFedoraObject(), will create a fedoraObject</a></li>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-getfedoralist-get-a-list-of-fedoraobjects">Calling getFedoraList(), Get a list of fedoraObjects</a></li>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-getfedoraobject-get-a-fedoraobject">Calling getFedoraObject(), get a fedoraObject</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-calling-adddatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling addDatastream(), to add a Datastream to an existing fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-addxmldatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling addXMLDatastream(), to add a Datastream to an existing fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-modifyxmldatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling modifyXMLDatastream(), to add a Datastream to an existing fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-addmediadatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling addMediaDatastream(), to add a Datastream to an existing fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-modifymediadatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling modifyMediaDatastream(), to add a Datastream to an existing fedoraObject</a></li>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-deleteobject-will-delete-an-object-from-fedora">Calling deleteObject(), will delete an object from fedora</a></li>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-getnextpid-will-get-the-next-pid-that-is-available-from-fedora">Calling getNextPID(), will get the next PID that is available from fedora</a>
 <a name=""></a></li>
@@ -414,15 +390,58 @@ Item created: aFedoraLib:474
                 resultData.should.include(testResult);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-calling-adddatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-addxmldatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
 </p>
-<h2>Calling addDatastream(), to add a Datastream to an existing fedoraObject</h2>
+<h2>Calling addXMLDatastream(), to add a Datastream to an existing fedoraObject</h2>
 <p>should return the datastream.
 
 </p>
 <pre><code class="js">            var data = '&lt;oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"&gt;&lt;dc:title&gt;jhdgj&lt;/dc:title&gt;&lt;dc:identifier&gt;4f8ffc8ff889d6ab44000001&lt;/dc:identifier&gt;&lt;/oai_dc:dc&gt;'
-            fedora.addDatastream(testResult, "DC", data, function(resultData) {
 
+            fedora.addXMLDatastream(testResult, "DC", data, function(resultData) {
+                resultData.should.include(testResult);
+                done();
+            }, function(err) {
+                console.log(err);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-calling-modifyxmldatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
+</p>
+<h2>Calling modifyXMLDatastream(), to add a Datastream to an existing fedoraObject</h2>
+<p>should return the datastream.
+
+</p>
+<pre><code class="js">            var data = '&lt;oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"&gt;&lt;dc:title&gt;jhdgj - updated!&lt;/dc:title&gt;&lt;dc:identifier&gt;4f8ffc8ff889d6ab44000001&lt;/dc:identifier&gt;&lt;/oai_dc:dc&gt;'
+            fedora.modifyXMLDatastream(testResult, "DC", data, function(resultData) {
+                resultData.should.include(testResult);
+                done();
+            }, function(err) {
+                console.log(err);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-calling-addmediadatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
+</p>
+<h2>Calling addMediaDatastream(), to add a Datastream to an existing fedoraObject</h2>
+<p>should return the datastream.
+
+</p>
+<pre><code class="js">            var data = {
+                fileLocation: 'd9375fdf1fa331bbe0b4aa79f766972f0d408a29/Eagle_Fall_Sunrise.jpg'
+            }
+            fedora.addMediaDatastream(testResult, "IMAGE", data, function(resultData) {
+                resultData.should.include(testResult);
+                done();
+            }, function(err) {
+                console.log(err);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-calling-modifymediadatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
+</p>
+<h2>Calling modifyMediaDatastream(), to add a Datastream to an existing fedoraObject</h2>
+<p>should return the datastream.
+
+</p>
+<pre><code class="js">            var data = {
+                fileLocation: 'd9375fdf1fa331bbe0b4aa79f766972f0d408a29/Eagle_Fall_Sunrise.jpg'
+            }
+            fedora.modifyMediaDatastream(testResult, "IMAGE", data, function(resultData) {
                 resultData.should.include(testResult);
                 done();
             }, function(err) {
@@ -451,14 +470,13 @@ Item created: aFedoraLib:474
                 resultData.should.include("node:");
                 done();
             });</code></pre>
-]]></description><link>http://undefined/api-for-node-fedora</link><guid isPermaLink="true">http://undefined/api-for-node-fedora</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:21:17 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-dri">API for node-dri</a>]]></title><description><![CDATA[<p>DRI package configured
-{ titleInfo: { subtitle: 'SubAutoTestItem745', title: 'AutoTestItem745' } }
-{ fedoraId: 'afedoraLib:201',
-  status: 'open',
-  type: 'item',
-  parentId: '4fa3904743bff17bba000002',
-  _id: 4fa3904743bff17bba000003,
-  properties: { titleInfo: { title: 'AutoTestItem745', subtitle: 'SubAutoTestItem745' } } }
+<p>make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'
+</p>
+]]></description><link>http://undefined/api-for-node-fedora</link><guid isPermaLink="true">http://undefined/api-for-node-fedora</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:21:17 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-dri">API for node-dri</a>]]></title><description><![CDATA[<p>make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
+info: MongoDB: <a href="mongodb://localhost/dri">mongodb://localhost/dri</a>
+info: DRI package configured
+info: Fetched items
+[]
 </p>
 <h1>TOC</h1>
 <ul>
@@ -468,10 +486,13 @@ Item created: aFedoraLib:474
 <li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-series">Calling createObject(data, onSuccess, onError) to create a series</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item">Calling createObject(data, onSuccess, onError) to create an item</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item">Calling getObject(id, onSuccess, onError) to get an item</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core">Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-series">Calling getObject(id, onSuccess, onError) to get a Series</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series">Calling getChildren(parentId, onSuccess, onError) to get the children of a series</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection">Calling getObject(id, onSuccess, onError) to get a collection</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id">Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id</a></li>
+<li><a href="#test-cases-for-node-dri-package-stats">Stats</a></li>
+<li><a href="#test-cases-for-node-dri-package-querying">Querying</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id">Calling removeObject(id, onSuccess, onError) with a item id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id">Calling removeObject(id, onSuccess, onError) with a series id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id">Calling removeObject(id, onSuccess, onError) with a collection id</a>
@@ -502,17 +523,17 @@ Item created: aFedoraLib:474
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    titleInfo : {
+                    titleInfo : [{
                         title : "AutoTestColl" + rnd,
                         subtitle : "SubAutoTestColl" + rnd
-                    }
+                    }]
                 },
                 status : "open",
                 type : "collection"
             };
             dri.createObject(data, function(result) {
                 result.should.be.ok
-                assert.length(result, 24)
+                assert.lengthOf(result, 24)
                 collId = result;
                 done();
             }, function(e) {
@@ -526,10 +547,10 @@ Item created: aFedoraLib:474
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    titleInfo : {
+                    titleInfo : [{
                         title : "AutoTestSeries" + rnd,
                         subtitle : "SubAutoTestSeries" + rnd
-                    }
+                    }]
                 },
                 status : "open",
                 type : "series",
@@ -537,7 +558,7 @@ Item created: aFedoraLib:474
             };
             dri.createObject(data, function(result) {
                 result.should.be.ok
-                assert.length(result, 24)
+                assert.lengthOf(result, 24)
                 seriesId = result;
                 done();
             }, function(e) {
@@ -551,10 +572,10 @@ Item created: aFedoraLib:474
 </p>
 <pre><code class="js">            var data = {
                 properties : {
-                    titleInfo : {
+                    titleInfo : [{
                         title : "AutoTestItem" + rnd,
                         subtitle : "SubAutoTestItem" + rnd
-                    }
+                    }]
                 },
                 status : "open",
                 type : "item",
@@ -562,7 +583,7 @@ Item created: aFedoraLib:474
             };
             dri.createObject(data, function(result) {
                 result.should.be.ok
-                assert.length(result, 24)
+                assert.lengthOf(result, 24)
                 itemId = result;
                 done();
             }, function(e) {
@@ -576,6 +597,19 @@ Item created: aFedoraLib:474
 </p>
 <pre><code class="js">            dri.getObject(itemId, function(result) {
                 assert.include(result._id, itemId)
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core"></a>
+</p>
+<h2>Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core</h2>
+<p>should get an Item and return the Item.
+
+</p>
+<pre><code class="js">            dri.getObject(itemId, function(result) {
+                var dc = dri.convertToDC(result)
+                assert.include(dc, itemId)
                 done();
             }, function(e) {
                 should.not.exist(e);
@@ -598,7 +632,7 @@ Item created: aFedoraLib:474
 <p>should get the series and return the children.
 
 </p>
-<pre><code class="js">            dri.getChildren(seriesId, function(result) {
+<pre><code class="js">            dri.getChildren(seriesId, 0, 20, function(result) {
                 assert.include(result[0], itemId);
                 done();
             }, function(e) {
@@ -624,6 +658,35 @@ Item created: aFedoraLib:474
 </p>
 <pre><code class="js">            dri.approveItem(itemId, "afedoraLib", function(pid) {
                 pid.should.include(":");
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-stats"></a>
+</p>
+<h2>Stats</h2>
+<p>should return the amount of objects in MongoDB.
+
+</p>
+<pre><code class="js">            dri.countObjects({}, function(amount) {
+                assert.isNumber(amount)
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-querying"></a>
+</p>
+<h2>Querying</h2>
+<p>should return an array containing objects that contain the searched field.
+
+</p>
+<pre><code class="js">            dri.query("label", "50c25df5b", function(data) {
+                console.log(data)
+                should.exist(data)
+                assert.include(data[0], "label");
+                assert.include(data[0], "e2f");
                 done();
             }, function(err) {
                 should.not.exist(e);
@@ -668,6 +731,8 @@ Item created: aFedoraLib:474
                 should.not.exist(e);
                 done();
             });</code></pre>
+<p>make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
+</p>
 ]]></description><link>http://undefined/api-for-node-dri</link><guid isPermaLink="true">http://undefined/api-for-node-dri</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:18:59 GMT</pubDate></item><item><title><![CDATA[<a href=".">DRIS Workflows</a>]]></title><description><![CDATA[<p>The DRIS Workflows package is a prototype system developed by some interns at TCHPC during the 2012 internship.
 
 </p>
@@ -698,7 +763,7 @@ into a plugin)</li>
 <li>dri-auth (oauth2 provider, planned)</li>
 </ul>
 <h3>Overview of current Architecture</h3>
-<p><img src="/img/HighLevelArch-mvanwamb-qgrootbl-jtang-2012-04-13-dris-workflows.png" alt="" />
+<p><img src="/img/HighLevelArch-mvanwamb-qgrootbl-jtang-2012-04-13-dris-workflows.png" alt="">
 
 </p>
 <p>The architecture of the system is in an unstable state as we test the

@@ -1,11 +1,8 @@
-DRI package configured
-{ titleInfo: { subtitle: 'SubAutoTestItem745', title: 'AutoTestItem745' } }
-{ fedoraId: 'afedoraLib:201',
-  status: 'open',
-  type: 'item',
-  parentId: '4fa3904743bff17bba000002',
-  _id: 4fa3904743bff17bba000003,
-  properties: { titleInfo: { title: 'AutoTestItem745', subtitle: 'SubAutoTestItem745' } } }
+make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
+info: MongoDB: mongodb://localhost/dri
+info: DRI package configured
+info: Fetched items
+[]
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
@@ -13,10 +10,13 @@ DRI package configured
      - [Calling createObject(data, onSuccess, onError) to create a series](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-series)
      - [Calling createObject(data, onSuccess, onError) to create an item](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item)
      - [Calling getObject(id, onSuccess, onError) to get an item](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item)
+     - [Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core)
      - [Calling getObject(id, onSuccess, onError) to get a Series](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-series)
      - [Calling getChildren(parentId, onSuccess, onError) to get the children of a series](#test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series)
      - [Calling getObject(id, onSuccess, onError) to get a collection](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection)
      - [Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id)
+     - [Stats](#test-cases-for-node-dri-package-stats)
+     - [Querying](#test-cases-for-node-dri-package-querying)
      - [Calling removeObject(id, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id)
      - [Calling removeObject(id, onSuccess, onError) with a series id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id)
      - [Calling removeObject(id, onSuccess, onError) with a collection id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id)
@@ -44,17 +44,17 @@ should create a collection and return the id of the collection.
 ```js
 			var data = {
 				properties : {
-					titleInfo : {
+					titleInfo : [{
 						title : "AutoTestColl" + rnd,
 						subtitle : "SubAutoTestColl" + rnd
-					}
+					}]
 				},
 				status : "open",
 				type : "collection"
 			};
 			dri.createObject(data, function(result) {
 				result.should.be.ok
-				assert.length(result, 24)
+				assert.lengthOf(result, 24)
 				collId = result;
 				done();
 			}, function(e) {
@@ -69,10 +69,10 @@ should create a series and return the id of the series.
 ```js
 			var data = {
 				properties : {
-					titleInfo : {
+					titleInfo : [{
 						title : "AutoTestSeries" + rnd,
 						subtitle : "SubAutoTestSeries" + rnd
-					}
+					}]
 				},
 				status : "open",
 				type : "series",
@@ -80,7 +80,7 @@ should create a series and return the id of the series.
 			};
 			dri.createObject(data, function(result) {
 				result.should.be.ok
-				assert.length(result, 24)
+				assert.lengthOf(result, 24)
 				seriesId = result;
 				done();
 			}, function(e) {
@@ -95,10 +95,10 @@ should create an Item and return the id of the Item.
 ```js
 			var data = {
 				properties : {
-					titleInfo : {
+					titleInfo : [{
 						title : "AutoTestItem" + rnd,
 						subtitle : "SubAutoTestItem" + rnd
-					}
+					}]
 				},
 				status : "open",
 				type : "item",
@@ -106,7 +106,7 @@ should create an Item and return the id of the Item.
 			};
 			dri.createObject(data, function(result) {
 				result.should.be.ok
-				assert.length(result, 24)
+				assert.lengthOf(result, 24)
 				itemId = result;
 				done();
 			}, function(e) {
@@ -121,6 +121,20 @@ should get an Item and return the Item.
 ```js
 			dri.getObject(itemId, function(result) {
 				assert.include(result._id, itemId)
+				done();
+			}, function(e) {
+				should.not.exist(e);
+			});
+```
+
+<a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core" />
+## Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core
+should get an Item and return the Item.
+
+```js
+			dri.getObject(itemId, function(result) {
+				var dc = dri.convertToDC(result)
+				assert.include(dc, itemId)
 				done();
 			}, function(e) {
 				should.not.exist(e);
@@ -145,7 +159,7 @@ should get an series and return the series.
 should get the series and return the children.
 
 ```js
-			dri.getChildren(seriesId, function(result) {
+			dri.getChildren(seriesId, 0, 20, function(result) {
 				assert.include(result[0], itemId);
 				done();
 			}, function(e) {
@@ -173,6 +187,37 @@ should push the item into fedora and return the fedora id from that item.
 ```js
 			dri.approveItem(itemId, "afedoraLib", function(pid) {
 				pid.should.include(":");
+				done();
+			}, function(err) {
+				should.not.exist(e);
+				done();
+			});
+```
+
+<a name="test-cases-for-node-dri-package-stats" />
+## Stats
+should return the amount of objects in MongoDB.
+
+```js
+			dri.countObjects({}, function(amount) {
+				assert.isNumber(amount)
+				done();
+			}, function(err) {
+				should.not.exist(e);
+				done();
+			});
+```
+
+<a name="test-cases-for-node-dri-package-querying" />
+## Querying
+should return an array containing objects that contain the searched field.
+
+```js
+			dri.query("label", "50c25df5b", function(data) {
+				console.log(data)
+				should.exist(data)
+				assert.include(data[0], "label");
+				assert.include(data[0], "e2f");
 				done();
 			}, function(err) {
 				should.not.exist(e);
@@ -222,3 +267,4 @@ should remove the collection from MongoDB.
 			});
 ```
 
+make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'

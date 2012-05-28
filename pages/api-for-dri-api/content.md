@@ -1,45 +1,7 @@
+make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'
+MongoDB: mongodb://localhost/dri
 DRI package configured
-{ size: 98998,
-  path: '/tmp/87a1100a39ed76e9a238509613413e3c',
-  name: 'upload',
-  type: 'image/jpeg',
-  lastModifiedDate: Fri, 04 May 2012 08:16:00 GMT,
-  _writeStream: 
-   { path: '/tmp/87a1100a39ed76e9a238509613413e3c',
-     fd: 13,
-     writable: false,
-     flags: 'w',
-     encoding: 'binary',
-     mode: 438,
-     bytesWritten: 98998,
-     busy: false,
-     _queue: [],
-     _open: [Function],
-     drainable: true },
-  length: [Getter],
-  filename: [Getter],
-  mime: [Getter] }
-/tmp/uploads/
-{ subtitle: 'AutoTestSeries',
-  title: 'I updated this collection' }
-{ subtitle: 'AutoTestSeries',
-  title: 'I updated this collection' }
-{ fedoraId: 'aFedoraLib:474',
-  _id: 4fa39040efda8444ba000001,
-  status: 'open',
-  type: 'collection',
-  properties: 
-   { title: 'I updated this collection',
-     subtitle: 'AutoTestSeries' } }
-Item created: aFedoraLib:474
-{"fedoraId":"aFedoraLib:474","_id":"4fa39040efda8444ba000001","status":"approved","type":"collection","properties":{"title":"I updated this collection","subtitle":"AutoTestSeries"}}
-{ [MongoError: not okForStorage]
-  name: 'MongoError',
-  err: 'not okForStorage',
-  code: 12527,
-  n: 0,
-  connectionId: 27,
-  ok: 1 }
+info: result
 # TOC
    - [Tests for DRI APIv2](#tests-for-dri-apiv2)
      - [GET /](#tests-for-dri-apiv2-get-)
@@ -83,18 +45,18 @@ should respond with the id of the created object.
 				method : 'POST',
 				uri : socket + '/dev/objects',
 				json : {
-					"status" : "open",
-					"properties" : {
-						"title" : "AutoTestSeries",
-						"subtitle" : "AutoTestSeries"
-					},
-					"type" : "collection"
+					status : "open",
+					type : "collection",
+					properties : {
+						titleInfo : [{
+							title : "This is a Collection title!"
+						}]
+					}
 				}
 			}, function(err, resp, body) {
-
 				assert.isNull(err);
 				assert.isDefined(body);
-				assert.length(body, 24);
+				assert.lengthOf(body, 24);
 				collectionId = body;
 				done();
 			});
@@ -110,19 +72,19 @@ should respond with the id of the created object.
 				method : 'POST',
 				uri : socket + '/dev/objects',
 				json : {
-					"status" : "open",
-					"properties" : {
-						"title" : "AutoTestItem",
-						"subtitle" : "AutoTestItem"
+					status : "open",
+					type : "series",
+					properties : {
+						titleInfo : [{
+							title : "This is a Series title!"
+						}]
 					},
-					"type" : "series",
 					parentId : collectionId
 				}
 			}, function(err, resp, body) {
-
 				assert.isNull(err);
 				assert.isDefined(body);
-				assert.length(body, 24);
+				assert.lengthOf(body, 24);
 				seriesId = body;
 				done();
 			});
@@ -137,19 +99,19 @@ should respond with the id of the created object.
 				method : 'POST',
 				uri : socket + '/dev/objects',
 				json : {
-					"status" : "open",
-					"properties" : {
-						"title" : "AutoTestColl",
-						"subtitle" : "AutoTestColl"
+					status : "open",
+					properties : {
+						titleInfo : [{
+							title : "This is a item title!"
+						}]
 					},
 					"type" : "item",
 					parentId : seriesId
 				}
 			}, function(err, resp, body) {
-
 				assert.isNull(err);
 				assert.isDefined(body);
-				assert.length(body, 24);
+				assert.lengthOf(body, 24);
 				itemId = body;
 				done();
 			});
@@ -160,11 +122,10 @@ should respond with the id of the created object.
 should respond with the path of the uploaded file.
 
 ```js
-			var req = superagent.post(socket + '/dev/upload')
-			.attach( __dirname + '/car.jpg', 'upload')
+			var req = superagent.post(socket + '/dev/upload').attach(__dirname + '/car.jpg', 'upload')
 			req.end(function(resp) {
-				 assert.isDefined(resp.text);
-				 assert.equal(resp.text.substring(0,5), "/tmp/");
+				assert.isDefined(resp.text);
+				assert.include(resp, "car.jpg");
 				done();
 			});
 ```
@@ -178,10 +139,11 @@ should respond with the id of the updated object.
 				method : 'POST',
 				uri : socket + '/dev/objects/' + collectionId + '/update',
 				json : {
-					"status" : "open",
-					"properties" : {
-						"title" : "I updated this collection",
-						"subtitle" : "AutoTestSeries"
+					status : "open",
+					properties : {
+						titleInfo : [{
+							title : "This is a updated collection title!"
+						}]
 					}
 				}
 			}, function(err, resp, body) {
@@ -201,8 +163,11 @@ should respond with the id of the updated object.
 				method : 'POST',
 				uri : socket + '/dev/objects/' + seriesId + '/update',
 				json : {
+					status : "open",
 					properties : {
-						title : "I updated this series"
+						titleInfo : [{
+							title : "This is a updated series title!"
+						}]
 					}
 				}
 			}, function(err, resp, body) {
@@ -220,10 +185,13 @@ should respond with the id of the updated object.
 ```js
 			request({
 				method : 'POST',
-				uri : socket + '/dev/objects/' + seriesId + '/update',
+				uri : socket + '/dev/objects/' + itemId + '/update',
 				json : {
+					status : "open",
 					properties : {
-						title : "I updated this item"
+						titleInfo : [{
+							title : "This is a updated item title!"
+						}]
 					}
 				}
 			}, function(err, resp, body) {
@@ -306,7 +274,7 @@ should respond with the Fedora pid.
 				uri : socket + '/dev/objects/' + collectionId + '/approve'
 			}, function(err, resp, body) {
 				assert.isNull(err);
-				console.log(body)
+				assert.include(body, "This is a updated collection title!");
 				done();
 			});
 ```
@@ -356,3 +324,4 @@ should respond with the id of the deleted object.
 			});
 ```
 
+make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/dri-api'

@@ -1,12 +1,12 @@
 
 <html lang="en">
 	<head>
-		<meta charset="utf-8" />
-		<meta name="description" content="DRIS Workflows" />
-		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest" />
+		<meta charset="utf-8">
+		<meta name="description" content="DRIS Workflows">
+		<meta name="keywords" content="node-dri,node-fedora,tchpc,dri,dris-workflows,howest">
 		<title>API for node-fedora DRIS Workflows</title>
 		<script type="text/javascript">var _sf_startpt = (new Date()).getTime()</script>
-		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all" />
+		<link rel="stylesheet" href="/css/bootstrap.css" type="text/css" media="all">
 	</head>
 	<div class="navbar">
 		<div class="navbar-inner">
@@ -37,13 +37,19 @@
 								@: / 
 							<a href="/api-for-node-fedora" class="breadcrumb">api-for-node-fedora</a></div>
 						</div>
-						<div class="content"><h1>TOC</h1>
+						<div class="content"><p>make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'
+info: Fedora package configured
+</p>
+<h1>TOC</h1>
 <ul>
 <li><a href="#test-cases-for-the-node-fedora-package">Test cases for the node-fedora package</a><ul>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-createfedoraobject-will-create-a-fedoraobject">Calling createFedoraObject(), will create a fedoraObject</a></li>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-getfedoralist-get-a-list-of-fedoraobjects">Calling getFedoraList(), Get a list of fedoraObjects</a></li>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-getfedoraobject-get-a-fedoraobject">Calling getFedoraObject(), get a fedoraObject</a></li>
-<li><a href="#test-cases-for-the-node-fedora-package-calling-adddatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling addDatastream(), to add a Datastream to an existing fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-addxmldatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling addXMLDatastream(), to add a Datastream to an existing fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-modifyxmldatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling modifyXMLDatastream(), to add a Datastream to an existing fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-addmediadatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling addMediaDatastream(), to add a Datastream to an existing fedoraObject</a></li>
+<li><a href="#test-cases-for-the-node-fedora-package-calling-modifymediadatastream-to-add-a-datastream-to-an-existing-fedoraobject">Calling modifyMediaDatastream(), to add a Datastream to an existing fedoraObject</a></li>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-deleteobject-will-delete-an-object-from-fedora">Calling deleteObject(), will delete an object from fedora</a></li>
 <li><a href="#test-cases-for-the-node-fedora-package-calling-getnextpid-will-get-the-next-pid-that-is-available-from-fedora">Calling getNextPID(), will get the next PID that is available from fedora</a>
 <a name=""></a></li>
@@ -88,15 +94,58 @@
                 resultData.should.include(testResult);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-the-node-fedora-package-calling-adddatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
+<p><a name="test-cases-for-the-node-fedora-package-calling-addxmldatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
 </p>
-<h2>Calling addDatastream(), to add a Datastream to an existing fedoraObject</h2>
+<h2>Calling addXMLDatastream(), to add a Datastream to an existing fedoraObject</h2>
 <p>should return the datastream.
 
 </p>
 <pre><code class="js">            var data = '&lt;oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"&gt;&lt;dc:title&gt;jhdgj&lt;/dc:title&gt;&lt;dc:identifier&gt;4f8ffc8ff889d6ab44000001&lt;/dc:identifier&gt;&lt;/oai_dc:dc&gt;'
-            fedora.addDatastream(testResult, "DC", data, function(resultData) {
 
+            fedora.addXMLDatastream(testResult, "DC", data, function(resultData) {
+                resultData.should.include(testResult);
+                done();
+            }, function(err) {
+                console.log(err);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-calling-modifyxmldatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
+</p>
+<h2>Calling modifyXMLDatastream(), to add a Datastream to an existing fedoraObject</h2>
+<p>should return the datastream.
+
+</p>
+<pre><code class="js">            var data = '&lt;oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd"&gt;&lt;dc:title&gt;jhdgj - updated!&lt;/dc:title&gt;&lt;dc:identifier&gt;4f8ffc8ff889d6ab44000001&lt;/dc:identifier&gt;&lt;/oai_dc:dc&gt;'
+            fedora.modifyXMLDatastream(testResult, "DC", data, function(resultData) {
+                resultData.should.include(testResult);
+                done();
+            }, function(err) {
+                console.log(err);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-calling-addmediadatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
+</p>
+<h2>Calling addMediaDatastream(), to add a Datastream to an existing fedoraObject</h2>
+<p>should return the datastream.
+
+</p>
+<pre><code class="js">            var data = {
+                fileLocation: 'd9375fdf1fa331bbe0b4aa79f766972f0d408a29/Eagle_Fall_Sunrise.jpg'
+            }
+            fedora.addMediaDatastream(testResult, "IMAGE", data, function(resultData) {
+                resultData.should.include(testResult);
+                done();
+            }, function(err) {
+                console.log(err);
+            });</code></pre>
+<p><a name="test-cases-for-the-node-fedora-package-calling-modifymediadatastream-to-add-a-datastream-to-an-existing-fedoraobject"></a>
+</p>
+<h2>Calling modifyMediaDatastream(), to add a Datastream to an existing fedoraObject</h2>
+<p>should return the datastream.
+
+</p>
+<pre><code class="js">            var data = {
+                fileLocation: 'd9375fdf1fa331bbe0b4aa79f766972f0d408a29/Eagle_Fall_Sunrise.jpg'
+            }
+            fedora.modifyMediaDatastream(testResult, "IMAGE", data, function(resultData) {
                 resultData.should.include(testResult);
                 done();
             }, function(err) {
@@ -125,6 +174,8 @@
                 resultData.should.include("node:");
                 done();
             });</code></pre>
+<p>make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'
+</p>
 </div>
 					</article>
 				</div>
@@ -134,7 +185,7 @@
 			</div>
 		</div>
 		<footer id="footer">
-			<hr />
+			<hr>
 			<p>
 				<a href="/">DRIS Workflows</a> documentation site powered by <a href="https://github.com/flatiron/blacksmith">Blacksmith</a> / styled with <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>
 			</p>
