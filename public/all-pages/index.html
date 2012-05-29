@@ -76,7 +76,7 @@ design of the object model.
 
 </p>
 <h2>Licensing</h2>
-<p>TBD - ultimately GPLv2 or MIT based license?
+<p>GPLv2.
 
 </p>
 <h2>Requirements</h2>
@@ -696,7 +696,6 @@ info: Fedora package configured
 info: MongoDB: <a href="mongodb://localhost/dri">mongodb://localhost/dri</a>
 info: DRI package configured
 info: Fetched items
-[]
 </p>
 <h1>TOC</h1>
 <ul>
@@ -711,8 +710,8 @@ info: Fetched items
 <li><a href="#test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series">Calling getChildren(parentId, onSuccess, onError) to get the children of a series</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection">Calling getObject(id, onSuccess, onError) to get a collection</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id">Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id</a></li>
-<li><a href="#test-cases-for-node-dri-package-stats">Stats</a></li>
-<li><a href="#test-cases-for-node-dri-package-querying">Querying</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-countobjectsoptions-onsuccess-onerror-with-no-options">Calling countObjects(options, onSuccess, onError) with no options</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-queryfield-value-onsuccess-onerror-">Calling query(field, value, onSuccess, onError) </a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id">Calling removeObject(id, onSuccess, onError) with a item id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id">Calling removeObject(id, onSuccess, onError) with a series id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id">Calling removeObject(id, onSuccess, onError) with a collection id</a>
@@ -883,9 +882,9 @@ info: Fetched items
                 should.not.exist(e);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-stats"></a>
+<p><a name="test-cases-for-node-dri-package-calling-countobjectsoptions-onsuccess-onerror-with-no-options"></a>
 </p>
-<h2>Stats</h2>
+<h2>Calling countObjects(options, onSuccess, onError) with no options</h2>
 <p>should return the amount of objects in MongoDB.
 
 </p>
@@ -896,14 +895,13 @@ info: Fetched items
                 should.not.exist(e);
                 done();
             });</code></pre>
-<p><a name="test-cases-for-node-dri-package-querying"></a>
+<p><a name="test-cases-for-node-dri-package-calling-queryfield-value-onsuccess-onerror-"></a>
 </p>
-<h2>Querying</h2>
+<h2>Calling query(field, value, onSuccess, onError)</h2>
 <p>should return an array containing objects that contain the searched field.
 
 </p>
 <pre><code class="js">            dri.query("label", "50c25df5b", function(data) {
-                console.log(data)
                 should.exist(data)
                 assert.include(data[0], "label");
                 assert.include(data[0], "e2f");

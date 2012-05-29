@@ -2,7 +2,6 @@ make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/
 info: MongoDB: mongodb://localhost/dri
 info: DRI package configured
 info: Fetched items
-[]
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
@@ -15,8 +14,8 @@ info: Fetched items
      - [Calling getChildren(parentId, onSuccess, onError) to get the children of a series](#test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series)
      - [Calling getObject(id, onSuccess, onError) to get a collection](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection)
      - [Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id)
-     - [Stats](#test-cases-for-node-dri-package-stats)
-     - [Querying](#test-cases-for-node-dri-package-querying)
+     - [Calling countObjects(options, onSuccess, onError) with no options](#test-cases-for-node-dri-package-calling-countobjectsoptions-onsuccess-onerror-with-no-options)
+     - [Calling query(field, value, onSuccess, onError) ](#test-cases-for-node-dri-package-calling-queryfield-value-onsuccess-onerror-)
      - [Calling removeObject(id, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id)
      - [Calling removeObject(id, onSuccess, onError) with a series id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id)
      - [Calling removeObject(id, onSuccess, onError) with a collection id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id)
@@ -194,8 +193,8 @@ should push the item into fedora and return the fedora id from that item.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-stats" />
-## Stats
+<a name="test-cases-for-node-dri-package-calling-countobjectsoptions-onsuccess-onerror-with-no-options" />
+## Calling countObjects(options, onSuccess, onError) with no options
 should return the amount of objects in MongoDB.
 
 ```js
@@ -208,13 +207,12 @@ should return the amount of objects in MongoDB.
 			});
 ```
 
-<a name="test-cases-for-node-dri-package-querying" />
-## Querying
+<a name="test-cases-for-node-dri-package-calling-queryfield-value-onsuccess-onerror-" />
+## Calling query(field, value, onSuccess, onError) 
 should return an array containing objects that contain the searched field.
 
 ```js
 			dri.query("label", "50c25df5b", function(data) {
-				console.log(data)
 				should.exist(data)
 				assert.include(data[0], "label");
 				assert.include(data[0], "e2f");
