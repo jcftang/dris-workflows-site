@@ -27,7 +27,7 @@ design of the object model.
 
 ## Licensing
 
-TBD - ultimately GPLv2 or MIT based license?
+GPLv2.
 
 ## Requirements
 
