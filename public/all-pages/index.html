@@ -239,6 +239,11 @@ info: result
 <li><a href="#tests-for-dri-apiv2-get-devobjectsiddc">GET /dev/objects/:id.dc</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsidlist">GET /dev/objects/:id/list</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsidapprove">GET /dev/objects/:id/approve</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devstats">GET /dev/stats</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devstatsapproved">GET /dev/stats/approved</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devstatsopen">GET /dev/stats/open</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devstatslastedited">GET /dev/stats/lastedited</a></li>
+<li><a href="#tests-for-dri-apiv2-get-devstatslastcreated">GET /dev/stats/lastcreated</a></li>
 <li><a href="#tests-for-dri-apiv2-get-devobjectsiddelete">GET /dev/objects/:id/delete</a>
 <a name=""></a></li>
 </ul>
@@ -491,6 +496,76 @@ info: result
             }, function(err, resp, body) {
                 assert.isNull(err);
                 assert.include(body, "This is a updated collection title!");
+                done();
+            });</code></pre>
+<p><a name="tests-for-dri-apiv2-get-devstats"></a>
+</p>
+<h2>GET /dev/stats</h2>
+<p>should respond with the total amount of objects in mongodb.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/stats'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isString(body);
+                done();
+            });</code></pre>
+<p><a name="tests-for-dri-apiv2-get-devstatsapproved"></a>
+</p>
+<h2>GET /dev/stats/approved</h2>
+<p>should respond with the total amount of objects in mongodb that have been pushed to fedora.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/stats/approved'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isString(body);
+                done();
+            });</code></pre>
+<p><a name="tests-for-dri-apiv2-get-devstatsopen"></a>
+</p>
+<h2>GET /dev/stats/open</h2>
+<p>should respond with the total amount of objects in mongodb that are open.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/objects/stats/open'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isString(body);
+                done();
+            });</code></pre>
+<p><a name="tests-for-dri-apiv2-get-devstatslastedited"></a>
+</p>
+<h2>GET /dev/stats/lastedited</h2>
+<p>should respond with a list of the last edited objects.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/stats/lastedited'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isString(body);
+                done();
+            });</code></pre>
+<p><a name="tests-for-dri-apiv2-get-devstatslastcreated"></a>
+</p>
+<h2>GET /dev/stats/lastcreated</h2>
+<p>should respond with a list of the last created objects.
+
+</p>
+<pre><code class="js">            request({
+                method : 'GET',
+                uri : socket + '/dev/stats/lastcreated'
+            }, function(err, resp, body) {
+                assert.isNull(err);
+                assert.isString(body);
                 done();
             });</code></pre>
 <p><a name="tests-for-dri-apiv2-get-devobjectsiddelete"></a>

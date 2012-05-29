@@ -15,6 +15,11 @@ info: result
      - [GET /dev/objects/:id.dc](#tests-for-dri-apiv2-get-devobjectsiddc)
      - [GET /dev/objects/:id/list](#tests-for-dri-apiv2-get-devobjectsidlist)
      - [GET /dev/objects/:id/approve](#tests-for-dri-apiv2-get-devobjectsidapprove)
+     - [GET /dev/stats](#tests-for-dri-apiv2-get-devstats)
+     - [GET /dev/stats/approved](#tests-for-dri-apiv2-get-devstatsapproved)
+     - [GET /dev/stats/open](#tests-for-dri-apiv2-get-devstatsopen)
+     - [GET /dev/stats/lastedited](#tests-for-dri-apiv2-get-devstatslastedited)
+     - [GET /dev/stats/lastcreated](#tests-for-dri-apiv2-get-devstatslastcreated)
      - [GET /dev/objects/:id/delete](#tests-for-dri-apiv2-get-devobjectsiddelete)
 <a name="" />
  
@@ -275,6 +280,81 @@ should respond with the Fedora pid.
 			}, function(err, resp, body) {
 				assert.isNull(err);
 				assert.include(body, "This is a updated collection title!");
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devstats" />
+## GET /dev/stats
+should respond with the total amount of objects in mongodb.
+
+```js
+			request({
+				method : 'GET',
+				uri : socket + '/dev/stats'
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.isString(body);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devstatsapproved" />
+## GET /dev/stats/approved
+should respond with the total amount of objects in mongodb that have been pushed to fedora.
+
+```js
+			request({
+				method : 'GET',
+				uri : socket + '/dev/stats/approved'
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.isString(body);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devstatsopen" />
+## GET /dev/stats/open
+should respond with the total amount of objects in mongodb that are open.
+
+```js
+			request({
+				method : 'GET',
+				uri : socket + '/dev/objects/stats/open'
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.isString(body);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devstatslastedited" />
+## GET /dev/stats/lastedited
+should respond with a list of the last edited objects.
+
+```js
+			request({
+				method : 'GET',
+				uri : socket + '/dev/stats/lastedited'
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.isString(body);
+				done();
+			});
+```
+
+<a name="tests-for-dri-apiv2-get-devstatslastcreated" />
+## GET /dev/stats/lastcreated
+should respond with a list of the last created objects.
+
+```js
+			request({
+				method : 'GET',
+				uri : socket + '/dev/stats/lastcreated'
+			}, function(err, resp, body) {
+				assert.isNull(err);
+				assert.isString(body);
 				done();
 			});
 ```
