@@ -10,12 +10,17 @@ info: Fetched items
      - [Calling createObject(data, onSuccess, onError) to create an item](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item)
      - [Calling getObject(id, onSuccess, onError) to get an item](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item)
      - [Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core)
+     - [Calling getObject(id, onSuccess, onError) to get an item and convert to MODS](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-mods)
      - [Calling getObject(id, onSuccess, onError) to get a Series](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-series)
      - [Calling getChildren(parentId, onSuccess, onError) to get the children of a series](#test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series)
      - [Calling getObject(id, onSuccess, onError) to get a collection](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection)
      - [Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id)
      - [Calling countObjects(options, onSuccess, onError) with no options](#test-cases-for-node-dri-package-calling-countobjectsoptions-onsuccess-onerror-with-no-options)
      - [Calling query(field, value, onSuccess, onError) ](#test-cases-for-node-dri-package-calling-queryfield-value-onsuccess-onerror-)
+     - [Calling lastCreated(onSuccess, onError) ](#test-cases-for-node-dri-package-calling-lastcreatedonsuccess-onerror-)
+     - [Calling lastEdited(onSuccess, onError) ](#test-cases-for-node-dri-package-calling-lasteditedonsuccess-onerror-)
+     - [Calling lastCreatedByType(type, onSuccess, onError) ](#test-cases-for-node-dri-package-calling-lastcreatedbytypetype-onsuccess-onerror-)
+     - [Calling lastEditedByType(type, onSuccess, onError) ](#test-cases-for-node-dri-package-calling-lasteditedbytypetype-onsuccess-onerror-)
      - [Calling removeObject(id, onSuccess, onError) with a item id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id)
      - [Calling removeObject(id, onSuccess, onError) with a series id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id)
      - [Calling removeObject(id, onSuccess, onError) with a collection id](#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id)
@@ -128,11 +133,25 @@ should get an Item and return the Item.
 
 <a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core" />
 ## Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core
-should get an Item and return the Item.
+should get an Item and return the Item in DC.
 
 ```js
 			dri.getObject(itemId, function(result) {
 				var dc = dri.convertToDC(result)
+				assert.include(dc, itemId)
+				done();
+			}, function(e) {
+				should.not.exist(e);
+			});
+```
+
+<a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-mods" />
+## Calling getObject(id, onSuccess, onError) to get an item and convert to MODS
+should get an Item and return the Item in MODS.
+
+```js
+			dri.getObject(itemId, function(result) {
+				var dc = dri.convertToMODS(result)
 				assert.include(dc, itemId)
 				done();
 			}, function(e) {
@@ -216,6 +235,64 @@ should return an array containing objects that contain the searched field.
 				should.exist(data)
 				assert.include(data[0], "label");
 				assert.include(data[0], "e2f");
+				done();
+			}, function(err) {
+				should.not.exist(e);
+				done();
+			});
+```
+
+<a name="test-cases-for-node-dri-package-calling-lastcreatedonsuccess-onerror-" />
+## Calling lastCreated(onSuccess, onError) 
+should return an array containing the last 5 created objects.
+
+```js
+			dri.lastCreated(function(data) {
+				should.exist(data)
+				done();
+			}, function(err) {
+				should.not.exist(e);
+				done();
+			});
+```
+
+<a name="test-cases-for-node-dri-package-calling-lasteditedonsuccess-onerror-" />
+## Calling lastEdited(onSuccess, onError) 
+should return an array containing the last 5 edited objects.
+
+```js
+			dri.lastEdited(function(data) {
+				should.exist(data)
+				done();
+			}, function(err) {
+				should.not.exist(e);
+				done();
+			});
+```
+
+<a name="test-cases-for-node-dri-package-calling-lastcreatedbytypetype-onsuccess-onerror-" />
+## Calling lastCreatedByType(type, onSuccess, onError) 
+should return an array containing the last 5 created items.
+
+```js
+			dri.lastCreatedByType("item",function(data) {
+				should.exist(data)
+				assert.include(data[0], "item");
+				done();
+			}, function(err) {
+				should.not.exist(e);
+				done();
+			});
+```
+
+<a name="test-cases-for-node-dri-package-calling-lasteditedbytypetype-onsuccess-onerror-" />
+## Calling lastEditedByType(type, onSuccess, onError) 
+should return an array containing the last 5 edited items.
+
+```js
+			dri.lastEditedByType("item",function(data) {
+				should.exist(data)
+				assert.include(data[0], "item");
 				done();
 			}, function(err) {
 				should.not.exist(e);

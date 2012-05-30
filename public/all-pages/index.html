@@ -781,12 +781,17 @@ info: Fetched items
 <li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item">Calling createObject(data, onSuccess, onError) to create an item</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item">Calling getObject(id, onSuccess, onError) to get an item</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core">Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-mods">Calling getObject(id, onSuccess, onError) to get an item and convert to MODS</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-series">Calling getObject(id, onSuccess, onError) to get a Series</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getchildrenparentid-onsuccess-onerror-to-get-the-children-of-a-series">Calling getChildren(parentId, onSuccess, onError) to get the children of a series</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-a-collection">Calling getObject(id, onSuccess, onError) to get a collection</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-approveitemid-fedoranamespace-onsuccess-onerror-with-a-item-id">Calling approveItem(id, fedoraNamespace, onSuccess, onError) with a item id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-countobjectsoptions-onsuccess-onerror-with-no-options">Calling countObjects(options, onSuccess, onError) with no options</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-queryfield-value-onsuccess-onerror-">Calling query(field, value, onSuccess, onError) </a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-lastcreatedonsuccess-onerror-">Calling lastCreated(onSuccess, onError) </a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-lasteditedonsuccess-onerror-">Calling lastEdited(onSuccess, onError) </a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-lastcreatedbytypetype-onsuccess-onerror-">Calling lastCreatedByType(type, onSuccess, onError) </a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-lasteditedbytypetype-onsuccess-onerror-">Calling lastEditedByType(type, onSuccess, onError) </a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-item-id">Calling removeObject(id, onSuccess, onError) with a item id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-series-id">Calling removeObject(id, onSuccess, onError) with a series id</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-removeobjectid-onsuccess-onerror-with-a-collection-id">Calling removeObject(id, onSuccess, onError) with a collection id</a>
@@ -898,11 +903,24 @@ info: Fetched items
 <p><a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core"></a>
 </p>
 <h2>Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core</h2>
-<p>should get an Item and return the Item.
+<p>should get an Item and return the Item in DC.
 
 </p>
 <pre><code class="js">            dri.getObject(itemId, function(result) {
                 var dc = dri.convertToDC(result)
+                assert.include(dc, itemId)
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-mods"></a>
+</p>
+<h2>Calling getObject(id, onSuccess, onError) to get an item and convert to MODS</h2>
+<p>should get an Item and return the Item in MODS.
+
+</p>
+<pre><code class="js">            dri.getObject(itemId, function(result) {
+                var dc = dri.convertToMODS(result)
                 assert.include(dc, itemId)
                 done();
             }, function(e) {
@@ -980,6 +998,60 @@ info: Fetched items
                 should.exist(data)
                 assert.include(data[0], "label");
                 assert.include(data[0], "e2f");
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-calling-lastcreatedonsuccess-onerror-"></a>
+</p>
+<h2>Calling lastCreated(onSuccess, onError)</h2>
+<p>should return an array containing the last 5 created objects.
+
+</p>
+<pre><code class="js">            dri.lastCreated(function(data) {
+                should.exist(data)
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-calling-lasteditedonsuccess-onerror-"></a>
+</p>
+<h2>Calling lastEdited(onSuccess, onError)</h2>
+<p>should return an array containing the last 5 edited objects.
+
+</p>
+<pre><code class="js">            dri.lastEdited(function(data) {
+                should.exist(data)
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-calling-lastcreatedbytypetype-onsuccess-onerror-"></a>
+</p>
+<h2>Calling lastCreatedByType(type, onSuccess, onError)</h2>
+<p>should return an array containing the last 5 created items.
+
+</p>
+<pre><code class="js">            dri.lastCreatedByType("item",function(data) {
+                should.exist(data)
+                assert.include(data[0], "item");
+                done();
+            }, function(err) {
+                should.not.exist(e);
+                done();
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-calling-lasteditedbytypetype-onsuccess-onerror-"></a>
+</p>
+<h2>Calling lastEditedByType(type, onSuccess, onError)</h2>
+<p>should return an array containing the last 5 edited items.
+
+</p>
+<pre><code class="js">            dri.lastEditedByType("item",function(data) {
+                should.exist(data)
+                assert.include(data[0], "item");
                 done();
             }, function(err) {
                 should.not.exist(e);
