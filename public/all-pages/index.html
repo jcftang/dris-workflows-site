@@ -770,47 +770,47 @@ info: Fedora package configured
 						<div class="content"><p>make[2]: Entering directory <code>/data/home/jtang/develop/dris-workflows-site/build/node-dri'
 info: MongoDB: mongodb:<span class="comment">//l</span>ocalhost/dri
 info: DRI package configured
-<span class="test_condition">[ { dateOther: '<span class="number">2345</span>', point: 'beginning' } ]</span>
-<span class="number">2345</span>
-<span class="number">2345</span>
-<span class="number">2345</span>
-<span class="number">2345</span>
-<span class="number">2345</span>
-<span class="number">2345</span>
-<span class="number">2345</span>
+<span class="number">1234</span>
 <span class="number">123</span></code>
-1234
-[ { dateOther: 'jdgj', point: 'beginning' } ]
-dgyjyjdg
-jdgj
-dgjdg
-jdgjdg
-dgyjdg
-jdgj
-dgyjdg
-dyjjjydgjd
+2345
+2345
+2345
+2345
+2345
+2345
+2345
+[ { point: 'beginning', dateOther: '2345' } ]
 f7fiujmdg
+dyjjjydgjd
+dgyjdg
+jdgj
+dgyjdg
+jdgjdg
+dgjdg
+jdgj
+dgyjyjdg
+[ { point: 'beginning', dateOther: 'jdgj' } ]
 info: Fetched items
-[ { dateOther: '2345', point: 'beginning' } ]
-2345
-2345
-2345
-2345
-2345
-2345
-2345
-123`
 1234
-[ { dateOther: 'jdgj', point: 'beginning' } ]
-dgyjyjdg
-jdgj
-dgjdg
-jdgjdg
-dgyjdg
-jdgj
-dgyjdg
-dyjjjydgjd
+123`
+2345
+2345
+2345
+2345
+2345
+2345
+2345
+[ { point: 'beginning', dateOther: '2345' } ]
 f7fiujmdg
+dyjjjydgjd
+dgyjdg
+jdgj
+dgyjdg
+jdgjdg
+dgjdg
+jdgj
+dgyjyjdg
+[ { point: 'beginning', dateOther: 'jdgj' } ]
 </p>
 <h1>TOC</h1>
 <ul>
@@ -819,6 +819,7 @@ f7fiujmdg
 <li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-collection">Calling createObject(data, onSuccess, onError) to create a collection</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-series">Calling createObject(data, onSuccess, onError) to create a series</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item">Calling createObject(data, onSuccess, onError) to create an item</a></li>
+<li><a href="#test-cases-for-node-dri-package-calling-updateobjectid-data-onsuccess-onerror-to-create-an-item">Calling updateObject(id, data, onSuccess, onError) to create an item</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item">Calling getObject(id, onSuccess, onError) to get an item</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core">Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core</a></li>
 <li><a href="#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-mods">Calling getObject(id, onSuccess, onError) to get an item and convert to MODS</a></li>
@@ -900,6 +901,21 @@ f7fiujmdg
                 result.should.be.ok
                 assert.lengthOf(result, 24)
                 itemId = result;
+                done();
+            }, function(e) {
+                should.not.exist(e);
+            });</code></pre>
+<p><a name="test-cases-for-node-dri-package-calling-updateobjectid-data-onsuccess-onerror-to-create-an-item"></a>
+</p>
+<h2>Calling updateObject(id, data, onSuccess, onError) to create an item</h2>
+<p>should updat an Item and return the id of the Item.
+
+</p>
+<pre><code class="js">            data.properties.titleInfo[0].title = "updated title"
+            dri.updateObject(itemId ,data, function(result) {
+                result.should.be.ok
+                assert.include(result._id, itemId)
+                assert.include(result, "updated title")
                 done();
             }, function(e) {
                 should.not.exist(e);

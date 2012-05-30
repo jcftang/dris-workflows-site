@@ -1,53 +1,54 @@
 make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
 info: MongoDB: mongodb://localhost/dri
 info: DRI package configured
-[ { dateOther: '2345', point: 'beginning' } ]
-2345
-2345
-2345
-2345
-2345
-2345
-2345
-123`
 1234
-[ { dateOther: 'jdgj', point: 'beginning' } ]
-dgyjyjdg
-jdgj
-dgjdg
-jdgjdg
-dgyjdg
-jdgj
-dgyjdg
-dyjjjydgjd
+123`
+2345
+2345
+2345
+2345
+2345
+2345
+2345
+[ { point: 'beginning', dateOther: '2345' } ]
 f7fiujmdg
+dyjjjydgjd
+dgyjdg
+jdgj
+dgyjdg
+jdgjdg
+dgjdg
+jdgj
+dgyjyjdg
+[ { point: 'beginning', dateOther: 'jdgj' } ]
 info: Fetched items
-[ { dateOther: '2345', point: 'beginning' } ]
-2345
-2345
-2345
-2345
-2345
-2345
-2345
-123`
 1234
-[ { dateOther: 'jdgj', point: 'beginning' } ]
-dgyjyjdg
-jdgj
-dgjdg
-jdgjdg
-dgyjdg
-jdgj
-dgyjdg
-dyjjjydgjd
+123`
+2345
+2345
+2345
+2345
+2345
+2345
+2345
+[ { point: 'beginning', dateOther: '2345' } ]
 f7fiujmdg
+dyjjjydgjd
+dgyjdg
+jdgj
+dgyjdg
+jdgjdg
+dgjdg
+jdgj
+dgyjyjdg
+[ { point: 'beginning', dateOther: 'jdgj' } ]
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
      - [Calling createObject(data, onSuccess, onError) to create a collection](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-collection)
      - [Calling createObject(data, onSuccess, onError) to create a series](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-a-series)
      - [Calling createObject(data, onSuccess, onError) to create an item](#test-cases-for-node-dri-package-calling-createobjectdata-onsuccess-onerror-to-create-an-item)
+     - [Calling updateObject(id, data, onSuccess, onError) to create an item](#test-cases-for-node-dri-package-calling-updateobjectid-data-onsuccess-onerror-to-create-an-item)
      - [Calling getObject(id, onSuccess, onError) to get an item](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item)
      - [Calling getObject(id, onSuccess, onError) to get an item and convert to Dublin Core](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-dublin-core)
      - [Calling getObject(id, onSuccess, onError) to get an item and convert to MODS](#test-cases-for-node-dri-package-calling-getobjectid-onsuccess-onerror-to-get-an-item-and-convert-to-mods)
@@ -128,6 +129,22 @@ should create an Item and return the id of the Item.
 				result.should.be.ok
 				assert.lengthOf(result, 24)
 				itemId = result;
+				done();
+			}, function(e) {
+				should.not.exist(e);
+			});
+```
+
+<a name="test-cases-for-node-dri-package-calling-updateobjectid-data-onsuccess-onerror-to-create-an-item" />
+## Calling updateObject(id, data, onSuccess, onError) to create an item
+should updat an Item and return the id of the Item.
+
+```js
+			data.properties.titleInfo[0].title = "updated title"
+			dri.updateObject(itemId ,data, function(result) {
+				result.should.be.ok
+				assert.include(result._id, itemId)
+				assert.include(result, "updated title")
 				done();
 			}, function(e) {
 				should.not.exist(e);
