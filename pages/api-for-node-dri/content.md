@@ -1,47 +1,7 @@
 make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
 info: MongoDB: mongodb://localhost/dri
 info: DRI package configured
-1234
-123`
-2345
-2345
-2345
-2345
-2345
-2345
-2345
-[ { point: 'beginning', dateOther: '2345' } ]
-f7fiujmdg
-dyjjjydgjd
-dgyjdg
-jdgj
-dgyjdg
-jdgjdg
-dgjdg
-jdgj
-dgyjyjdg
-[ { point: 'beginning', dateOther: 'jdgj' } ]
 info: Fetched items
-1234
-123`
-2345
-2345
-2345
-2345
-2345
-2345
-2345
-[ { point: 'beginning', dateOther: '2345' } ]
-f7fiujmdg
-dyjjjydgjd
-dgyjdg
-jdgj
-dgyjdg
-jdgjdg
-dgjdg
-jdgj
-dgyjyjdg
-[ { point: 'beginning', dateOther: 'jdgj' } ]
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
