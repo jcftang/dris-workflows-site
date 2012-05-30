@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Wed, 30 May 2012 12:00:29 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Wed, 30 May 2012 13:00:55 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -547,10 +547,50 @@ info: Fedora package configured
             });</code></pre>
 <p>make[2]: Leaving directory `/data/home/jtang/develop/dris-workflows-site/build/node-fedora'
 </p>
-]]></description><link>http://undefined/api-for-node-fedora</link><guid isPermaLink="true">http://undefined/api-for-node-fedora</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:21:17 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-dri">API for node-dri</a>]]></title><description><![CDATA[<p>make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
-info: MongoDB: <a href="mongodb://localhost/dri">mongodb://localhost/dri</a>
+]]></description><link>http://undefined/api-for-node-fedora</link><guid isPermaLink="true">http://undefined/api-for-node-fedora</guid><dc:creator><![CDATA[jtang]]></dc:creator><pubDate>Tue, 10 Apr 2012 13:21:17 GMT</pubDate></item><item><title><![CDATA[<a href="./api-for-node-dri">API for node-dri</a>]]></title><description><![CDATA[<p>make[2]: Entering directory <code>/data/home/jtang/develop/dris-workflows-site/build/node-dri'
+info: MongoDB: mongodb:<span class="comment">//l</span>ocalhost/dri
 info: DRI package configured
+<span class="test_condition">[ { dateOther: '<span class="number">2345</span>', point: 'beginning' } ]</span>
+<span class="number">2345</span>
+<span class="number">2345</span>
+<span class="number">2345</span>
+<span class="number">2345</span>
+<span class="number">2345</span>
+<span class="number">2345</span>
+<span class="number">2345</span>
+<span class="number">123</span></code>
+1234
+[ { dateOther: 'jdgj', point: 'beginning' } ]
+dgyjyjdg
+jdgj
+dgjdg
+jdgjdg
+dgyjdg
+jdgj
+dgyjdg
+dyjjjydgjd
+f7fiujmdg
 info: Fetched items
+[ { dateOther: '2345', point: 'beginning' } ]
+2345
+2345
+2345
+2345
+2345
+2345
+2345
+123`
+1234
+[ { dateOther: 'jdgj', point: 'beginning' } ]
+dgyjyjdg
+jdgj
+dgjdg
+jdgjdg
+dgyjdg
+jdgj
+dgyjdg
+dyjjjydgjd
+f7fiujmdg
 </p>
 <h1>TOC</h1>
 <ul>
@@ -600,16 +640,7 @@ info: Fetched items
 <p>should create a collection and return the id of the collection.
 
 </p>
-<pre><code class="js">            var data = {
-                properties : {
-                    titleInfo : [{
-                        title : "AutoTestColl" + rnd,
-                        subtitle : "SubAutoTestColl" + rnd
-                    }]
-                },
-                status : "open",
-                type : "collection"
-            };
+<pre><code class="js">            data.type = "collection"
             dri.createObject(data, function(result) {
                 result.should.be.ok
                 assert.lengthOf(result, 24)
@@ -624,17 +655,10 @@ info: Fetched items
 <p>should create a series and return the id of the series.
 
 </p>
-<pre><code class="js">            var data = {
-                properties : {
-                    titleInfo : [{
-                        title : "AutoTestSeries" + rnd,
-                        subtitle : "SubAutoTestSeries" + rnd
-                    }]
-                },
-                status : "open",
-                type : "series",
-                parentId : collId
-            };
+<pre><code class="js">
+            data.type = "series"
+            data.parentId = collId
+
             dri.createObject(data, function(result) {
                 result.should.be.ok
                 assert.lengthOf(result, 24)
@@ -649,17 +673,9 @@ info: Fetched items
 <p>should create an Item and return the id of the Item.
 
 </p>
-<pre><code class="js">            var data = {
-                properties : {
-                    titleInfo : [{
-                        title : "AutoTestItem" + rnd,
-                        subtitle : "SubAutoTestItem" + rnd
-                    }]
-                },
-                status : "open",
-                type : "item",
-                parentId : seriesId
-            };
+<pre><code class="js">
+            data.type = "item"
+            data.parentId = seriesId
             dri.createObject(data, function(result) {
                 result.should.be.ok
                 assert.lengthOf(result, 24)
@@ -815,7 +831,7 @@ info: Fetched items
 <p>should return an array containing the last 5 created items.
 
 </p>
-<pre><code class="js">            dri.lastCreatedByType("item",function(data) {
+<pre><code class="js">            dri.lastCreatedByType("item", function(data) {
                 should.exist(data)
                 assert.include(data[0], "item");
                 done();
@@ -829,7 +845,7 @@ info: Fetched items
 <p>should return an array containing the last 5 edited items.
 
 </p>
-<pre><code class="js">            dri.lastEditedByType("item",function(data) {
+<pre><code class="js">            dri.lastEditedByType("item", function(data) {
                 should.exist(data)
                 assert.include(data[0], "item");
                 done();

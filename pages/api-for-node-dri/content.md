@@ -1,7 +1,47 @@
 make[2]: Entering directory `/data/home/jtang/develop/dris-workflows-site/build/node-dri'
 info: MongoDB: mongodb://localhost/dri
 info: DRI package configured
+[ { dateOther: '2345', point: 'beginning' } ]
+2345
+2345
+2345
+2345
+2345
+2345
+2345
+123`
+1234
+[ { dateOther: 'jdgj', point: 'beginning' } ]
+dgyjyjdg
+jdgj
+dgjdg
+jdgjdg
+dgyjdg
+jdgj
+dgyjdg
+dyjjjydgjd
+f7fiujmdg
 info: Fetched items
+[ { dateOther: '2345', point: 'beginning' } ]
+2345
+2345
+2345
+2345
+2345
+2345
+2345
+123`
+1234
+[ { dateOther: 'jdgj', point: 'beginning' } ]
+dgyjyjdg
+jdgj
+dgjdg
+jdgjdg
+dgyjdg
+jdgj
+dgyjdg
+dyjjjydgjd
+f7fiujmdg
 # TOC
    - [Test cases for node-dri package](#test-cases-for-node-dri-package)
      - [Calling getObjectTypes(onSuccess, onError), will get object types](#test-cases-for-node-dri-package-calling-getobjecttypesonsuccess-onerror-will-get-object-types)
@@ -46,16 +86,7 @@ should return an array of all the object types.
 should create a collection and return the id of the collection.
 
 ```js
-			var data = {
-				properties : {
-					titleInfo : [{
-						title : "AutoTestColl" + rnd,
-						subtitle : "SubAutoTestColl" + rnd
-					}]
-				},
-				status : "open",
-				type : "collection"
-			};
+			data.type = "collection"
 			dri.createObject(data, function(result) {
 				result.should.be.ok
 				assert.lengthOf(result, 24)
@@ -71,17 +102,10 @@ should create a collection and return the id of the collection.
 should create a series and return the id of the series.
 
 ```js
-			var data = {
-				properties : {
-					titleInfo : [{
-						title : "AutoTestSeries" + rnd,
-						subtitle : "SubAutoTestSeries" + rnd
-					}]
-				},
-				status : "open",
-				type : "series",
-				parentId : collId
-			};
+
+			data.type = "series"
+			data.parentId = collId
+
 			dri.createObject(data, function(result) {
 				result.should.be.ok
 				assert.lengthOf(result, 24)
@@ -97,17 +121,9 @@ should create a series and return the id of the series.
 should create an Item and return the id of the Item.
 
 ```js
-			var data = {
-				properties : {
-					titleInfo : [{
-						title : "AutoTestItem" + rnd,
-						subtitle : "SubAutoTestItem" + rnd
-					}]
-				},
-				status : "open",
-				type : "item",
-				parentId : seriesId
-			};
+
+			data.type = "item"
+			data.parentId = seriesId
 			dri.createObject(data, function(result) {
 				result.should.be.ok
 				assert.lengthOf(result, 24)
@@ -275,7 +291,7 @@ should return an array containing the last 5 edited objects.
 should return an array containing the last 5 created items.
 
 ```js
-			dri.lastCreatedByType("item",function(data) {
+			dri.lastCreatedByType("item", function(data) {
 				should.exist(data)
 				assert.include(data[0], "item");
 				done();
@@ -290,7 +306,7 @@ should return an array containing the last 5 created items.
 should return an array containing the last 5 edited items.
 
 ```js
-			dri.lastEditedByType("item",function(data) {
+			dri.lastEditedByType("item", function(data) {
 				should.exist(data)
 				assert.include(data[0], "item");
 				done();
