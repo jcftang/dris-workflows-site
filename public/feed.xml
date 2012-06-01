@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Fri, 01 Jun 2012 09:00:28 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
+<rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[DRIS Workflows]]></title><description><![CDATA[DRIS Workflow documentation pages]]></description><link>http://github.com/dylan/node-rss</link><generator>NodeJS RSS Module</generator><lastBuildDate>Fri, 01 Jun 2012 09:54:09 GMT</lastBuildDate><atom:link href="/feed.xml" rel="self" type="application/rss+xml"/><item><title><![CDATA[<a href="./contact">contact</a>]]></title><description><![CDATA[<p>People to contact for more information relating to the work that was carried out.
 
 </p>
 <h2>HOWEST</h2>
@@ -499,7 +499,7 @@ info: Fedora package configured
 
 </p>
 <pre><code class="js">            var data = {
-                fileLocation: 'd9375fdf1fa331bbe0b4aa79f766972f0d408a29/Eagle_Fall_Sunrise.jpg'
+                fileLocation: '05b503d8db65a2a3c44db01e89eb53a9421edd8c/Electric_Car.jpg'
             }
             fedora.addMediaDatastream(testResult, "IMAGE", data, function(resultData) {
                 resultData.should.include(testResult);
@@ -514,7 +514,7 @@ info: Fedora package configured
 
 </p>
 <pre><code class="js">            var data = {
-                fileLocation: 'd9375fdf1fa331bbe0b4aa79f766972f0d408a29/Eagle_Fall_Sunrise.jpg'
+                fileLocation: '05b503d8db65a2a3c44db01e89eb53a9421edd8c/Electric_Car.jpg'
             }
             fedora.modifyMediaDatastream(testResult, "IMAGE", data, function(resultData) {
                 resultData.should.include(testResult);
